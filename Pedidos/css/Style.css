@@ -1,0 +1,291 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    margin-top: 0;
+    background: #f6f5f7;
+}
+
+.cajatexto {
+    outline: none;
+    border: 0;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 7px;
+    margin: 0;
+    width: 260px;
+    margin-right: 4px;
+    font-weight: 900;
+    text-decoration: none;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background-color: rgb(222 219 219)
+}
+
+    .cajatexto:hover {
+        background-color: rgb(204 204 204)
+    }
+
+
+.boton {
+    border: 0;
+    color: white;
+    font-size: 23px;
+    padding: 5px;
+    border-radius: 7px;
+    color: black;
+    width: 40px;
+    font-weight: 900;
+    text-decoration: none;
+    background-color: gold;
+    transition: all 0.3s ease;
+    font-weight: 900;
+}
+
+    .boton:hover {
+        color: white;
+        background-color: rgb(61 176 0);
+    }
+
+
+
+
+.fila {
+    width: 100%;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.elemento {
+    padding: 10px;
+}
+
+.imagenproducto {
+    width: 200px;
+    height: 200px;
+}
+
+.targeta {
+    width: 370px;
+    height: 100%;
+    border: solid 1px;
+    border-color: lightgray;
+    border-radius: 26px;
+    padding: 10px;
+    margin: 10px;
+    transition: all 0.3s ease;
+}
+
+    .targeta:hover {
+        box-shadow: 5px 5px 5px rgb(124 124 124);
+    }
+
+.cabeza-targeta {
+    border-bottom: solid 1px lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pie-targeta {
+    border-top: solid 1px lightgray;
+    padding: 4px;
+    height: 100%;
+    text-align: center;
+}
+
+.cuerpo-targeta {
+    padding: 20px;
+    text-align: center;
+}
+
+.nombreproducto {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.descripcionproducto {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.precio {
+    color: forestgreen;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.botones {
+    padding-top: 7px;
+}
+
+.botoncarrito {
+    border: none;
+    border: solid 1px;
+    background: none;
+    font-size: 18px;
+    height: 30px;
+    padding: 4px;
+    font-weight: 900;
+    border-radius: 10px;
+    color: Highlight;
+    text-decoration: none;
+    border-color: Highlight;
+    transition: all 0.3s ease;
+}
+
+.botoncomprar {
+    border: none;
+    border: solid 1px;
+    background: none;
+    height: 30px;
+    font-size: 15px;
+    border-radius: 10px;
+    font-weight: 800;
+    color: forestgreen;
+    border-color: forestgreen;
+    transition: all 0.3s ease;
+}
+
+.botoncarrito:hover {
+    background-color: Highlight;
+    color: white;
+}
+
+.botoncomprar:hover {
+    background-color: forestgreen;
+    color: white;
+}
+
+.celda {
+    padding: 17px 13px;
+    border-radius: 20px;
+}
+
+.texto {
+    font-weight: 800;
+    font-size: 15px;
+}
+
+.textodescripcion {
+    font-weight: 900;
+    font-size: 13px;
+}
+
+.textoboton {
+    margin: 0 22px;
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.cuerpotabla {
+    border-radius: initial;
+    border: none;
+    border-color: black;
+    border-radius: 10px;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+    .cuerpotabla:hover {
+        box-shadow: 5px 5px 5px 5px rgb(124 124 124);
+    }
+
+.formulariopago {
+    background-color: rgb(232 232 232 / 0.70);
+    text-align: center;
+    border-radius: 30px;
+    color: black;
+    font-weight: 700;
+    font-size: 20px;
+    box-shadow: 5px 5px 5px rgb(101 97 97);
+}
+
+    .formulariopago div {
+        padding: 5px 10px;
+    }
+
+.textopago {
+    width: 100%;
+    font-size: 20px;
+    font-weight: 700;
+    border: none;
+    border-radius: 20px;
+    background-color: rgb(221 221 221);
+    padding: 5px;
+    font-weight: 700;
+}
+
+.botonpedido {
+    border: none;
+    background-color: rgb(255 0 0);
+    color: white;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 6px;
+    transition: all 0.3s ease;
+}
+
+    .botonpedido:hover {
+        background-color: rgb(103 0 0);
+        color: white;
+    }
+
+.contenedor-formulario {
+    background-color: rgb(225 225 225);
+    border-radius: 30px;
+    width: 650px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 10px 10px 10px rgb(109 109 109);
+    height: 560px;
+}
+
+.formulario {
+    text-align: left;
+}
+
+    .formulario div label {
+        font-weight: 900;
+    }
+
+.cuerpo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+}
+
+.input {
+    border: none;
+    width: 560px;
+    font-weight: 500;
+    border-radius: 20px;
+    padding: 10px 20px;
+    background-color: rgb(203 203 203);
+}
+
+@media(max-width:800px) {
+    .celdadescripcion {
+        display: none;
+    }
+
+    .celda {
+        padding: 3px 10px;
+    }
+
+    .cuerpotabla:hover {
+        box-shadow: 3px 3px 3px 3px rgb(124 124 124);
+    }
+
+    .imgproducto {
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+}
