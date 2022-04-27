@@ -2,14 +2,10 @@
 using Logic;
 using Pedidos.Custom;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Net.Mail;
-using System.Web;
 using System.Web.Security;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Pedidos.Acces
 {
@@ -22,7 +18,6 @@ namespace Pedidos.Acces
                 Session["UserSession"] = null;
             }
         }
-
         private Usuario getEntities()
         {
             Usuario usuario = new Usuario();
@@ -36,7 +31,23 @@ namespace Pedidos.Acces
             usuario.Genero = ddlgenero.Text;
             return usuario;
         }
-
+        protected void btnlogin_Click(object sender, EventArgs e)
+        {
+            Usuario login = UsuarioLN.GetInstance().InciarSesion(txtusuario2.Text, txtcontraseña2.Text);
+            if (login != null)
+            {
+                SessionManager _SessionManager = new SessionManager(Session);
+                _SessionManager.UserSession = login;
+                FormsAuthentication.RedirectFromLoginPage(txtusuario2.Text, false);
+                Response.Redirect("~/Principal.aspx");
+            }
+            else
+            {
+                lblerrorlogin.ForeColor = Color.Red;
+                lblerrorlogin.Text = "Email o usuario y contraseña incorrectos.";
+                lblerrorlogin.Visible = true;
+            }
+        }
         protected void btnsignup_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtapellidos.Text) || string.IsNullOrEmpty(txtcontraseña.Text) || string.IsNullOrEmpty(txtedad.Text) || string.IsNullOrEmpty(txtemail.Text) || string.IsNullOrEmpty(txtnombres.Text) || string.IsNullOrEmpty(txtusuario.Text) || string.IsNullOrEmpty(Txttelefono.Text))
@@ -49,7 +60,7 @@ namespace Pedidos.Acces
             {
                 txtemail.Text = "Email no valido";
             }
-            else if(!edadconfirm(txtedad.Text))
+            else if (!edadconfirm(txtedad.Text))
             {
                 txtedad.Text = "Edad no valida";
             }
@@ -71,7 +82,6 @@ namespace Pedidos.Acces
                 }
             }
         }
-
         private bool emailconfimr(string email)
         {
             bool responce = false;
@@ -101,22 +111,6 @@ namespace Pedidos.Acces
             return responce;
         }
 
-        protected void btnlogin_Click(object sender, EventArgs e)
-        {
-            Usuario login = UsuarioLN.GetInstance().InciarSesion(txtusuario2.Text, txtcontraseña2.Text);
-            if(login != null)
-            {
-                SessionManager _SessionManager = new SessionManager(Session);
-                _SessionManager.UserSession = login;
-                FormsAuthentication.RedirectFromLoginPage(txtusuario2.Text, false);
-                Response.Redirect("~/Principal.aspx");
-            }
-            else
-            {
-                lblerrorlogin.ForeColor = Color.Red;
-                lblerrorlogin.Text = "Email o usuario y contraseña incorrectos.";
-                lblerrorlogin.Visible = true;
-            }
-        }
+
     }
 }
