@@ -19,14 +19,14 @@ namespace Pedidos
                 if (Session["ListaCarrito"] == null)
                 {
                     DataTable table = new DataTable();
-                    table.Columns.Add("Nombre", System.Type.GetType("System.String"));
+                    table.Columns.Add("IdProducto", System.Type.GetType("System.Int64"));
                     table.Columns.Add("Imagen", System.Type.GetType("System.String"));
+                    table.Columns.Add("Nombre", System.Type.GetType("System.String"));
                     table.Columns.Add("Descripción", System.Type.GetType("System.String"));
                     table.Columns.Add("Precio", System.Type.GetType("System.Decimal"));
                     table.Columns.Add("Cantidad", System.Type.GetType("System.Int32"));
                     table.Columns.Add("SubTotal", System.Type.GetType("System.Decimal"));
-                    table.Columns.Add("IdProducto", System.Type.GetType("System.Int64"));
-                    table.Columns.Add("Item", System.Type.GetType("System.Int64"));
+                    
                     Session["ListaCarrito"] = table;
 
                 }
@@ -69,7 +69,7 @@ namespace Pedidos
             gridview.DataBind();
             if (gridview.Rows.Count > 0)
             {
-                for (int i = 1; i < gridview.Rows.Count; i++)
+                for (int i = 0; i < gridview.Rows.Count; i++)
                 {
                     if (gridview.Rows[i].Cells[6].Text == idproduct)
                     {
@@ -97,14 +97,13 @@ namespace Pedidos
                     {
                         var ListaCarrito = (DataTable)Session["ListaCarrito"];
                         DataRow FilaCarrito = ListaCarrito.NewRow();
-                        FilaCarrito[0] = prodcut.Nombre;
+                        FilaCarrito[0] = prodcut.Id;
                         FilaCarrito[1] = "data:image/jpg;base64," + Convert.ToBase64String(prodcut.Imagen);
-                        FilaCarrito[2] = prodcut.Descripcion;
-                        FilaCarrito[3] = (decimal)prodcut.Precio;
-                        FilaCarrito[4] = 1;
-                        FilaCarrito[5] = prodcut.Precio;
-                        FilaCarrito[6] = prodcut.Id;
-                        FilaCarrito[7] = (int)ListaCarrito.Rows.Count + 1;
+                        FilaCarrito[2] = prodcut.Nombre;
+                        FilaCarrito[3] = prodcut.Descripcion;
+                        FilaCarrito[4] = (decimal)prodcut.Precio;
+                        FilaCarrito[5] = 1;
+                        FilaCarrito[6] = prodcut.Precio * 1;
                         ListaCarrito.Rows.Add(FilaCarrito);
                         Session["ListaCarrito"] = ListaCarrito;
                         Session["Item"] = Convert.ToString(ListaCarrito.Rows.Count);
@@ -120,14 +119,13 @@ namespace Pedidos
                 {
                     var ListaCarrito = (DataTable)Session["ListaCarrito"];
                     DataRow FilaCarrito = ListaCarrito.NewRow();
-                    FilaCarrito[0] = prodcut.Nombre;
+                    FilaCarrito[0] = prodcut.Id;
                     FilaCarrito[1] = "data:image/jpg;base64," + Convert.ToBase64String(prodcut.Imagen);
-                    FilaCarrito[2] = prodcut.Descripcion;
-                    FilaCarrito[3] = (decimal)prodcut.Precio;
-                    FilaCarrito[4] = 1;
-                    FilaCarrito[5] = prodcut.Precio;
-                    FilaCarrito[6] = prodcut.Id;
-                    FilaCarrito[7] = (int)ListaCarrito.Rows.Count + 1;
+                    FilaCarrito[2] = prodcut.Nombre;
+                    FilaCarrito[3] = prodcut.Descripcion;
+                    FilaCarrito[4] = (decimal)prodcut.Precio;
+                    FilaCarrito[5] = 1;
+                    FilaCarrito[6] = prodcut.Precio * 1;
                     ListaCarrito.Rows.Add(FilaCarrito);
                     Session["ListaCarrito"] = ListaCarrito;
                     Session["Item"] = Convert.ToString(ListaCarrito.Rows.Count);
@@ -152,7 +150,6 @@ namespace Pedidos
                         posicion = i;
                     }
                 }
-
                 if (gridview.Rows[posicion].Cells[6].Text == idproduct)
                 {
                     int cantidad = Convert.ToInt32(gridview.Rows[posicion].Cells[4].Text) + 1;
@@ -174,14 +171,13 @@ namespace Pedidos
                     {
                         var ListaCarrito = (DataTable)Session["ListaCarrito"];
                         DataRow FilaCarrito = ListaCarrito.NewRow();
-                        FilaCarrito[0] = prodcut.Nombre;
+                        FilaCarrito[0] = prodcut.Id;
                         FilaCarrito[1] = "data:image/jpg;base64," + Convert.ToBase64String(prodcut.Imagen);
-                        FilaCarrito[2] = prodcut.Descripcion;
-                        FilaCarrito[3] = (decimal)prodcut.Precio;
-                        FilaCarrito[4] = 1;
-                        FilaCarrito[5] = prodcut.Precio;
-                        FilaCarrito[6] = prodcut.Id;
-                        FilaCarrito[7] = (int)ListaCarrito.Rows.Count + 1;
+                        FilaCarrito[2] = prodcut.Nombre;
+                        FilaCarrito[3] = prodcut.Descripcion;
+                        FilaCarrito[4] = (decimal)prodcut.Precio;
+                        FilaCarrito[5] = 1;
+                        FilaCarrito[6] = prodcut.Precio * 1;
                         ListaCarrito.Rows.Add(FilaCarrito);
                         Session["ListaCarrito"] = ListaCarrito;
                         Session["Item"] = Convert.ToString(ListaCarrito.Rows.Count);
@@ -197,14 +193,13 @@ namespace Pedidos
                 {
                     var ListaCarrito = (DataTable)Session["ListaCarrito"];
                     DataRow FilaCarrito = ListaCarrito.NewRow();
-                    FilaCarrito[0] = prodcut.Nombre;
+                    FilaCarrito[0] = prodcut.Id;
                     FilaCarrito[1] = "data:image/jpg;base64," + Convert.ToBase64String(prodcut.Imagen);
-                    FilaCarrito[2] = prodcut.Descripcion;
-                    FilaCarrito[3] = (decimal)prodcut.Precio;
-                    FilaCarrito[4] = 1;
-                    FilaCarrito[5] = prodcut.Precio;
-                    FilaCarrito[6] = prodcut.Id;
-                    FilaCarrito[7] = (int)ListaCarrito.Rows.Count + 1;
+                    FilaCarrito[2] = prodcut.Nombre;
+                    FilaCarrito[3] = prodcut.Descripcion;
+                    FilaCarrito[4] = (decimal)prodcut.Precio;
+                    FilaCarrito[5] = 1;
+                    FilaCarrito[6] = prodcut.Precio * 1;
                     ListaCarrito.Rows.Add(FilaCarrito);
                     Session["ListaCarrito"] = ListaCarrito;
                     Session["Item"] = Convert.ToString(ListaCarrito.Rows.Count);
