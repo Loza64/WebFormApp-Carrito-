@@ -44,8 +44,6 @@
                         <ItemTemplate>
                             <tr class="cuerpotabla">
                                 <td class="d-none">
-                                    <asp:Label ID="lblitem" runat="server" Text='<%# Bind("Item") %>'></asp:Label></td>
-                                <td class="d-none">
                                     <asp:Label ID="lblidproducto" runat="server" Text='<%# Bind("IdProducto") %>'></asp:Label></td>
                                 <td class="texto celda">
                                     <asp:Label ID="lblnombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label></td>
