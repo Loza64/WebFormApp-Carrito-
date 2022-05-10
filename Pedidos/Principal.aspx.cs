@@ -71,7 +71,7 @@ namespace Pedidos
             {
                 for (int i = 0; i < gridview.Rows.Count; i++)
                 {
-                    if (gridview.Rows[i].Cells[6].Text == idproduct)
+                    if (gridview.Rows[i].Cells[0].Text == idproduct)
                     {
                         posicion = i;
                     }
@@ -145,7 +145,7 @@ namespace Pedidos
             {
                 for (int i = 0; i < gridview.Rows.Count; i++)
                 {
-                    if (gridview.Rows[i].Cells[6].Text == idproduct)
+                    if (gridview.Rows[i].Cells[0].Text == idproduct)
                     {
                         posicion = i;
                     }
