@@ -18,23 +18,20 @@ namespace Pedidos
             {
                 if (Session["ListaCarrito"] == null)
                 {
-                    DataTable table = new DataTable();
-                    table.Columns.Add("IdProducto", System.Type.GetType("System.Int64"));
-                    table.Columns.Add("Imagen", System.Type.GetType("System.String"));
-                    table.Columns.Add("Nombre", System.Type.GetType("System.String"));
-                    table.Columns.Add("Descripción", System.Type.GetType("System.String"));
-                    table.Columns.Add("Precio", System.Type.GetType("System.Decimal"));
-                    table.Columns.Add("Cantidad", System.Type.GetType("System.Int32"));
-                    table.Columns.Add("SubTotal", System.Type.GetType("System.Decimal"));
-                    
-                    Session["ListaCarrito"] = table;
-
+                    DataTable carritocompras = new DataTable();
+                    carritocompras.Columns.Add("IdProducto", System.Type.GetType("System.Int64"));//0
+                    carritocompras.Columns.Add("Imagen", System.Type.GetType("System.String"));//1
+                    carritocompras.Columns.Add("Nombre", System.Type.GetType("System.String"));//2
+                    carritocompras.Columns.Add("Descripción", System.Type.GetType("System.String"));//3
+                    carritocompras.Columns.Add("Precio", System.Type.GetType("System.Decimal"));//4
+                    carritocompras.Columns.Add("Cantidad", System.Type.GetType("System.Int32"));//5
+                    carritocompras.Columns.Add("SubTotal", System.Type.GetType("System.Decimal"));//6
+                    Session["ListaCarrito"] = carritocompras;
                 }
                 listaproductos.DataSource = ProductoLN.GetInstance().mostrarproducto();
                 listaproductos.DataBind();
             }
         }
-
         protected void listaproductos_ItemDataBound(object sender, DataListItemEventArgs e)
         {
             Label txtid = (Label)e.Item.FindControl("txtid");
@@ -42,7 +39,6 @@ namespace Pedidos
             string foto = ProductoLN.GetInstance().ImagenProducto(Convert.ToInt64(txtid.Text));
             imgproducto.ImageUrl = foto;
         }
-
         protected void listaproductos_ItemCommand(object source, DataListCommandEventArgs e)
         {
             if (e.CommandName == "carrito")
@@ -59,7 +55,6 @@ namespace Pedidos
                 Comprar(Convert.ToInt64(cod));
             }
         }
-
         public void Micarrito(long id)
         {
             int posicion = 0;
@@ -77,16 +72,16 @@ namespace Pedidos
                     }
                 }
 
-                if (gridview.Rows[posicion].Cells[6].Text == idproduct)
+                if (gridview.Rows[posicion].Cells[0].Text == idproduct)
                 {
-                    int cantidad = Convert.ToInt32(gridview.Rows[posicion].Cells[4].Text) + 1;
+                    int cantidad = Convert.ToInt32(gridview.Rows[posicion].Cells[5].Text) + 1;
                     var carrito = (DataTable)Session["ListaCarrito"];
                     foreach (DataRow drw in carrito.Rows)
                     {
                         if (drw["IdProducto"].ToString() == idproduct)
                         {
                             drw["Cantidad"] = cantidad;
-                            drw["SubTotal"] = (decimal)cantidad * Convert.ToDecimal(gridview.Rows[posicion].Cells[3].Text);
+                            drw["SubTotal"] = (decimal)cantidad * Convert.ToDecimal(gridview.Rows[posicion].Cells[4].Text);
                         }
                     }
                 }
@@ -133,7 +128,6 @@ namespace Pedidos
                 }
             }
         }
-
         public void Comprar(long id)
         {
             int posicion = 0;
@@ -150,16 +144,16 @@ namespace Pedidos
                         posicion = i;
                     }
                 }
-                if (gridview.Rows[posicion].Cells[6].Text == idproduct)
+                if (gridview.Rows[posicion].Cells[0].Text == idproduct)
                 {
-                    int cantidad = Convert.ToInt32(gridview.Rows[posicion].Cells[4].Text) + 1;
+                    int cantidad = Convert.ToInt32(gridview.Rows[posicion].Cells[5].Text) + 1;
                     var datalist = (DataTable)Session["ListaCarrito"];
                     foreach (DataRow drw in datalist.Rows)
                     {
                         if (drw["IdProducto"].ToString() == idproduct)
                         {
                             drw["Cantidad"] = cantidad;
-                            drw["SubTotal"] = (decimal)cantidad * Convert.ToDecimal(gridview.Rows[posicion].Cells[3].Text);
+                            drw["SubTotal"] = (decimal)cantidad * Convert.ToDecimal(gridview.Rows[posicion].Cells[4].Text);
                             Response.Redirect("Carrito.aspx");
                         }
                     }
@@ -207,7 +201,6 @@ namespace Pedidos
                 }
             }
         }
-
         protected void btnsearch_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtbuscar.Text))

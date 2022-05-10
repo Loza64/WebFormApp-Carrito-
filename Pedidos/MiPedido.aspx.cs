@@ -47,7 +47,6 @@ namespace Pedidos
                 }
             }
         }
-
         protected void btnpedido1_Click(object sender, EventArgs e)
         {
             long codpedido = PedidoLN.GetInstance().CodPedido() + 1;
@@ -88,14 +87,14 @@ namespace Pedidos
                     DataTable listproducts = (DataTable)Session["ListaCarrito"];
                     foreach (DataRow Row in listproducts.Rows)
                     {
-                        double Total = (Convert.ToDouble(Row[5]) * 0.13) + Convert.ToDouble(Row[5]);
+                        double TotalDePagar = (Convert.ToDouble(Row[6]) * 0.13) + Convert.ToDouble(Row[6]);
                         DetallePedido detalle = new DetallePedido()
                         {
                             CodPedido = pedido.CodPedido,
-                            IdProducto = Convert.ToInt64(Row[6]),
-                            cantidad = Convert.ToInt32(Row[4]),
-                            SubTotal = Convert.ToDecimal(Row[5]),
-                            TotalPagar = Math.Round((decimal)Total, 2, MidpointRounding.AwayFromZero)
+                            IdProducto = Convert.ToInt64(Row[0]),
+                            cantidad = Convert.ToInt32(Row[5]),
+                            SubTotal = Convert.ToDecimal(Row[6]),
+                            TotalPagar = Math.Round((decimal)TotalDePagar, 2, MidpointRounding.AwayFromZero)
                         };
                         DetallePedidoLN.GetInstance().RegistrarDetallePedido(detalle);
                     }
@@ -105,7 +104,6 @@ namespace Pedidos
                 }
             }
         }
-
         protected void btnpedido2_Click(object sender, EventArgs e)
         {
             long codpedido = PedidoLN.GetInstance().CodPedido() + 1;
@@ -146,14 +144,14 @@ namespace Pedidos
                     DataTable listproducts = (DataTable)Session["ListaCarrito"];
                     foreach (DataRow Row in listproducts.Rows)
                     {
-                        double Total = (Convert.ToDouble(Row[5]) * 0.13) + Convert.ToDouble(Row[5]);
+                        double TotalDePagar = (Convert.ToDouble(Row[6]) * 0.13) + Convert.ToDouble(Row[6]);
                         DetallePedido detalle = new DetallePedido()
                         {
                             CodPedido = pedido.CodPedido,
-                            IdProducto = Convert.ToInt64(Row[6]),
-                            cantidad = Convert.ToInt32(Row[4]),
-                            SubTotal = Convert.ToDecimal(Row[5]),
-                            TotalPagar = Math.Round((decimal)Total, 2, MidpointRounding.AwayFromZero)
+                            IdProducto = Convert.ToInt64(Row[0]),
+                            cantidad = Convert.ToInt32(Row[5]),
+                            SubTotal = Convert.ToDecimal(Row[6]),
+                            TotalPagar = Math.Round((decimal)TotalDePagar, 2, MidpointRounding.AwayFromZero)
                         };
                         DetallePedidoLN.GetInstance().RegistrarDetallePedido(detalle);
                     }
@@ -163,7 +161,6 @@ namespace Pedidos
                 }
             }
         }
-
         private bool validarfecha(string fecha)
         {
             bool responce;
