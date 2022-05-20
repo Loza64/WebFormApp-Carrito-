@@ -43,8 +43,12 @@
                                 <asp:Label ID="lblusuario" runat="server" Text="Iniciar Sesión" Style="font-weight: 900"></asp:Label>
                             </a>
                             <ul class="dropdown-menu text-center dropdown-menu-dark" style="width: 100%;" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" style="font-weight: 900" href="#">Mi perfil</a></li>
-                                <li><a class="dropdown-item" style="font-weight: 900" href="#">Configuración</a></li>
+                                <li>
+                                    <a class="dropdown-item" style="font-weight: 900" href="#">Mi perfil</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" style="font-weight: 900" href="#">Configuración</a>
+                                </li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
