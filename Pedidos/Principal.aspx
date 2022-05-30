@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Carrito WebForms" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Principal.aspx.cs" Inherits="Pedidos.Principal" %>
+﻿<%@ Page Title="Carrito Compras WebForms" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Principal.aspx.cs" Inherits="Pedidos.Principal" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <br />
