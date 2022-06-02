@@ -39,7 +39,7 @@ namespace DataAcces
             }
             catch (Exception ex)
             {
-                codpedido = 1234;
+                codpedido = 122342123234;
             }
             finally
             {
