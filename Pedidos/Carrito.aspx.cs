@@ -38,8 +38,6 @@ namespace Pedidos
                 }
             }
         }
-
-
         protected void CarritoCompras_ItemCommand2(object source, DataListCommandEventArgs e)
         {
             if (e.CommandName == "Eliminar")
