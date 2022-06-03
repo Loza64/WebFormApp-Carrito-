@@ -28,6 +28,7 @@ namespace Pedidos
                     txtiva.Text = "$" + Convert.ToString(iva);
                     txttotal.Text = "$" + Convert.ToString(Total);
                     decimal MontoTotal = (decimal)Total;
+                    Session["SubTotal"] = subtotal;
                     Session["Total"] = MontoTotal;
                 }
                 else

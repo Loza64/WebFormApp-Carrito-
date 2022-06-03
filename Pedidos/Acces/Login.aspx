@@ -6,6 +6,7 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Iniciar Sesión</title>
+    <link href="~/pedidos.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="../css/formloginstyle.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
@@ -13,7 +14,7 @@
 </head>
 <body class="body-login">
     <form id="form1" runat="server">
-        <div class="containercss" id="container" style="margin-top:-20px;">
+        <div class="containercss" id="container">
             <div class="form-container sign-up-container">
                 <div class="form">
                     <asp:TextBox Style="font-weight: 700;" ID="txtusuario" runat="server" CssClass="input" placeholder="Usuario"></asp:TextBox>

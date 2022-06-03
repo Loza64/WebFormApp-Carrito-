@@ -35,6 +35,18 @@ namespace DataAcces
                 sdr = scmd.ExecuteReader();
                 list.Load(sdr);
             }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
+            }
             catch (Exception ex)
             {
                 throw ex;
@@ -42,7 +54,6 @@ namespace DataAcces
             finally
             {
                 con.Close();
-                sdr.Close();
             }
             return list;
         }
@@ -66,20 +77,30 @@ namespace DataAcces
                     Foto = "data:image/jpg;base64," + Convert.ToBase64String((byte[])sdr["Imagen"]);
                 }
             }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
+            }
             catch (Exception ex)
             {
                 throw ex;
             }
             finally
             {
-                sdr.Close();
                 con.Close();
-                scmd.Parameters.Clear();
             }
             return Foto;
         }
 
-        public Producto seleccionarproducto(long id)
+        public Producto selectproduct(long id)
         {
             Producto product = null;
             SqlConnection con = Conexion.GetInstance().GetConnection();
@@ -104,6 +125,18 @@ namespace DataAcces
                     product.Precio = (decimal)Convert.ToDouble(sdr["Precio"].ToString());
                 }
             }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
+            }
             catch (Exception ex)
             {
                 throw ex;
@@ -111,7 +144,6 @@ namespace DataAcces
             finally
             {
                 con.Close();
-                sdr.Close();
             }
             return product;
         }
@@ -121,7 +153,6 @@ namespace DataAcces
             DataTable list = new DataTable();
             SqlConnection con = Conexion.GetInstance().GetConnection();
             SqlCommand scmd = new SqlCommand();
-
             try
             {
                 con.Open();
@@ -132,6 +163,14 @@ namespace DataAcces
                 SqlDataReader sdr = scmd.ExecuteReader();
                 list.Load(sdr);
             }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
+            }
             catch (Exception ex)
             {
                 throw ex;
@@ -139,9 +178,72 @@ namespace DataAcces
             finally
             {
                 con.Close();
-                scmd.Parameters.Clear();
             }
             return list;
+        }
+
+        public long Stock(long id)
+        {
+            long cantidad = 0;
+            SqlConnection con = Conexion.GetInstance().GetConnection();
+            SqlCommand scmd = new SqlCommand();
+            try { 
+                con.Open();
+                scmd.Connection = con;
+                scmd.CommandText = "select stock from producto where id = @id";
+                scmd.CommandType = CommandType.Text;
+                scmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                cantidad = Convert.ToInt64(scmd.ExecuteScalar());
+            }
+            catch(SqlException ex)
+            {
+                throw ex;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return cantidad;
+        }
+
+        public void UpdateStock(long Stock, long Id)
+        {
+            SqlConnection con = Conexion.GetInstance().GetConnection();
+            SqlCommand scmd = new SqlCommand();
+            try
+            {
+                con.Open();
+                scmd.Connection = con;
+                scmd.CommandText = "update producto set Stock = @stock where id = @id";
+                scmd.CommandType = CommandType.Text;
+                scmd.Parameters.Add("@stock", SqlDbType.Int).Value = Stock;
+                scmd.Parameters.Add("@id", SqlDbType.BigInt).Value = Id;
+                scmd.ExecuteNonQuery();   
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
         }
 
         public bool registrarproducto(Producto producto)
@@ -165,6 +267,14 @@ namespace DataAcces
                 {
                     responce = true;
                 }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
             }
             catch (Exception ex)
             {

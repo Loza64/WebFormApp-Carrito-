@@ -47,6 +47,18 @@ namespace DataAcces
                     user.Email = sdr["Email"].ToString();
                 }
             }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
+            }
             catch (Exception ex)
             {
                 throw ex;
@@ -82,6 +94,18 @@ namespace DataAcces
                 {
                     responce = true;
                 }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
             }
             catch (Exception ex)
             {

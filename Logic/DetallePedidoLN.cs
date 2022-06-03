@@ -1,6 +1,7 @@
 ﻿using DataAcces;
 using Entities;
 using System;
+using System.Data.SqlClient;
 
 namespace Logic
 {
@@ -22,6 +23,18 @@ namespace Logic
             try
             {
                 DetallePedidoDAO.GetInstance().RegistrarDetallePedido(detallePedido);
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
             }
             catch (Exception ex)
             {

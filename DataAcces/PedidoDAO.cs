@@ -35,7 +35,7 @@ namespace DataAcces
             }
             catch (Exception ex)
             {
-                codpedido = 122342123234;
+                codpedido = 1123124231251;
             }
             finally
             {
@@ -52,7 +52,7 @@ namespace DataAcces
             {
                 con.Open();
                 scmd.Connection = con;
-                scmd.CommandText = "insert into Pedido(CodPedido,IdUsuario,NombreCliente,TipoPedido,Direccion,FechaEntrega,HoraEntrega,Estado,PagoTotal) values(@Codpedido,@IdUsuario,@NombreCliente,@TipoPedido,@Direccion,@FechaEntrega,@HoraEntrega,@Estado,@Total)";
+                scmd.CommandText = "insert into Pedido(CodPedido,IdUsuario,NombreCliente,TipoPedido,Direccion,FechaEntrega,HoraEntrega,Estado,SubTotal,PagoTotal) values(@Codpedido,@IdUsuario,@NombreCliente,@TipoPedido,@Direccion,@FechaEntrega,@HoraEntrega,@Estado,@SubTotal,@Total)";
                 scmd.CommandType = System.Data.CommandType.Text;
                 scmd.Parameters.Add("@Codpedido", SqlDbType.BigInt).Value = pedido.CodPedido;
                 scmd.Parameters.Add("@IdUsuario", SqlDbType.BigInt).Value = pedido.IdUsuario;
@@ -62,6 +62,7 @@ namespace DataAcces
                 scmd.Parameters.AddWithValue("@FechaEntrega", pedido.FechaEntrega);
                 scmd.Parameters.AddWithValue("@HoraEntrega", pedido.HoraEntrega);
                 scmd.Parameters.Add("@Estado", SqlDbType.VarChar).Value = pedido.Estado;
+                scmd.Parameters.Add("@SubTotal", SqlDbType.Decimal).Value = pedido.SubTotal;
                 scmd.Parameters.Add("@Total", SqlDbType.Decimal).Value = pedido.Total;
                 int upload = scmd.ExecuteNonQuery();
                 if (upload != 0)
@@ -82,6 +83,18 @@ namespace DataAcces
                     }
                     responce = true;
                 }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
             }
             catch (Exception ex)
             {

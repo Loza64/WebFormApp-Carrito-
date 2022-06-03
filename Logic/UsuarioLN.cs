@@ -1,6 +1,7 @@
 ﻿using DataAcces;
 using Entities;
 using System;
+using System.Data.SqlClient;
 
 namespace Logic
 {
@@ -24,6 +25,18 @@ namespace Logic
             {
                 return UsuarioDAO.GetInstance().InciarSesion(usuario, contraseña);
             }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
+            }
             catch (Exception ex)
             {
                 throw ex;
@@ -35,6 +48,18 @@ namespace Logic
             try
             {
                 return UsuarioDAO.GetInstance().SignUp(user);
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
             }
             catch (Exception ex)
             {

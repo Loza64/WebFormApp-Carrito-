@@ -2,6 +2,7 @@
 using Logic;
 using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Web.UI;
 
@@ -73,16 +74,36 @@ namespace Pedidos
                     FechaEntrega = Convert.ToDateTime(txtfecha.Text),
                     HoraEntrega = Convert.ToDateTime(txthora.Text),
                     IdUsuario = user.Id,
+                    SubTotal = (decimal)Session["SubTotal"],
                     NombreCliente = txtnombre.Text,
                     Total = (decimal)Session["Total"],
                     TipoPedido = "Domicilio"
                 };
-                bool responce = PedidoLN.GetInstance().registrarpedido(pedido, (DataTable)Session["ListaCarrito"]);
-                if (responce)
+                try
                 {
-                    Session["ListaCarrito"] = null;
-                    Session["Item"] = null;
-                    ClientScript.RegisterClientScriptBlock(this.GetType(), "", "load()", true);
+                    bool responce = PedidoLN.GetInstance().registrarpedido(pedido, (DataTable)Session["ListaCarrito"]);
+                    if (responce)
+                    {
+                        Session["ListaCarrito"] = null;
+                        Session["Item"] = null;
+                        ClientScript.RegisterClientScriptBlock(this.GetType(), "", "load()", true);
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                catch (NullReferenceException ex)
+                {
+                    throw ex;
+                }
+                catch (TimeoutException ex)
+                {
+                    throw ex;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
                 }
             }
         }
@@ -107,25 +128,44 @@ namespace Pedidos
             }
             else
             {
-                Usuario user = (Usuario)Session["UserSession"];
-                Pedido pedido = new Pedido()
+                try
                 {
-                    Direccion = "Pedidos Store",
-                    Estado = "Pendiente",
-                    CodPedido = codpedido,
-                    FechaEntrega = Convert.ToDateTime(txtfecha2.Text),
-                    HoraEntrega = Convert.ToDateTime(txthora2.Text),
-                    IdUsuario = user.Id,
-                    NombreCliente = txtnombre2.Text,
-                    Total = (decimal)Session["Total"],
-                    TipoPedido = "Directo en pedidos store"
-                };
-                bool responce = PedidoLN.GetInstance().registrarpedido(pedido, (DataTable)Session["ListaCarrito"]);
-                if (responce)
+                    Usuario user = (Usuario)Session["UserSession"];
+                    Pedido pedido = new Pedido()
+                    {
+                        Direccion = "Pedidos Store",
+                        Estado = "Pendiente",
+                        CodPedido = codpedido,
+                        FechaEntrega = Convert.ToDateTime(txtfecha2.Text),
+                        HoraEntrega = Convert.ToDateTime(txthora2.Text),
+                        IdUsuario = user.Id,
+                        NombreCliente = txtnombre2.Text,
+                        Total = (decimal)Session["Total"],
+                        TipoPedido = "Directo en pedidos store"
+                    };
+                    bool responce = PedidoLN.GetInstance().registrarpedido(pedido, (DataTable)Session["ListaCarrito"]);
+                    if (responce)
+                    {
+                        Session["ListaCarrito"] = null;
+                        Session["Item"] = null;
+                        ClientScript.RegisterClientScriptBlock(this.GetType(), "", "load()", true);
+                    }
+                }
+                catch (SqlException ex)
                 {
-                    Session["ListaCarrito"] = null;
-                    Session["Item"] = null;
-                    ClientScript.RegisterClientScriptBlock(this.GetType(), "", "load()", true);
+                    throw ex;
+                }
+                catch (NullReferenceException ex)
+                {
+                    throw ex;
+                }
+                catch (TimeoutException ex)
+                {
+                    throw ex;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
                 }
             }
         }

@@ -35,7 +35,24 @@ namespace DataAcces
                 scmd.Parameters.Add("@cantidad", SqlDbType.Int).Value = detallePedido.cantidad;
                 scmd.Parameters.Add("@subtotal", SqlDbType.Decimal).Value = detallePedido.SubTotal;
                 scmd.Parameters.Add("@totalpagar", SqlDbType.Decimal).Value = detallePedido.TotalPagar;
-                scmd.ExecuteNonQuery();
+                int upload = scmd.ExecuteNonQuery();
+                if(upload != 0)
+                {
+                    long cantidad = ProductoDAO.GetInstance().Stock(detallePedido.IdProducto) - detallePedido.cantidad;
+                    ProductoDAO.GetInstance().UpdateStock(cantidad, detallePedido.IdProducto);
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
             }
             catch (Exception ex)
             {
@@ -44,7 +61,6 @@ namespace DataAcces
             finally
             {
                 con.Close();
-                scmd.Parameters.Clear();
             }
         }
     }

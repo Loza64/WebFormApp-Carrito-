@@ -2,6 +2,7 @@
 using Entities;
 using System;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace Logic
 {
@@ -20,7 +21,26 @@ namespace Logic
 
         public long CodPedido()
         {
-            return PedidoDAO.GetInstance().CodPedido();
+            try
+            {
+                return PedidoDAO.GetInstance().CodPedido();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public bool registrarpedido(Pedido pedido, DataTable listacarrito)
@@ -28,6 +48,18 @@ namespace Logic
             try
             {
                 return PedidoDAO.GetInstance().registrarpedido(pedido, listacarrito);
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
             }
             catch (Exception ex)
             {

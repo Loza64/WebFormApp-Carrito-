@@ -2,6 +2,7 @@
 using Logic;
 using Pedidos.Custom;
 using System;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Net.Mail;
 using System.Web.Security;
@@ -33,20 +34,36 @@ namespace Pedidos.Acces
         }
         protected void btnlogin_Click(object sender, EventArgs e)
         {
-            Usuario login = UsuarioLN.GetInstance().InciarSesion(txtusuario2.Text, txtcontraseña2.Text);
-            if (login != null)
+            try
             {
-                SessionManager _SessionManager = new SessionManager(Session);
-                _SessionManager.UserSession = login;
-                FormsAuthentication.RedirectFromLoginPage(txtusuario2.Text, false);
-                Response.Redirect("~/Principal.aspx");
+                Usuario login = UsuarioLN.GetInstance().InciarSesion(txtusuario2.Text, txtcontraseña2.Text);
+                if (login != null)
+                {
+                    SessionManager _SessionManager = new SessionManager(Session);
+                    _SessionManager.UserSession = login;
+                    FormsAuthentication.RedirectFromLoginPage(txtusuario2.Text, false);
+                    Response.Redirect("~/Principal.aspx");
+                }
+                else
+                {
+                    lblerrorlogin.ForeColor = Color.Red;
+                    lblerrorlogin.Text = "Email o usuario y contraseña incorrectos.";
+                    lblerrorlogin.Visible = true;
+                }
             }
-            else
+            catch (SqlException ex)
             {
-                lblerrorlogin.ForeColor = Color.Red;
-                lblerrorlogin.Text = "Email o usuario y contraseña incorrectos.";
-                lblerrorlogin.Visible = true;
+                throw ex;
             }
+            catch (TimeoutException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
         protected void btnsignup_Click(object sender, EventArgs e)
         {
@@ -66,20 +83,36 @@ namespace Pedidos.Acces
             }
             else
             {
-                Usuario usuario = getEntities();
-                bool SingIn = UsuarioLN.GetInstance().SignUp(usuario);
-                if (SingIn)
+                try
                 {
-                    lblerrorsignup.Visible = true;
-                    lblerrorsignup.Text = "Te has registrado de manera exitosa";
-                    lblerrorsignup.ForeColor = Color.Green;
+                    Usuario usuario = getEntities();
+                    bool SingIn = UsuarioLN.GetInstance().SignUp(usuario);
+                    if (SingIn)
+                    {
+                        lblerrorsignup.Visible = true;
+                        lblerrorsignup.Text = "Te has registrado de manera exitosa";
+                        lblerrorsignup.ForeColor = Color.Green;
+                    }
+                    else
+                    {
+                        lblerrorsignup.Visible = true;
+                        lblerrorsignup.Text = "Email o Nombre de usuario ya son utlizados por alguien más";
+                        lblerrorsignup.ForeColor = Color.Red;
+                    }
                 }
-                else
+                catch (SqlException ex)
                 {
-                    lblerrorsignup.Visible = true;
-                    lblerrorsignup.Text = "Email o Nombre de usuario ya son utlizados por alguien más";
-                    lblerrorsignup.ForeColor = Color.Red;
+                    throw ex;
                 }
+                catch (TimeoutException ex)
+                {
+                    throw ex;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+
             }
         }
         private bool emailconfimr(string email)

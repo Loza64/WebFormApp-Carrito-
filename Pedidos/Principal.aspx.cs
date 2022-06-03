@@ -2,6 +2,7 @@
 using Logic;
 using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -25,8 +26,27 @@ namespace Pedidos
                     carritocompras.Columns.Add("SubTotal", System.Type.GetType("System.Decimal"));//6
                     Session["ListaCarrito"] = carritocompras;
                 }
-                listaproductos.DataSource = ProductoLN.GetInstance().mostrarproducto();
-                listaproductos.DataBind();
+                try
+                {
+                    listaproductos.DataSource = ProductoLN.GetInstance().mostrarproducto();
+                    listaproductos.DataBind();
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                catch (NullReferenceException ex)
+                {
+                    throw ex;
+                }
+                catch (TimeoutException ex)
+                {
+                    throw ex;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
         protected void listaproductos_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -84,6 +104,48 @@ namespace Pedidos
                 }
                 else
                 {
+                    try
+                    {
+                        Producto prodcut = ProductoLN.GetInstance().seleccionarproducto(id);
+                        if (prodcut != null)
+                        {
+                            var ListaCarrito = (DataTable)Session["ListaCarrito"];
+                            DataRow FilaCarrito = ListaCarrito.NewRow();
+                            FilaCarrito[0] = prodcut.Id;
+                            FilaCarrito[1] = "data:image/jpg;base64," + Convert.ToBase64String(prodcut.Imagen);
+                            FilaCarrito[2] = prodcut.Nombre;
+                            FilaCarrito[3] = prodcut.Descripcion;
+                            FilaCarrito[4] = (decimal)prodcut.Precio;
+                            FilaCarrito[5] = 1;
+                            FilaCarrito[6] = prodcut.Precio * 1;
+                            ListaCarrito.Rows.Add(FilaCarrito);
+                            Session["ListaCarrito"] = ListaCarrito;
+                            Session["Item"] = Convert.ToString(ListaCarrito.Rows.Count);
+                            Response.Redirect("Principal.aspx");
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw ex;
+                    }
+                    catch (NullReferenceException ex)
+                    {
+                        throw ex;
+                    }
+                    catch (TimeoutException ex)
+                    {
+                        throw ex;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+            }
+            else
+            {
+                try
+                {
                     Producto prodcut = ProductoLN.GetInstance().seleccionarproducto(id);
                     if (prodcut != null)
                     {
@@ -102,27 +164,23 @@ namespace Pedidos
                         Response.Redirect("Principal.aspx");
                     }
                 }
-
-            }
-            else
-            {
-                Producto prodcut = ProductoLN.GetInstance().seleccionarproducto(id);
-                if (prodcut != null)
+                catch (SqlException ex)
                 {
-                    var ListaCarrito = (DataTable)Session["ListaCarrito"];
-                    DataRow FilaCarrito = ListaCarrito.NewRow();
-                    FilaCarrito[0] = prodcut.Id;
-                    FilaCarrito[1] = "data:image/jpg;base64," + Convert.ToBase64String(prodcut.Imagen);
-                    FilaCarrito[2] = prodcut.Nombre;
-                    FilaCarrito[3] = prodcut.Descripcion;
-                    FilaCarrito[4] = (decimal)prodcut.Precio;
-                    FilaCarrito[5] = 1;
-                    FilaCarrito[6] = prodcut.Precio * 1;
-                    ListaCarrito.Rows.Add(FilaCarrito);
-                    Session["ListaCarrito"] = ListaCarrito;
-                    Session["Item"] = Convert.ToString(ListaCarrito.Rows.Count);
-                    Response.Redirect("Principal.aspx");
+                    throw ex;
                 }
+                catch (NullReferenceException ex)
+                {
+                    throw ex;
+                }
+                catch (TimeoutException ex)
+                {
+                    throw ex;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+
             }
         }
         public void Comprar(long id)
@@ -157,6 +215,49 @@ namespace Pedidos
                 }
                 else
                 {
+                    try
+                    {
+                        Producto prodcut = ProductoLN.GetInstance().seleccionarproducto(id);
+                        if (prodcut != null)
+                        {
+                            var ListaCarrito = (DataTable)Session["ListaCarrito"];
+                            DataRow FilaCarrito = ListaCarrito.NewRow();
+                            FilaCarrito[0] = prodcut.Id;
+                            FilaCarrito[1] = "data:image/jpg;base64," + Convert.ToBase64String(prodcut.Imagen);
+                            FilaCarrito[2] = prodcut.Nombre;
+                            FilaCarrito[3] = prodcut.Descripcion;
+                            FilaCarrito[4] = (decimal)prodcut.Precio;
+                            FilaCarrito[5] = 1;
+                            FilaCarrito[6] = prodcut.Precio * 1;
+                            ListaCarrito.Rows.Add(FilaCarrito);
+                            Session["ListaCarrito"] = ListaCarrito;
+                            Session["Item"] = Convert.ToString(ListaCarrito.Rows.Count);
+                            Response.Redirect("Carrito.aspx");
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw ex;
+                    }
+                    catch (NullReferenceException ex)
+                    {
+                        throw ex;
+                    }
+                    catch (TimeoutException ex)
+                    {
+                        throw ex;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+
+            }
+            else
+            {
+                try
+                {
                     Producto prodcut = ProductoLN.GetInstance().seleccionarproducto(id);
                     if (prodcut != null)
                     {
@@ -175,26 +276,21 @@ namespace Pedidos
                         Response.Redirect("Carrito.aspx");
                     }
                 }
-
-            }
-            else
-            {
-                Producto prodcut = ProductoLN.GetInstance().seleccionarproducto(id);
-                if (prodcut != null)
+                catch (SqlException ex)
                 {
-                    var ListaCarrito = (DataTable)Session["ListaCarrito"];
-                    DataRow FilaCarrito = ListaCarrito.NewRow();
-                    FilaCarrito[0] = prodcut.Id;
-                    FilaCarrito[1] = "data:image/jpg;base64," + Convert.ToBase64String(prodcut.Imagen);
-                    FilaCarrito[2] = prodcut.Nombre;
-                    FilaCarrito[3] = prodcut.Descripcion;
-                    FilaCarrito[4] = (decimal)prodcut.Precio;
-                    FilaCarrito[5] = 1;
-                    FilaCarrito[6] = prodcut.Precio * 1;
-                    ListaCarrito.Rows.Add(FilaCarrito);
-                    Session["ListaCarrito"] = ListaCarrito;
-                    Session["Item"] = Convert.ToString(ListaCarrito.Rows.Count);
-                    Response.Redirect("Carrito.aspx");
+                    throw ex;
+                }
+                catch (NullReferenceException ex)
+                {
+                    throw ex;
+                }
+                catch (TimeoutException ex)
+                {
+                    throw ex;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
                 }
             }
         }
