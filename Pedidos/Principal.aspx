@@ -18,6 +18,9 @@
                             <br />
                             <label class="precio">$<asp:Label ID="lblprecio" runat="server" Text='<%#Bind("Precio") %>'></asp:Label></label>
                         </div>
+                        <div style="text-align:left; width:100%">
+                                <asp:Label ID="lblestado" runat="server" Text='<%# Bind("Estado")%>' style="font-weight:600"></asp:Label>
+                            </div>
                         <div class="cuerpo-targeta">
                             <asp:Image ID="imgproducto" runat="server" CssClass="imagenproducto" />
                         </div>

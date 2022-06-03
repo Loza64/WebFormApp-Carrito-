@@ -115,7 +115,6 @@ namespace Logic
             }
         }
 
-
         public bool registrarproducto(Producto producto)
         {
             try

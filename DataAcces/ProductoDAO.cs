@@ -287,5 +287,36 @@ namespace DataAcces
             return responce;
         }
 
+        public void UpdateStateProduct(long Id)
+        {
+            SqlConnection con = Conexion.GetInstance().GetConnection();
+            SqlCommand scmd = new SqlCommand();
+            try
+            {
+                con.Open();
+                scmd.Connection = con;
+                scmd.CommandText = "update Producto set Estado = 'No disponible' where Id = @id";
+                scmd.CommandType = CommandType.Text;
+                scmd.Parameters.Add("@id", SqlDbType.BigInt).Value = Id;
+                scmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
     }
 }

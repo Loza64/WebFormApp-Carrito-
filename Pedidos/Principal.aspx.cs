@@ -55,21 +55,33 @@ namespace Pedidos
             Image imgproducto = (Image)e.Item.FindControl("imgproducto");
             string foto = ProductoLN.GetInstance().ImagenProducto(Convert.ToInt64(txtid.Text));
             imgproducto.ImageUrl = foto;
+            Label estado = (Label)e.Item.FindControl("lblestado");
+            if (estado.Text == "Disponible")
+            {
+                estado.ForeColor = System.Drawing.Color.GreenYellow;
+            }
+            else
+            {
+                estado.ForeColor = System.Drawing.Color.Red;
+            }
         }
         protected void listaproductos_ItemCommand(object source, DataListCommandEventArgs e)
         {
-            if (e.CommandName == "carrito")
+            Label estado = (Label)e.Item.FindControl("lblestado");
+            if(estado.Text == "Disponible")
             {
-                listaproductos.SelectedIndex = e.Item.ItemIndex;
-                string cod = ((Label)e.Item.FindControl("txtid")).Text;
-                Micarrito(Convert.ToInt64(cod));
-
-            }
-            else if (e.CommandName == "comprar")
-            {
-                listaproductos.SelectedIndex = e.Item.ItemIndex;
-                string cod = ((Label)e.Item.FindControl("txtid")).Text;
-                Comprar(Convert.ToInt64(cod));
+                if (e.CommandName == "carrito")
+                {
+                    listaproductos.SelectedIndex = e.Item.ItemIndex;
+                    string cod = ((Label)e.Item.FindControl("txtid")).Text;
+                    Micarrito(Convert.ToInt64(cod));
+                }
+                else if (e.CommandName == "comprar")
+                {
+                    listaproductos.SelectedIndex = e.Item.ItemIndex;
+                    string cod = ((Label)e.Item.FindControl("txtid")).Text;
+                    Comprar(Convert.ToInt64(cod));
+                }
             }
         }
         public void Micarrito(long id)

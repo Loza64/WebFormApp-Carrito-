@@ -39,7 +39,15 @@ namespace DataAcces
                 if(upload != 0)
                 {
                     long cantidad = ProductoDAO.GetInstance().Stock(detallePedido.IdProducto) - detallePedido.cantidad;
-                    ProductoDAO.GetInstance().UpdateStock(cantidad, detallePedido.IdProducto);
+                    if(cantidad < 0)
+                    {
+                        ProductoDAO.GetInstance().UpdateStock(0, detallePedido.IdProducto);
+                        ProductoDAO.GetInstance().UpdateStateProduct(detallePedido.IdProducto);
+                    }
+                    else
+                    {
+                        ProductoDAO.GetInstance().UpdateStock(cantidad, detallePedido.IdProducto);
+                    }
                 }
             }
             catch (SqlException ex)

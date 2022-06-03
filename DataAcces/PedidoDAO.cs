@@ -33,7 +33,7 @@ namespace DataAcces
                 codpedido = Convert.ToInt64(scmd.ExecuteScalar());
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 codpedido = 1123124231251;
             }
