@@ -39,7 +39,7 @@ namespace DataAcces
                 scmd.Parameters.Add("@cantidad", SqlDbType.Int).Value = detallePedido.cantidad;
                 scmd.Parameters.Add("@subtotal", SqlDbType.Decimal).Value = detallePedido.SubTotal;
                 scmd.Parameters.Add("@totalpagar", SqlDbType.Decimal).Value = detallePedido.TotalPagar;
-                int upload = scmd.ExecuteNonQuery();
+                scmd.ExecuteNonQuery();
             }
             catch(Exception ex)
             {

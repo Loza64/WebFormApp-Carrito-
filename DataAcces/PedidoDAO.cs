@@ -62,11 +62,11 @@ namespace DataAcces
                 scmd.Parameters.Add("@IdUsuario", SqlDbType.BigInt).Value = pedido.IdUsuario;
                 scmd.Parameters.Add("@NombreCliente", SqlDbType.VarChar).Value = pedido.NombreCliente;
                 scmd.Parameters.Add("@TipoPedido", SqlDbType.VarChar).Value = pedido.TipoPedido;
-                scmd.Parameters.Add("@Direccion", SqlDbType.VarBinary).Value = pedido.Direccion;
+                scmd.Parameters.Add("@Direccion", SqlDbType.VarChar).Value = pedido.Direccion;
                 scmd.Parameters.AddWithValue("@FechaEntrega", pedido.FechaEntrega);
                 scmd.Parameters.AddWithValue("@HoraEntrega", pedido.HoraEntrega);
                 scmd.Parameters.Add("@Estado", SqlDbType.VarChar).Value = pedido.Estado;
-                scmd.Parameters.Add("@Total", SqlDbType.VarChar).Value = pedido.Total;
+                scmd.Parameters.Add("@Total", SqlDbType.Decimal).Value = pedido.Total;
                 int upload = scmd.ExecuteNonQuery();
                 if (upload != 0)
                 {
