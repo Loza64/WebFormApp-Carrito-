@@ -47,8 +47,6 @@ namespace DataAcces
             }
             return codpedido;
         }
-
-
         public bool registrarpedido(Pedido pedido)
         {
             bool responce = false;
@@ -58,17 +56,17 @@ namespace DataAcces
             {
                 con.Open();
                 scmd.Connection = con;
-                scmd.CommandText = "RegistrarPedido";
-                scmd.CommandType = System.Data.CommandType.StoredProcedure;
-                scmd.Parameters.AddWithValue("@Codpedido", pedido.CodPedido);
-                scmd.Parameters.AddWithValue("@IdUsuario", pedido.IdUsuario);
-                scmd.Parameters.AddWithValue("@NombreCliente", pedido.NombreCliente);
-                scmd.Parameters.AddWithValue("@TipoPedido", pedido.TipoPedido);
-                scmd.Parameters.AddWithValue("@Direccion", pedido.Direccion);
+                scmd.CommandText = "insert into Pedido(CodPedido,IdUsuario,NombreCliente,TipoPedido,Direccion,FechaEntrega,HoraEntrega,Estado,PagoTotal) values(@Codpedido,@IdUsuario,@NombreCliente,@TipoPedido,@Direccion,@FechaEntrega,@HoraEntrega,@Estado,@Total)";
+                scmd.CommandType = System.Data.CommandType.Text;
+                scmd.Parameters.Add("@Codpedido", SqlDbType.BigInt).Value = pedido.CodPedido;
+                scmd.Parameters.Add("@IdUsuario", SqlDbType.BigInt).Value = pedido.IdUsuario;
+                scmd.Parameters.Add("@NombreCliente", SqlDbType.VarChar).Value = pedido.NombreCliente;
+                scmd.Parameters.Add("@TipoPedido", SqlDbType.VarChar).Value = pedido.TipoPedido;
+                scmd.Parameters.Add("@Direccion", SqlDbType.VarBinary).Value = pedido.Direccion;
                 scmd.Parameters.AddWithValue("@FechaEntrega", pedido.FechaEntrega);
                 scmd.Parameters.AddWithValue("@HoraEntrega", pedido.HoraEntrega);
-                scmd.Parameters.AddWithValue("@Estado", pedido.Estado);
-                scmd.Parameters.AddWithValue("@Total", pedido.Total);
+                scmd.Parameters.Add("@Estado", SqlDbType.VarChar).Value = pedido.Estado);
+                scmd.Parameters.Add("@Total", SqlDbType.VarChar).Value = pedido.Total;
                 int upload = scmd.ExecuteNonQuery();
                 if (upload != 0)
                 {

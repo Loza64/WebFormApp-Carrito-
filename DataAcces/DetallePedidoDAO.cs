@@ -31,13 +31,14 @@ namespace DataAcces
             {
                 con.Open();
                 scmd.Connection = con;
-                scmd.CommandText = "RegistrarDetallePedido";
-                scmd.CommandType = System.Data.CommandType.StoredProcedure;
-                scmd.Parameters.AddWithValue("@codpedido", detallePedido.CodPedido);
-                scmd.Parameters.AddWithValue("@idProducto", detallePedido.IdProducto);
-                scmd.Parameters.AddWithValue("@cantidad", detallePedido.cantidad);
-                scmd.Parameters.AddWithValue("@subtotal", detallePedido.SubTotal);
-                scmd.Parameters.AddWithValue("@totalpagar", detallePedido.TotalPagar);
+                scmd.CommandText = "insert into DetallePedido(CodPedido,IdProducto,Precio,Cantidad,SubTotal,TotalPagar) values(@codpedido,@idproducto,@precio,@cantidad,@subtotal,@totalpagar)";
+                scmd.CommandType = System.Data.CommandType.Text;
+                scmd.Parameters.Add("@codpedido", SqlDbType.BigInt).Value = detallePedido.CodPedido;
+                scmd.Parameters.Add("@idProducto", SqlDbType.BigInt).Value = detallePedido.IdProducto;
+                scmd.Parameters.Add("@precio", SqlDbType.Decimal).Value = detallePedido.Precio;
+                scmd.Parameters.Add("@cantidad", SqlDbType.Int).Value = detallePedido.cantidad;
+                scmd.Parameters.Add("@subtotal", SqlDbType.Decimal).Value = detallePedido.SubTotal;
+                scmd.Parameters.Add("@totalpagar", SqlDbType.Decimal).Value = detallePedido.TotalPagar;
                 int upload = scmd.ExecuteNonQuery();
             }
             catch(Exception ex)

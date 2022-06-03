@@ -92,6 +92,7 @@ namespace Pedidos
                         {
                             CodPedido = pedido.CodPedido,
                             IdProducto = Convert.ToInt64(Row[0]),
+                            Precio = Convert.ToDecimal(Row[4]),
                             cantidad = Convert.ToInt32(Row[5]),
                             SubTotal = Convert.ToDecimal(Row[6]),
                             TotalPagar = Math.Round((decimal)TotalDePagar, 2, MidpointRounding.AwayFromZero)
@@ -149,6 +150,7 @@ namespace Pedidos
                         {
                             CodPedido = pedido.CodPedido,
                             IdProducto = Convert.ToInt64(Row[0]),
+                            Precio = Convert.ToDecimal(Row[4]),
                             cantidad = Convert.ToInt32(Row[5]),
                             SubTotal = Convert.ToDecimal(Row[6]),
                             TotalPagar = Math.Round((decimal)TotalDePagar, 2, MidpointRounding.AwayFromZero)

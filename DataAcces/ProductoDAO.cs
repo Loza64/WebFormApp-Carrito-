@@ -156,13 +156,13 @@ namespace DataAcces
             {
                 con.Open();
                 scmd.Connection = con;
-                scmd.CommandText = "RegistrarProducto";
-                scmd.CommandType = CommandType.StoredProcedure;
-                scmd.Parameters.AddWithValue("@Nombre", producto.Nombre);
-                scmd.Parameters.AddWithValue("@Descripcion", producto.Descripcion);
-                scmd.Parameters.AddWithValue("@Imagen", producto.Imagen);
-                scmd.Parameters.AddWithValue("@Stock", producto.Stock);
-                scmd.Parameters.AddWithValue("@Precio", producto.Precio);
+                scmd.CommandText = "insert into Producto(Nombre,Descripcion,Imagen,Stock,Precio) values(@Nombre,@Descripcion,@Imagen,@Stock,@Precio)";
+                scmd.CommandType = CommandType.Text;
+                scmd.Parameters.Add("@Nombre", SqlDbType.VarChar).Value = producto.Nombre;
+                scmd.Parameters.Add("@Descripcion", SqlDbType.VarChar).Value = producto.Descripcion;
+                scmd.Parameters.Add("@Imagen", SqlDbType.VarBinary).Value = producto.Imagen;
+                scmd.Parameters.Add("@Stock", SqlDbType.Int).Value = producto.Stock;
+                scmd.Parameters.Add("@Precio", SqlDbType.Decimal).Value = producto.Precio;
                 int upload = scmd.ExecuteNonQuery();
                 if(upload != 0)
                 {
