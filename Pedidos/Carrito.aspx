@@ -2,7 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <br />
-
     <div class="pt-5">
         <h2 class="text-center">Mi carrito de compras <i class="fas fa-shopping-cart "></i></h2>
         <div class="row pt-2">
