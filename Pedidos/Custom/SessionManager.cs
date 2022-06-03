@@ -11,7 +11,7 @@ namespace Pedidos.Custom
         //Almacena la información en parametro
         public SessionManager(HttpSessionState Session)
         {
-            // se llama a la varable declarada
+            // se llama a la variable declarada
             this._currentsession = Session;
         }
         #region metodos
