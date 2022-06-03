@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Entities
+﻿namespace Entities
 {
     public class Producto
     {
@@ -14,6 +8,6 @@ namespace Entities
         public byte[] Imagen { set; get; }
         public int Stock { set; get; }
         public decimal Precio { set; get; }
-        public Producto () { }
+        public Producto() { }
     }
 }

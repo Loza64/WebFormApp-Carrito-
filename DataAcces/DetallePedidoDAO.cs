@@ -1,22 +1,18 @@
 ﻿using DBConnect;
 using Entities;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAcces
 {
-    public  class DetallePedidoDAO
+    public class DetallePedidoDAO
     {
         private static DetallePedidoDAO detalle = null;
         private DetallePedidoDAO() { }
         public static DetallePedidoDAO GetInstance()
         {
-            if(detalle == null)
+            if (detalle == null)
             {
                 detalle = new DetallePedidoDAO();
             }
@@ -41,7 +37,7 @@ namespace DataAcces
                 scmd.Parameters.Add("@totalpagar", SqlDbType.Decimal).Value = detallePedido.TotalPagar;
                 scmd.ExecuteNonQuery();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -50,6 +46,6 @@ namespace DataAcces
                 con.Close();
                 scmd.Parameters.Clear();
             }
-        }               
+        }
     }
 }

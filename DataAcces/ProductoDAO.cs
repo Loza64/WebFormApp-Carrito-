@@ -1,12 +1,8 @@
 ﻿using DBConnect;
 using Entities;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAcces
 {
@@ -16,7 +12,7 @@ namespace DataAcces
         private ProductoDAO() { }
         public static ProductoDAO GetInstance()
         {
-            if(product == null)
+            if (product == null)
             {
                 product = new ProductoDAO();
             }
@@ -38,7 +34,8 @@ namespace DataAcces
                 scmd.CommandType = CommandType.Text;
                 sdr = scmd.ExecuteReader();
                 list.Load(sdr);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -68,8 +65,8 @@ namespace DataAcces
                 {
                     Foto = "data:image/jpg;base64," + Convert.ToBase64String((byte[])sdr["Imagen"]);
                 }
-            }                                                  
-            catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -124,7 +121,7 @@ namespace DataAcces
             DataTable list = new DataTable();
             SqlConnection con = Conexion.GetInstance().GetConnection();
             SqlCommand scmd = new SqlCommand();
-            
+
             try
             {
                 con.Open();
@@ -164,11 +161,12 @@ namespace DataAcces
                 scmd.Parameters.Add("@Stock", SqlDbType.Int).Value = producto.Stock;
                 scmd.Parameters.Add("@Precio", SqlDbType.Decimal).Value = producto.Precio;
                 int upload = scmd.ExecuteNonQuery();
-                if(upload != 0)
+                if (upload != 0)
                 {
                     responce = true;
                 }
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }

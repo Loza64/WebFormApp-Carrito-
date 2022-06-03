@@ -1,10 +1,6 @@
 ﻿using DataAcces;
 using Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logic
 {
@@ -14,7 +10,7 @@ namespace Logic
         private DetallePedidoLN() { }
         public static DetallePedidoLN GetInstance()
         {
-            if(detallePedidoLN == null)
+            if (detallePedidoLN == null)
             {
                 detallePedidoLN = new DetallePedidoLN();
             }
@@ -25,9 +21,9 @@ namespace Logic
         {
             try
             {
-                 DetallePedidoDAO.GetInstance().RegistrarDetallePedido(detallePedido);
-            }  
-            catch(Exception ex)
+                DetallePedidoDAO.GetInstance().RegistrarDetallePedido(detallePedido);
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
