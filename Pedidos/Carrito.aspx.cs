@@ -43,8 +43,8 @@ namespace Pedidos
             if (e.CommandName == "Eliminar")
             {
                 CarritoCompras.SelectedIndex = e.Item.ItemIndex;
-                Label lblitem = (Label)e.Item.FindControl("lblidproducto");
-                deleteitem(lblitem.Text);
+                Label lblidproducto = (Label)e.Item.FindControl("lblidproducto");
+                deleteitem(lblidproducto.Text);
             }
             else if (e.CommandName == "sumar")
             {
