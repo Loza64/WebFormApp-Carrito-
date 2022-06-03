@@ -47,7 +47,7 @@ namespace DataAcces
             }
             return codpedido;
         }
-        public bool registrarpedido(Pedido pedido)
+        public bool registrarpedido(Pedido pedido, DataTable listacarrito)
         {
             bool responce = false;
             SqlConnection con = Conexion.GetInstance().GetConnection();
@@ -70,6 +70,20 @@ namespace DataAcces
                 int upload = scmd.ExecuteNonQuery();
                 if (upload != 0)
                 {
+                    foreach (DataRow Row in listacarrito.Rows)
+                    {
+                        double TotalDePagar = (Convert.ToDouble(Row[6]) * 0.13) + Convert.ToDouble(Row[6]);
+                        DetallePedido detalle = new DetallePedido()
+                        {
+                            CodPedido = pedido.CodPedido,
+                            IdProducto = Convert.ToInt64(Row[0]),
+                            Precio = Convert.ToDecimal(Row[4]),
+                            cantidad = Convert.ToInt32(Row[5]),
+                            SubTotal = Convert.ToDecimal(Row[6]),
+                            TotalPagar = Math.Round((decimal)TotalDePagar, 2, MidpointRounding.AwayFromZero)
+                        };
+                        DetallePedidoDAO.GetInstance().RegistrarDetallePedido(detalle);
+                    }
                     responce = true;
                 }
             }

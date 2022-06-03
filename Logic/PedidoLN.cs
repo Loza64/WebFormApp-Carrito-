@@ -2,6 +2,7 @@
 using Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,11 +27,11 @@ namespace Logic
             return PedidoDAO.GetInstance().CodPedido();
         }
 
-        public bool registrarpedido(Pedido pedido)
+        public bool registrarpedido(Pedido pedido, DataTable listacarrito)
         {
             try
             {
-                return PedidoDAO.GetInstance().registrarpedido(pedido);
+                return PedidoDAO.GetInstance().registrarpedido(pedido, listacarrito);
             }
             catch (Exception ex)
             {

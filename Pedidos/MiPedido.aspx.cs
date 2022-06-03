@@ -79,26 +79,11 @@ namespace Pedidos
                     IdUsuario = user.Id,
                     NombreCliente = txtnombre.Text,
                     Total = (decimal)Session["Total"],
-                    TipoPedido = "Hasta la puerta de mi casa"
+                    TipoPedido = "Domicilio"
                 };
-                bool responce = PedidoLN.GetInstance().registrarpedido(pedido);
+                bool responce = PedidoLN.GetInstance().registrarpedido(pedido, (DataTable)Session["ListaCarrito"]);
                 if (responce)
                 {
-                    DataTable listproducts = (DataTable)Session["ListaCarrito"];
-                    foreach (DataRow Row in listproducts.Rows)
-                    {
-                        double TotalDePagar = (Convert.ToDouble(Row[6]) * 0.13) + Convert.ToDouble(Row[6]);
-                        DetallePedido detalle = new DetallePedido()
-                        {
-                            CodPedido = pedido.CodPedido,
-                            IdProducto = Convert.ToInt64(Row[0]),
-                            Precio = Convert.ToDecimal(Row[4]),
-                            cantidad = Convert.ToInt32(Row[5]),
-                            SubTotal = Convert.ToDecimal(Row[6]),
-                            TotalPagar = Math.Round((decimal)TotalDePagar, 2, MidpointRounding.AwayFromZero)
-                        };
-                        DetallePedidoLN.GetInstance().RegistrarDetallePedido(detalle);
-                    }
                     Session["ListaCarrito"] = null;
                     Session["Item"] = null;
                     ClientScript.RegisterClientScriptBlock(this.GetType(), "", "load()", true);
@@ -139,24 +124,9 @@ namespace Pedidos
                     Total = (decimal)Session["Total"],
                     TipoPedido = "Directo en pedidos store"
                 };
-                bool responce = PedidoLN.GetInstance().registrarpedido(pedido);
+                bool responce = PedidoLN.GetInstance().registrarpedido(pedido, (DataTable)Session["ListaCarrito"]);
                 if (responce)
                 {
-                    DataTable listproducts = (DataTable)Session["ListaCarrito"];
-                    foreach (DataRow Row in listproducts.Rows)
-                    {
-                        double TotalDePagar = (Convert.ToDouble(Row[6]) * 0.13) + Convert.ToDouble(Row[6]);
-                        DetallePedido detalle = new DetallePedido()
-                        {
-                            CodPedido = pedido.CodPedido,
-                            IdProducto = Convert.ToInt64(Row[0]),
-                            Precio = Convert.ToDecimal(Row[4]),
-                            cantidad = Convert.ToInt32(Row[5]),
-                            SubTotal = Convert.ToDecimal(Row[6]),
-                            TotalPagar = Math.Round((decimal)TotalDePagar, 2, MidpointRounding.AwayFromZero)
-                        };
-                        DetallePedidoLN.GetInstance().RegistrarDetallePedido(detalle);
-                    }
                     Session["ListaCarrito"] = null;
                     Session["Item"] = null;
                     ClientScript.RegisterClientScriptBlock(this.GetType(), "", "load()", true);
