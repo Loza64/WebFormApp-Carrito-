@@ -50,7 +50,7 @@ namespace Pedidos
 
             if (string.IsNullOrEmpty(txtnombre.Text) || string.IsNullOrEmpty(txtdireccion.Text) || string.IsNullOrEmpty(txtfecha.Text) || string.IsNullOrEmpty(txthora.Text))
             {
-                lblerrorpedido1.Text = "Llene todos los capos por favor";
+                lblerrorpedido1.Text = "Llene todos los campos por favor";
                 lblerrorpedido1.Visible = true;
             }
             else if (!validarfecha(txtfecha.Text))
@@ -113,7 +113,7 @@ namespace Pedidos
 
             if (string.IsNullOrEmpty(txtnombre2.Text) || string.IsNullOrEmpty(txtfecha2.Text) || string.IsNullOrEmpty(txthora2.Text))
             {
-                lblerrorpedido2.Text = "Llene todos los capos por favor";
+                lblerrorpedido2.Text = "Llene todos los campos por favor";
                 lblerrorpedido2.Visible = true;
             }
             else if (!validarfecha(txtfecha2.Text))
@@ -140,6 +140,7 @@ namespace Pedidos
                         HoraEntrega = Convert.ToDateTime(txthora2.Text),
                         IdUsuario = user.Id,
                         NombreCliente = txtnombre2.Text,
+                        SubTotal = (decimal)Session["SubTotal"],
                         Total = (decimal)Session["Total"],
                         TipoPedido = "Directo en pedidos store"
                     };

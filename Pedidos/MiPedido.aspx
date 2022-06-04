@@ -5,7 +5,7 @@
             <div class="containercss" id="container">
                 <div class="form-container sign-up-container">
                     <div class="form">
-                        <label style="font-weight: 900; color: red;">Nombre completo</label>
+                        <label style="font-weight: 900; color: red;">Pedido a nombre de</label>
                         <asp:TextBox Style="font-weight: 700;" ID="txtnombre" runat="server" CssClass="inputs" placeholder="Nombre"></asp:TextBox>
                         <label style="font-weight: 900; color: red;">Dirección</label>
                         <asp:TextBox ID="txtdireccion" Style="font-weight: 700;" runat="server" CssClass="inputs" placeholder="Ingrese su dirección"></asp:TextBox>
@@ -20,7 +20,7 @@
                 </div>
                  <div class="form-container sign-in-container">
                     <div class="form">
-                        <label style="font-weight: 900; color: red;">Nombre completo</label>
+                        <label style="font-weight: 900; color: red;">Pedido a nombre de</label>
                         <asp:TextBox Style="font-weight: 700;" ID="txtnombre2" runat="server" CssClass="inputs" placeholder="Nombre"></asp:TextBox>
                         <label style="font-weight: 900; color: red;">Fecha de entrega</label>
                         <asp:TextBox ID="txtfecha2" Style="font-weight: 700;" type="date" runat="server" CssClass="inputs" placeholder="Edad"></asp:TextBox>

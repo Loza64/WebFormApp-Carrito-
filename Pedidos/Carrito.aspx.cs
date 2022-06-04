@@ -11,7 +11,7 @@ namespace Pedidos
         {
             if (!Page.IsPostBack)
             {
-                double subtotal = 0.00;
+                double SubTotal = 0.00;
                 double iva = 0.00;
                 double Total = 0.00;
                 CarritoCompras.DataSource = Session["ListaCarrito"];
@@ -20,16 +20,15 @@ namespace Pedidos
                 {
                     foreach (DataRow datarow in ((DataTable)Session["ListaCarrito"]).Rows)
                     {
-                        subtotal += Convert.ToDouble(datarow["SubTotal"].ToString());
-                        iva = (double)Math.Round(subtotal * 0.13, 2, MidpointRounding.AwayFromZero);
-                        Total = (double)Math.Round(iva + subtotal, 2, MidpointRounding.AwayFromZero);
+                        SubTotal += Convert.ToDouble(datarow["SubTotal"].ToString());
+                        iva = (double)Math.Round(SubTotal * 0.13, 2, MidpointRounding.AwayFromZero);
+                        Total = (double)Math.Round(iva + SubTotal, 2, MidpointRounding.AwayFromZero);
                     }
-                    txtsubtotal.Text = "$" + Convert.ToString(subtotal);
+                    txtsubtotal.Text = "$" + Convert.ToString(SubTotal);
                     txtiva.Text = "$" + Convert.ToString(iva);
                     txttotal.Text = "$" + Convert.ToString(Total);
-                    decimal MontoTotal = (decimal)Total;
-                    Session["SubTotal"] = subtotal;
-                    Session["Total"] = MontoTotal;
+                    Session["SubTotal"] = (decimal)SubTotal;
+                    Session["Total"] = (decimal)Total;
                 }
                 else
                 {
