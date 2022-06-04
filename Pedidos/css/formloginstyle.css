@@ -65,7 +65,7 @@ span {
     text-transform: uppercase;
     transition: transform 80ms ease-in;
     transition: all 0.3s ease;
-    font-weight:900;
+    font-weight: 900;
 }
 
     .button:active {
@@ -98,8 +98,8 @@ span {
     margin: 8px 0;
     border-radius: 30px;
     width: 140%;
-    outline:none;
-    font-weight:900;
+    outline: none;
+    font-weight: 900;
 }
 
 .form {
@@ -195,7 +195,6 @@ span {
     width: 200%;
     transform: translateX(0);
     transition: transform 0.6s ease-in-out;
-    
 }
 
 .containercss.right-panel-active .overlay {
