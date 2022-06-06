@@ -72,6 +72,7 @@ namespace Pedidos
                 {
                     drw["Cantidad"] = cant;
                     drw["SubTotal"] = cant * Convert.ToDecimal(drw["Precio"].ToString());
+                    break;
                 }
             }
             Response.Redirect("Carrito.aspx");
@@ -88,6 +89,7 @@ namespace Pedidos
                     {
                         drw["Cantidad"] = 1;
                         drw["SubTotal"] = Convert.ToDecimal(drw["Precio"].ToString());
+                        break;
                     }
                 }
                 Response.Redirect("Carrito.aspx");
@@ -100,6 +102,7 @@ namespace Pedidos
                     {
                         drw["Cantidad"] = cant;
                         drw["SubTotal"] = cant * Convert.ToDecimal(drw["Precio"].ToString());
+                        break;
                     }
                 }
                 Response.Redirect("Carrito.aspx");
@@ -107,17 +110,17 @@ namespace Pedidos
         }
         private void deleteitem(string idproducto)
         {
+            int i = 0;
             int fila = 0;
             DataTable datatable = (DataTable)Session["ListaCarrito"];
-            GridView gridview = new GridView();
-            gridview.DataSource = datatable;
-            gridview.DataBind();
-            for (int i = 0; i < datatable.Rows.Count; i++)
+            foreach (DataRow dr in datatable.Rows)
             {
-                if (gridview.Rows[i].Cells[0].Text == idproducto)
+                if (dr[0].ToString() == idproducto)
                 {
                     fila = i;
+                    break;
                 }
+                i++;
             }
             datatable.Rows[fila].Delete();
             CarritoCompras.DataSource = datatable;

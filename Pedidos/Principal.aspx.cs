@@ -86,6 +86,7 @@ namespace Pedidos
         }
         public void Micarrito(long id)
         {
+            int i = 0;
             int posicion = 0;
             string idproduct = Convert.ToString(id);
             var gridview = new GridView();
@@ -93,12 +94,14 @@ namespace Pedidos
             gridview.DataBind();
             if (gridview.Rows.Count > 0)
             {
-                for (int i = 0; i < gridview.Rows.Count; i++)
+                foreach(DataRow dr in ((DataTable)Session["ListaCarrito"]).Rows)
                 {
-                    if (gridview.Rows[i].Cells[0].Text == idproduct)
+                    if (dr[0].ToString() == idproduct)
                     {
                         posicion = i;
+                        break;
                     }
+                    i++;
                 }
 
                 if (gridview.Rows[posicion].Cells[0].Text == idproduct)
@@ -111,6 +114,7 @@ namespace Pedidos
                         {
                             drw["Cantidad"] = cantidad;
                             drw["SubTotal"] = (decimal)cantidad * Convert.ToDecimal(gridview.Rows[posicion].Cells[4].Text);
+                            break;
                         }
                     }
                 }
@@ -197,6 +201,7 @@ namespace Pedidos
         }
         public void Comprar(long id)
         {
+            int i = 0;
             int posicion = 0;
             string idproduct = Convert.ToString(id);
             var gridview = new GridView();
@@ -204,12 +209,14 @@ namespace Pedidos
             gridview.DataBind();
             if (gridview.Rows.Count > 0)
             {
-                for (int i = 0; i < gridview.Rows.Count; i++)
+                foreach (DataRow dr in ((DataTable)Session["ListaCarrito"]).Rows)
                 {
-                    if (gridview.Rows[i].Cells[0].Text == idproduct)
+                    if (dr[0].ToString() == idproduct)
                     {
                         posicion = i;
+                        break;
                     }
+                    i++;
                 }
                 if (gridview.Rows[posicion].Cells[0].Text == idproduct)
                 {
@@ -222,6 +229,7 @@ namespace Pedidos
                             drw["Cantidad"] = cantidad;
                             drw["SubTotal"] = (decimal)cantidad * Convert.ToDecimal(gridview.Rows[posicion].Cells[4].Text);
                             Response.Redirect("Carrito.aspx");
+                            break;
                         }
                     }
                 }
