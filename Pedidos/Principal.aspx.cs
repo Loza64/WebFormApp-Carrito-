@@ -67,8 +67,8 @@ namespace Pedidos
         }
         protected void listaproductos_ItemCommand(object source, DataListCommandEventArgs e)
         {
-            Label estado = (Label)e.Item.FindControl("lblestado");
-            if(estado.Text == "Disponible")
+            int estado = Convert.ToInt32((Label)e.Item.FindControl("Stock"));
+            if(estado < 0)
             {
                 if (e.CommandName == "carrito")
                 {

@@ -15,11 +15,14 @@
                         <div class="cabeza-targeta">
                             <asp:Label ID="txtid" runat="server" Text='<%# Bind("Id") %>' Style="display: none"></asp:Label>
                             <asp:Label ID="txtnombre" runat="server" Text='<%# Bind("Nombre")%>' CssClass="nombreproducto"></asp:Label>
-                            <br />
-                            <label class="precio">$<asp:Label ID="lblprecio" runat="server" Text='<%#Bind("Precio") %>'></asp:Label></label>
+                            <div style="font-size:23px">
+                                <i class="fas fa-gift"></i>
+                                <asp:Label ID="Stock" runat="server" Text='<%# Bind("Stock") %>' style="font-weight:900"></asp:Label>
+                            </div>
                         </div>
-                        <div style="text-align:left; width:100%">
-                                <asp:Label ID="lblestado" runat="server" Text='<%# Bind("Estado")%>' style="font-weight:600"></asp:Label>
+                        <div style="display:flex;justify-content:space-between;align-items:center"; width:100%">
+                            <label class="precio">$<asp:Label ID="lblprecio" runat="server" Text='<%#Bind("Precio") %>'></asp:Label></label>
+                                <asp:Label ID="lblestado" runat="server" Text='<%# Bind("Estado")%>' style="font-weight:700"></asp:Label>
                             </div>
                         <div class="cuerpo-targeta">
                             <asp:Image ID="imgproducto" runat="server" CssClass="imagenproducto" />
