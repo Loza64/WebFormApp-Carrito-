@@ -15,8 +15,8 @@
                         <div class="cabeza-targeta">
                             <asp:Label ID="txtid" runat="server" Text='<%# Bind("Id") %>' Style="display: none"></asp:Label>
                             <asp:Label ID="txtnombre" runat="server" Text='<%# Bind("Nombre")%>' CssClass="nombreproducto"></asp:Label>
-                            <div style="font-size:23px">
-                                <i class="fas fa-gift"></i>
+                            <div style="font-size:23px;color:greenyellow">
+                                <i class="fas fa-box-open"></i>
                                 <asp:Label ID="Stock" runat="server" Text='<%# Bind("Stock") %>' style="font-weight:900"></asp:Label>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                             </div>
                             <div class="botones">
                                 <asp:LinkButton ID="btncarrito" CommandName="carrito" runat="server" Text=" Añadir al carrito" CssClass="botoncarrito fas fa-cart-plus" />
-                                <asp:Button ID="btncomprar" CommandName="comprar" runat="server" Text="$Comprar" CssClass="botoncomprar" />
+                                <asp:Button ID="btncomprar" CommandName="comprar" runat="server" Text="$ Comprar producto" CssClass="botoncomprar" />
                             </div>
                         </div>
                     </div>

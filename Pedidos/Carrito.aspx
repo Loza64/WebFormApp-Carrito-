@@ -50,7 +50,7 @@
                                     <asp:Image ID="imgproducto" runat="server" ImageUrl='<%#Bind("Imagen") %>' CssClass="imgproducto" Style="width: 80px; height: 80px;" /></td>
                                 <td class="textodescripcion celda celdadescripcion text-center">
                                     <asp:Label ID="lbldescripcion" runat="server" Text='<%# Bind("Descripción") %>'></asp:Label></td>
-                                <td class="texto celda text-success">
+                                <td class="texto celda precio">
                                     <label>$<asp:Label ID="lblprecio" runat="server" Text='<%# Bind("Precio") %>'></asp:Label></label>
                                 </td>
                                 <td class="texto celda text-center">
@@ -60,7 +60,7 @@
                                         <asp:LinkButton ID="btnresta" runat="server" CommandName="restar" class=" btn btn-light fas fa-minus" />
                                     </div>
                                 </td>
-                                <td class="texto celda text-success">
+                                <td class="texto celda precio">
                                     <asp:Label ID="lblsubtotal" runat="server" Text='<%# Bind("SubTotal") %>'></asp:Label>/ST</td>
                                 <td>
                                     <asp:LinkButton ID="btneliminar" runat="server" CommandName="Eliminar" class="textoboton btn btn-danger fas fa-trash" /></td>
