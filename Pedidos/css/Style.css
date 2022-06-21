@@ -78,10 +78,6 @@
     transition: all 0.3s ease;
 }
 
-    .targeta:hover {
-        box-shadow: 5px 5px 5px rgb(124 124 124);
-    }
-
 .cabeza-targeta {
     border-bottom: solid 1px lightgray;
     display: flex;
