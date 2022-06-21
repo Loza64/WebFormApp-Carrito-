@@ -56,16 +56,18 @@ namespace Pedidos
             string foto = ProductoLN.GetInstance().ImagenProducto(Convert.ToInt64(txtid.Text));
             imgproducto.ImageUrl = foto;
             Label estado = (Label)e.Item.FindControl("lblestado");
-            if (estado.Text == "Disponible")
+            if (ProductoLN.GetInstance().Stock(Convert.ToInt64(txtid.Text)) > 0)
             {
+                estado.Text = "Disponible";
                 estado.ForeColor = System.Drawing.Color.GreenYellow;
             }
             else
             {
+                estado.Text = "No disponible";
                 estado.ForeColor = System.Drawing.Color.Red;
             }
             long Stock = Convert.ToInt64(((Label)e.Item.FindControl("Stock")).Text);
-            if(Stock > 9999)
+            if (Stock > 9999)
             {
                 ((Label)e.Item.FindControl("Stock")).Text = "+9999";
             }
@@ -73,7 +75,7 @@ namespace Pedidos
         protected void listaproductos_ItemCommand(object source, DataListCommandEventArgs e)
         {
             int estado = Convert.ToInt32(((Label)e.Item.FindControl("Stock")).Text);
-            if(estado > 0)
+            if (estado > 0)
             {
                 if (e.CommandName == "carrito")
                 {
@@ -93,15 +95,14 @@ namespace Pedidos
         {
             int i = 0;
             int posicion = 0;
-            string idproduct = Convert.ToString(id);
             var gridview = new GridView();
             gridview.DataSource = (DataTable)Session["ListaCarrito"];
             gridview.DataBind();
             if (gridview.Rows.Count > 0)
             {
-                foreach(DataRow dr in ((DataTable)Session["ListaCarrito"]).Rows)
+                foreach (DataRow dr in ((DataTable)Session["ListaCarrito"]).Rows)
                 {
-                    if (dr[0].ToString() == idproduct)
+                    if (dr[0].ToString() == Convert.ToString(id))
                     {
                         posicion = i;
                         break;
@@ -109,17 +110,32 @@ namespace Pedidos
                     i++;
                 }
 
-                if (gridview.Rows[posicion].Cells[0].Text == idproduct)
+                if (gridview.Rows[posicion].Cells[0].Text == Convert.ToString(id))
                 {
                     int cantidad = Convert.ToInt32(gridview.Rows[posicion].Cells[5].Text) + 1;
                     var carrito = (DataTable)Session["ListaCarrito"];
-                    foreach (DataRow drw in carrito.Rows)
+                    if (cantidad < ProductoLN.GetInstance().Stock(id))
                     {
-                        if (drw["IdProducto"].ToString() == idproduct)
+                        foreach (DataRow drw in carrito.Rows)
                         {
-                            drw["Cantidad"] = cantidad;
-                            drw["SubTotal"] = (decimal)cantidad * Convert.ToDecimal(gridview.Rows[posicion].Cells[4].Text);
-                            break;
+                            if (drw["IdProducto"].ToString() == Convert.ToString(id))
+                            {
+                                drw["Cantidad"] = cantidad;
+                                drw["SubTotal"] = (decimal)cantidad * Convert.ToDecimal(gridview.Rows[posicion].Cells[4].Text);
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (DataRow drw in carrito.Rows)
+                        {
+                            if (drw["IdProducto"].ToString() == Convert.ToString(id))
+                            {
+                                drw["Cantidad"] = ProductoLN.GetInstance().Stock(id);
+                                drw["SubTotal"] = (decimal)ProductoLN.GetInstance().Stock(id) * Convert.ToDecimal(gridview.Rows[posicion].Cells[4].Text);
+                                break;
+                            }
                         }
                     }
                 }
@@ -226,16 +242,32 @@ namespace Pedidos
                 if (gridview.Rows[posicion].Cells[0].Text == idproduct)
                 {
                     int cantidad = Convert.ToInt32(gridview.Rows[posicion].Cells[5].Text) + 1;
-                    var datalist = (DataTable)Session["ListaCarrito"];
-                    foreach (DataRow drw in datalist.Rows)
+                    var carrito = (DataTable)Session["ListaCarrito"];
+                    if (cantidad < ProductoLN.GetInstance().Stock(id))
                     {
-                        if (drw["IdProducto"].ToString() == idproduct)
+                        foreach (DataRow drw in carrito.Rows)
                         {
-                            drw["Cantidad"] = cantidad;
-                            drw["SubTotal"] = (decimal)cantidad * Convert.ToDecimal(gridview.Rows[posicion].Cells[4].Text);
-                            Response.Redirect("Carrito.aspx");
-                            break;
+                            if (drw["IdProducto"].ToString() == Convert.ToString(id))
+                            {
+                                drw["Cantidad"] = cantidad;
+                                drw["SubTotal"] = (decimal)cantidad * Convert.ToDecimal(gridview.Rows[posicion].Cells[4].Text);
+                                break;
+                            }
                         }
+                        Response.Redirect("Carrito.aspx");
+                    }
+                    else
+                    {
+                        foreach (DataRow drw in carrito.Rows)
+                        {
+                            if (drw["IdProducto"].ToString() == Convert.ToString(id))
+                            {
+                                drw["Cantidad"] = ProductoLN.GetInstance().Stock(id);
+                                drw["SubTotal"] = (decimal)ProductoLN.GetInstance().Stock(id) * Convert.ToDecimal(gridview.Rows[posicion].Cells[4].Text);
+                                break;
+                            }
+                        }
+                        Response.Redirect("Carrito.aspx");
                     }
                 }
                 else

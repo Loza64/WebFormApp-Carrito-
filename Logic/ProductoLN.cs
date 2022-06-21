@@ -139,6 +139,30 @@ namespace Logic
             }
         }
 
+        public long Stock (long Id)
+        {
+            try
+            {
+                return ProductoDAO.GetInstance().Stock(Id);
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }
 

@@ -40,52 +40,77 @@ namespace Pedidos
         }
         protected void CarritoCompras_ItemCommand2(object source, DataListCommandEventArgs e)
         {
+            long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("lblidproducto")).Text);
+            int cantidad = Convert.ToInt32(((TextBox)e.Item.FindControl("txtcantidad")).Text);
             if (e.CommandName == "Eliminar")
             {
                 CarritoCompras.SelectedIndex = e.Item.ItemIndex;
-                Label lblidproducto = (Label)e.Item.FindControl("lblidproducto");
-                deleteitem(lblidproducto.Text);
+                deleteitem(IdProduct);
             }
             else if (e.CommandName == "sumar")
             {
                 CarritoCompras.SelectedIndex = e.Item.ItemIndex;
-                Label lblid = (Label)e.Item.FindControl("lblidproducto");
-                TextBox txtcantidad = (TextBox)e.Item.FindControl("txtcantidad");
-                sumar(txtcantidad.Text, lblid.Text);
+                sumar(cantidad, IdProduct);
 
             }
             else if (e.CommandName == "restar")
             {
                 CarritoCompras.SelectedIndex = e.Item.ItemIndex;
-                Label lblid = (Label)e.Item.FindControl("lblidproducto");
-                TextBox txtcantidad = (TextBox)e.Item.FindControl("txtcantidad");
-                restar(txtcantidad.Text, lblid.Text);
+                restar(cantidad, IdProduct);
             }
         }
-        private void sumar(string cantidad, string item)
+        protected void CarritoCompras_ItemDataBound(object sender, DataListItemEventArgs e)
         {
-            DataTable datatable = (DataTable)Session["ListaCarrito"];
-            int cant = Convert.ToInt32(cantidad) + 1;
-            foreach (DataRow drw in datatable.Rows)
+            long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("lblidproducto")).Text);
+            foreach(DataRow dtr in ((DataTable)Session["ListaCarrito"]).Rows)
             {
-                if (drw["IdProducto"].ToString() == item)
+                if (dtr["idproducto"].ToString() == Convert.ToString(IdProduct))
                 {
-                    drw["Cantidad"] = cant;
-                    drw["SubTotal"] = cant * Convert.ToDecimal(drw["Precio"].ToString());
-                    break;
+                   
                 }
             }
-            Response.Redirect("Carrito.aspx");
         }
-        private void restar(string cantidad, string idproducto)
+        private void sumar(int cantidad, long IdProduct)
+        {
+            if (cantidad < Logic.ProductoLN.GetInstance().Stock(IdProduct))
+            {
+                DataTable datatable = (DataTable)Session["ListaCarrito"];
+                int cant = Convert.ToInt32(cantidad) + 1;
+                foreach (DataRow drw in datatable.Rows)
+                {
+                    if (drw["IdProducto"].ToString() == Convert.ToString(IdProduct))
+                    {
+                        drw["Cantidad"] = cant;
+                        drw["SubTotal"] = cant * Convert.ToDecimal(drw["Precio"].ToString());
+                        break;
+                    }
+                }
+                Response.Redirect("Carrito.aspx");
+            }
+            else
+            {
+                DataTable datatable = (DataTable)Session["ListaCarrito"];
+                foreach (DataRow drw in datatable.Rows)
+                {
+                    if (drw["IdProducto"].ToString() == Convert.ToString(IdProduct))
+                    {
+                        drw["Cantidad"] = Logic.ProductoLN.GetInstance().Stock(IdProduct);
+                        drw["SubTotal"] = Logic.ProductoLN.GetInstance().Stock(IdProduct) * Convert.ToDecimal(drw["Precio"].ToString());
+                        break;
+                    }
+                }
+                Response.Redirect("Carrito.aspx");
+            }
+        }
+        private void restar(int cantidad, long IdProduct)
         {
             DataTable datatable = (DataTable)Session["ListaCarrito"];
-            int cant = Convert.ToInt32(cantidad) - 1;
+            int cant = cantidad - 1;
             if (cant < 1)
             {
                 foreach (DataRow drw in datatable.Rows)
                 {
-                    if (drw["IdProducto"].ToString() == idproducto)
+                    if (drw["IdProducto"].ToString() == Convert.ToString(IdProduct))
                     {
                         drw["Cantidad"] = 1;
                         drw["SubTotal"] = Convert.ToDecimal(drw["Precio"].ToString());
@@ -98,7 +123,7 @@ namespace Pedidos
             {
                 foreach (DataRow drw in datatable.Rows)
                 {
-                    if (drw["IdProducto"].ToString() == idproducto)
+                    if (drw["IdProducto"].ToString() == Convert.ToString(IdProduct))
                     {
                         drw["Cantidad"] = cant;
                         drw["SubTotal"] = cant * Convert.ToDecimal(drw["Precio"].ToString());
@@ -108,14 +133,14 @@ namespace Pedidos
                 Response.Redirect("Carrito.aspx");
             }
         }
-        private void deleteitem(string idproducto)
+        private void deleteitem(long IdProduct)
         {
             int i = 0;
             int fila = 0;
             DataTable datatable = (DataTable)Session["ListaCarrito"];
             foreach (DataRow dr in datatable.Rows)
             {
-                if (dr[0].ToString() == idproducto)
+                if (dr[0].ToString() == Convert.ToString(IdProduct))
                 {
                     fila = i;
                     break;
@@ -155,5 +180,6 @@ namespace Pedidos
                 Response.Redirect("Principal.aspx");
             }
         }
+
     }
 }

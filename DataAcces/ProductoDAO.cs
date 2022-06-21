@@ -317,6 +317,5 @@ namespace DataAcces
                 con.Close();
             }
         }
-
     }
 }

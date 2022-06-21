@@ -39,7 +39,7 @@
 
             <div class="col-sm-8">
                 <div class="table-responsive mb-3" style="width: 100%; overflow: no-display; height: 410px">
-                    <asp:DataList ID="CarritoCompras" runat="server" OnItemCommand="CarritoCompras_ItemCommand2">
+                    <asp:DataList ID="CarritoCompras" runat="server" OnItemCommand="CarritoCompras_ItemCommand2" OnItemDataBound="CarritoCompras_ItemDataBound">
                         <ItemTemplate>
                             <tr class="cuerpotabla">
                                 <td class="d-none">
