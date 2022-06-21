@@ -64,6 +64,11 @@ namespace Pedidos
             {
                 estado.ForeColor = System.Drawing.Color.Red;
             }
+            long Stock = Convert.ToInt64(((Label)e.Item.FindControl("Stock")).Text);
+            if(Stock > 9999)
+            {
+                ((Label)e.Item.FindControl("Stock")).Text = "+9999";
+            }
         }
         protected void listaproductos_ItemCommand(object source, DataListCommandEventArgs e)
         {
