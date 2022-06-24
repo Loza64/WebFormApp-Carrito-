@@ -43,13 +43,17 @@
                         <ItemTemplate>
                             <tr class="cuerpotabla">
                                 <td class="d-none">
-                                    <asp:Label ID="lblidproducto" runat="server" Text='<%# Bind("IdProducto") %>'></asp:Label></td>
+                                    <asp:Label ID="lblidproducto" runat="server" Text='<%# Bind("IdProducto") %>'></asp:Label>
+                                </td>
                                 <td class="texto celda">
-                                    <asp:Label ID="lblnombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label></td>
+                                    <asp:Label ID="lblnombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
+                                </td>
                                 <td class="texto celda">
-                                    <asp:Image ID="imgproducto" runat="server" ImageUrl='<%#Bind("Imagen") %>' CssClass="imgproducto" Style="width: 80px; height: 80px;" /></td>
+                                    <asp:Image ID="imgproducto" runat="server" ImageUrl='<%#Bind("Imagen") %>' CssClass="imgproducto" Style="width: 80px; height: 80px;" />
+                                </td>
                                 <td class="textodescripcion celda celdadescripcion text-center">
-                                    <asp:Label ID="lbldescripcion" runat="server" Text='<%# Bind("Descripción") %>'></asp:Label></td>
+                                    <asp:Label ID="lbldescripcion" runat="server" Text='<%# Bind("Descripción") %>'></asp:Label>
+                                </td>
                                 <td class="texto celda precio">
                                     <label>$<asp:Label ID="lblprecio" runat="server" Text='<%# Bind("Precio") %>'></asp:Label></label>
                                 </td>

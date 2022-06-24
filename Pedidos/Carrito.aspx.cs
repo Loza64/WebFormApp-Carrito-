@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logic;
+using System;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -11,31 +12,7 @@ namespace Pedidos
         {
             if (!Page.IsPostBack)
             {
-                double SubTotal = 0.00;
-                double iva = 0.00;
-                double Total = 0.00;
-                CarritoCompras.DataSource = Session["ListaCarrito"];
-                CarritoCompras.DataBind();
-                if (Session["ListaCarrito"] != null)
-                {
-                    foreach (DataRow datarow in ((DataTable)Session["ListaCarrito"]).Rows)
-                    {
-                        SubTotal += Convert.ToDouble(datarow["SubTotal"].ToString());
-                        iva = (double)Math.Round(SubTotal * 0.13, 2, MidpointRounding.AwayFromZero);
-                        Total = (double)Math.Round(iva + SubTotal, 2, MidpointRounding.AwayFromZero);
-                    }
-                    txtsubtotal.Text = "$" + Convert.ToString(SubTotal);
-                    txtiva.Text = "$" + Convert.ToString(iva);
-                    txttotal.Text = "$" + Convert.ToString(Total);
-                    Session["SubTotal"] = (decimal)SubTotal;
-                    Session["Total"] = (decimal)Total;
-                }
-                else
-                {
-                    txtsubtotal.Text = "$0.00";
-                    txtiva.Text = "$0.00";
-                    txttotal.Text = "$0.00";
-                }
+                UpdateCart();
             }
         }
         protected void CarritoCompras_ItemCommand2(object source, DataListCommandEventArgs e)
@@ -62,12 +39,16 @@ namespace Pedidos
         protected void CarritoCompras_ItemDataBound(object sender, DataListItemEventArgs e)
         {
             long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("lblidproducto")).Text);
+            int i = 0;
             foreach(DataRow dtr in ((DataTable)Session["ListaCarrito"]).Rows)
             {
-                if (dtr["idproducto"].ToString() == Convert.ToString(IdProduct))
+                if (dtr["idproducto"].ToString() == Convert.ToString(IdProduct) && ProductoLN.GetInstance().Stock(IdProduct) < 1)
                 {
-                   
+                    ((DataTable)Session["ListaCarrito"]).Rows[i].Delete();
+                    Response.Redirect("Carrito.aspx");
+                    break;
                 }
+                i++;
             }
         }
         private void sumar(int cantidad, long IdProduct)
@@ -101,6 +82,35 @@ namespace Pedidos
                 }
                 Response.Redirect("Carrito.aspx");
             }
+        }
+        private void UpdateCart()
+        {
+            double SubTotal = 0.00;
+            double iva = 0.00;
+            double Total = 0.00;
+            if (Session["ListaCarrito"] != null)
+            {
+                foreach (DataRow datarow in ((DataTable)Session["ListaCarrito"]).Rows)
+                {
+                    SubTotal += Convert.ToDouble(datarow["SubTotal"].ToString());
+                    iva = (double)Math.Round(SubTotal * 0.13, 2, MidpointRounding.AwayFromZero);
+                    Total = (double)Math.Round(iva + SubTotal, 2, MidpointRounding.AwayFromZero);
+                }
+                txtsubtotal.Text = "$" + Convert.ToString(SubTotal);
+                txtiva.Text = "$" + Convert.ToString(iva);
+                txttotal.Text = "$" + Convert.ToString(Total);
+                Session["SubTotal"] = (decimal)SubTotal;
+                Session["Total"] = (decimal)Total;
+            }
+            else
+            {
+                txtsubtotal.Text = "$0.00";
+                txtiva.Text = "$0.00";
+                txttotal.Text = "$0.00";
+            }
+            Session["Item"] = Convert.ToString(((DataTable)Session["ListaCarrito"]).Rows.Count);
+            CarritoCompras.DataSource = (DataTable)Session["ListaCarrito"];
+            CarritoCompras.DataBind();
         }
         private void restar(int cantidad, long IdProduct)
         {
@@ -148,9 +158,6 @@ namespace Pedidos
                 i++;
             }
             datatable.Rows[fila].Delete();
-            CarritoCompras.DataSource = datatable;
-            CarritoCompras.DataBind();
-            Session["ListaCarrito"] = datatable;
             Session["Item"] = Convert.ToString(datatable.Rows.Count);
             Response.Redirect("Carrito.aspx");
         }
