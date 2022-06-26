@@ -31,7 +31,7 @@
                             <a class="nav-link active" aria-current="page" href="Principal.aspx" style="color: white"><i class="fas fa-home"></i>Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="#" style="color: white"><i class="fas fa-plus-circle"></i>Ver mas ariculos</a>
+                            <a class="nav-link active" href="#" style="color: white"><i class="fas fa-plus-circle"></i>Ver mas articulos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="Carrito.aspx" style="color: white"><i class="fas fa-shopping-cart"></i>Mi Carrito(<asp:Label ID="lblcuenta" runat="server"></asp:Label>)</a>
