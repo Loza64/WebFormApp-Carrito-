@@ -125,6 +125,7 @@ namespace Pedidos
                                 break;
                             }
                         }
+                        Response.Redirect("Principal.aspx");
                     }
                     else
                     {
@@ -137,6 +138,7 @@ namespace Pedidos
                                 break;
                             }
                         }
+                        Response.Redirect("Principal.aspx");
                     }
                 }
                 else
