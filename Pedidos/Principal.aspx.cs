@@ -74,24 +74,24 @@ namespace Pedidos
         }
         protected void listaproductos_ItemCommand(object source, DataListCommandEventArgs e)
         {
-            int estado = Convert.ToInt32(((Label)e.Item.FindControl("Stock")).Text);
-            if (estado > 0)
+            listaproductos.SelectedIndex = e.Item.ItemIndex;
+            int Stock = Convert.ToInt32(((Label)e.Item.FindControl("Stock")).Text);
+            long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("txtid")).Text);
+            if (Stock > 0)
             {
                 if (e.CommandName == "carrito")
                 {
-                    listaproductos.SelectedIndex = e.Item.ItemIndex;
-                    string cod = ((Label)e.Item.FindControl("txtid")).Text;
-                    Micarrito(Convert.ToInt64(cod));
+                    AddToCart(Convert.ToInt64(IdProduct));
+                    Response.Redirect("Principal.aspx");
                 }
                 else if (e.CommandName == "comprar")
                 {
-                    listaproductos.SelectedIndex = e.Item.ItemIndex;
-                    string cod = ((Label)e.Item.FindControl("txtid")).Text;
-                    Comprar(Convert.ToInt64(cod));
+                    AddToCart(Convert.ToInt64(IdProduct));
+                    Response.Redirect("Carrito.aspx");
                 }
             }
         }
-        public void Micarrito(long id)
+        public void AddToCart(long IdProduct)
         {
             int i = 0;
             int posicion = 0;
@@ -102,7 +102,7 @@ namespace Pedidos
             {
                 foreach (DataRow dr in ((DataTable)Session["ListaCarrito"]).Rows)
                 {
-                    if (dr[0].ToString() == Convert.ToString(id))
+                    if (dr[0].ToString() == Convert.ToString(IdProduct))
                     {
                         posicion = i;
                         break;
@@ -110,42 +110,40 @@ namespace Pedidos
                     i++;
                 }
 
-                if (gridview.Rows[posicion].Cells[0].Text == Convert.ToString(id))
+                if (gridview.Rows[posicion].Cells[0].Text == Convert.ToString(IdProduct))
                 {
                     int cantidad = Convert.ToInt32(gridview.Rows[posicion].Cells[5].Text) + 1;
                     var carrito = (DataTable)Session["ListaCarrito"];
-                    if (cantidad < ProductoLN.GetInstance().Stock(id))
+                    if (cantidad < ProductoLN.GetInstance().Stock(IdProduct))
                     {
                         foreach (DataRow drw in carrito.Rows)
                         {
-                            if (drw["IdProducto"].ToString() == Convert.ToString(id))
+                            if (drw["IdProducto"].ToString() == Convert.ToString(IdProduct))
                             {
                                 drw["Cantidad"] = cantidad;
                                 drw["SubTotal"] = (decimal)cantidad * Convert.ToDecimal(gridview.Rows[posicion].Cells[4].Text);
                                 break;
                             }
                         }
-                        Response.Redirect("Principal.aspx");
                     }
                     else
                     {
                         foreach (DataRow drw in carrito.Rows)
                         {
-                            if (drw["IdProducto"].ToString() == Convert.ToString(id))
+                            if (drw["IdProducto"].ToString() == Convert.ToString(IdProduct))
                             {
-                                drw["Cantidad"] = ProductoLN.GetInstance().Stock(id);
-                                drw["SubTotal"] = (decimal)ProductoLN.GetInstance().Stock(id) * Convert.ToDecimal(gridview.Rows[posicion].Cells[4].Text);
+                                drw["Cantidad"] = ProductoLN.GetInstance().Stock(IdProduct);
+                                drw["SubTotal"] = (decimal)ProductoLN.GetInstance().Stock(IdProduct) * Convert.ToDecimal(gridview.Rows[posicion].Cells[4].Text);
                                 break;
                             }
                         }
-                        Response.Redirect("Principal.aspx");
                     }
                 }
                 else
                 {
                     try
                     {
-                        Producto prodcut = ProductoLN.GetInstance().seleccionarproducto(id);
+                        Producto prodcut = ProductoLN.GetInstance().seleccionarproducto(IdProduct);
                         if (prodcut != null)
                         {
                             var ListaCarrito = (DataTable)Session["ListaCarrito"];
@@ -160,7 +158,6 @@ namespace Pedidos
                             ListaCarrito.Rows.Add(FilaCarrito);
                             Session["ListaCarrito"] = ListaCarrito;
                             Session["Item"] = Convert.ToString(ListaCarrito.Rows.Count);
-                            Response.Redirect("Principal.aspx");
                         }
                     }
                     catch (SqlException ex)
@@ -185,7 +182,7 @@ namespace Pedidos
             {
                 try
                 {
-                    Producto prodcut = ProductoLN.GetInstance().seleccionarproducto(id);
+                    Producto prodcut = ProductoLN.GetInstance().seleccionarproducto(IdProduct);
                     if (prodcut != null)
                     {
                         var ListaCarrito = (DataTable)Session["ListaCarrito"];
@@ -200,7 +197,6 @@ namespace Pedidos
                         ListaCarrito.Rows.Add(FilaCarrito);
                         Session["ListaCarrito"] = ListaCarrito;
                         Session["Item"] = Convert.ToString(ListaCarrito.Rows.Count);
-                        Response.Redirect("Principal.aspx");
                     }
                 }
                 catch (SqlException ex)
@@ -220,137 +216,6 @@ namespace Pedidos
                     throw ex;
                 }
 
-            }
-        }
-        public void Comprar(long id)
-        {
-            int i = 0;
-            int posicion = 0;
-            string idproduct = Convert.ToString(id);
-            var gridview = new GridView();
-            gridview.DataSource = (DataTable)Session["ListaCarrito"];
-            gridview.DataBind();
-            if (gridview.Rows.Count > 0)
-            {
-                foreach (DataRow dr in ((DataTable)Session["ListaCarrito"]).Rows)
-                {
-                    if (dr[0].ToString() == idproduct)
-                    {
-                        posicion = i;
-                        break;
-                    }
-                    i++;
-                }
-                if (gridview.Rows[posicion].Cells[0].Text == idproduct)
-                {
-                    int cantidad = Convert.ToInt32(gridview.Rows[posicion].Cells[5].Text) + 1;
-                    var carrito = (DataTable)Session["ListaCarrito"];
-                    if (cantidad < ProductoLN.GetInstance().Stock(id))
-                    {
-                        foreach (DataRow drw in carrito.Rows)
-                        {
-                            if (drw["IdProducto"].ToString() == Convert.ToString(id))
-                            {
-                                drw["Cantidad"] = cantidad;
-                                drw["SubTotal"] = (decimal)cantidad * Convert.ToDecimal(gridview.Rows[posicion].Cells[4].Text);
-                                break;
-                            }
-                        }
-                        Response.Redirect("Carrito.aspx");
-                    }
-                    else
-                    {
-                        foreach (DataRow drw in carrito.Rows)
-                        {
-                            if (drw["IdProducto"].ToString() == Convert.ToString(id))
-                            {
-                                drw["Cantidad"] = ProductoLN.GetInstance().Stock(id);
-                                drw["SubTotal"] = (decimal)ProductoLN.GetInstance().Stock(id) * Convert.ToDecimal(gridview.Rows[posicion].Cells[4].Text);
-                                break;
-                            }
-                        }
-                        Response.Redirect("Carrito.aspx");
-                    }
-                }
-                else
-                {
-                    try
-                    {
-                        Producto prodcut = ProductoLN.GetInstance().seleccionarproducto(id);
-                        if (prodcut != null)
-                        {
-                            var ListaCarrito = (DataTable)Session["ListaCarrito"];
-                            DataRow FilaCarrito = ListaCarrito.NewRow();
-                            FilaCarrito[0] = prodcut.Id;
-                            FilaCarrito[1] = "data:image/jpg;base64," + Convert.ToBase64String(prodcut.Imagen);
-                            FilaCarrito[2] = prodcut.Nombre;
-                            FilaCarrito[3] = prodcut.Descripcion;
-                            FilaCarrito[4] = (decimal)prodcut.Precio;
-                            FilaCarrito[5] = 1;
-                            FilaCarrito[6] = prodcut.Precio * 1;
-                            ListaCarrito.Rows.Add(FilaCarrito);
-                            Session["ListaCarrito"] = ListaCarrito;
-                            Session["Item"] = Convert.ToString(ListaCarrito.Rows.Count);
-                            Response.Redirect("Carrito.aspx");
-                        }
-                    }
-                    catch (SqlException ex)
-                    {
-                        throw ex;
-                    }
-                    catch (NullReferenceException ex)
-                    {
-                        throw ex;
-                    }
-                    catch (TimeoutException ex)
-                    {
-                        throw ex;
-                    }
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
-                }
-
-            }
-            else
-            {
-                try
-                {
-                    Producto prodcut = ProductoLN.GetInstance().seleccionarproducto(id);
-                    if (prodcut != null)
-                    {
-                        var ListaCarrito = (DataTable)Session["ListaCarrito"];
-                        DataRow FilaCarrito = ListaCarrito.NewRow();
-                        FilaCarrito[0] = prodcut.Id;
-                        FilaCarrito[1] = "data:image/jpg;base64," + Convert.ToBase64String(prodcut.Imagen);
-                        FilaCarrito[2] = prodcut.Nombre;
-                        FilaCarrito[3] = prodcut.Descripcion;
-                        FilaCarrito[4] = (decimal)prodcut.Precio;
-                        FilaCarrito[5] = 1;
-                        FilaCarrito[6] = prodcut.Precio * 1;
-                        ListaCarrito.Rows.Add(FilaCarrito);
-                        Session["ListaCarrito"] = ListaCarrito;
-                        Session["Item"] = Convert.ToString(ListaCarrito.Rows.Count);
-                        Response.Redirect("Carrito.aspx");
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    throw ex;
-                }
-                catch (NullReferenceException ex)
-                {
-                    throw ex;
-                }
-                catch (TimeoutException ex)
-                {
-                    throw ex;
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
             }
         }
         protected void btnsearch_Click(object sender, EventArgs e)
