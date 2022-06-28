@@ -79,14 +79,14 @@
 }
 
 .cabeza-targeta {
-    border-bottom: solid 1px lightgray;
+    border-bottom: solid 1.5px lightgray;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
 .pie-targeta {
-    border-top: solid 1px lightgray;
+    border-top: solid 1.5px lightgray;
     padding: 4px;
     height: 100%;
     text-align: center;
