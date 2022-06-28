@@ -11,7 +11,7 @@ namespace Pedidos
 {
 
 
-    public partial class MiPedido
+    public partial class GenerarPedido1
     {
 
         /// <summary>
@@ -69,13 +69,13 @@ namespace Pedidos
         protected global::System.Web.UI.WebControls.Label lblerrorpedido1;
 
         /// <summary>
-        /// Control btnpedido1.
+        /// Control PedidoDomicilio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnpedido1;
+        protected global::System.Web.UI.WebControls.Button PedidoDomicilio;
 
         /// <summary>
         /// Control txtnombre2.
@@ -123,12 +123,12 @@ namespace Pedidos
         protected global::System.Web.UI.WebControls.Label lblerrorpedido2;
 
         /// <summary>
-        /// Control btnpedido2.
+        /// Control PedidoNormal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnpedido2;
+        protected global::System.Web.UI.WebControls.Button PedidoNormal;
     }
 }

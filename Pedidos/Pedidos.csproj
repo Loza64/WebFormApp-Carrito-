@@ -123,6 +123,7 @@
     <Content Include="css\formloginstyle.css" />
     <Content Include="css\Style.css" />
     <Content Include="css\stylepedido.css" />
+    <Content Include="GenerarPedido.aspx" />
     <Content Include="pedidos.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -133,7 +134,6 @@
     <Content Include="img\iconuser.png" />
     <Content Include="JS\JavaScript.js" />
     <Content Include="JS\main.js" />
-    <Content Include="MiPedido.aspx" />
     <Content Include="Principal.aspx" />
     <Content Include="registrarproducto.aspx" />
     <Content Include="Site.Master" />
@@ -161,15 +161,15 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Custom\SessionManager.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="MiPedido.aspx.cs">
-      <DependentUpon>MiPedido.aspx</DependentUpon>
+    <Compile Include="GenerarPedido.aspx.cs">
+      <DependentUpon>GenerarPedido.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MiPedido.aspx.designer.cs">
-      <DependentUpon>MiPedido.aspx</DependentUpon>
+    <Compile Include="GenerarPedido.aspx.designer.cs">
+      <DependentUpon>GenerarPedido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Principal.aspx.cs">
       <DependentUpon>Principal.aspx</DependentUpon>

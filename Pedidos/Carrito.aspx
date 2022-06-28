@@ -59,9 +59,9 @@
                                 </td>
                                 <td class="texto celda text-center">
                                     <div class="d-flex">
-                                        <asp:LinkButton ID="btnsuma" runat="server" CommandName="sumar" class=" btn btn-light fas fa-plus" />
+                                        <asp:LinkButton ID="btnsuma" runat="server" CommandName="Sumar" class=" btn btn-light fas fa-plus" />
                                         <asp:TextBox type="number" Enabled="false" CssClass="form-control text-center" CommandName="Cantidad" Style="width: 40px; padding: 0; margin: 0; font-weight: 700" ID="txtcantidad" runat="server" Text='<%# Bind("Cantidad") %>'></asp:TextBox>
-                                        <asp:LinkButton ID="btnresta" runat="server" CommandName="restar" class=" btn btn-light fas fa-minus" />
+                                        <asp:LinkButton ID="btnresta" runat="server" CommandName="Restar" class=" btn btn-light fas fa-minus" />
                                     </div>
                                 </td>
                                 <td class="texto celda precio">

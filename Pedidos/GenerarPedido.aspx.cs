@@ -1,14 +1,18 @@
 ﻿using Entities;
 using Logic;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Linq;
+using System.Web;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace Pedidos
 {
-    public partial class MiPedido : System.Web.UI.Page
+    public partial class GenerarPedido1 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -44,10 +48,10 @@ namespace Pedidos
                 }
             }
         }
-        protected void btnpedido1_Click(object sender, EventArgs e)
+
+        protected void PedidoDomicilio_Click(object sender, EventArgs e)
         {
             long codpedido = PedidoLN.GetInstance().CodPedido() + 1;
-
             if (string.IsNullOrEmpty(txtnombre.Text) || string.IsNullOrEmpty(txtdireccion.Text) || string.IsNullOrEmpty(txtfecha.Text) || string.IsNullOrEmpty(txthora.Text))
             {
                 lblerrorpedido1.Text = "Llene todos los campos por favor";
@@ -107,7 +111,8 @@ namespace Pedidos
                 }
             }
         }
-        protected void btnpedido2_Click(object sender, EventArgs e)
+
+        protected void PedidoNormal_Click(object sender, EventArgs e)
         {
             long codpedido = PedidoLN.GetInstance().CodPedido() + 1;
 

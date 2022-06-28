@@ -19,28 +19,30 @@ namespace Pedidos
         {
             long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("lblidproducto")).Text);
             int cantidad = Convert.ToInt32(((TextBox)e.Item.FindControl("txtcantidad")).Text);
-            if (e.CommandName == "Eliminar")
+            switch (e.CommandName)
             {
-                CarritoCompras.SelectedIndex = e.Item.ItemIndex;
-                deleteitem(IdProduct);
-            }
-            else if (e.CommandName == "sumar")
-            {
-                CarritoCompras.SelectedIndex = e.Item.ItemIndex;
-                sumar(cantidad, IdProduct);
-
-            }
-            else if (e.CommandName == "restar")
-            {
-                CarritoCompras.SelectedIndex = e.Item.ItemIndex;
-                restar(cantidad, IdProduct);
+                case "Eliminar":
+                    CarritoCompras.SelectedIndex = e.Item.ItemIndex;
+                    deleteitem(IdProduct);
+                    break;
+                case "Sumar":
+                    CarritoCompras.SelectedIndex = e.Item.ItemIndex;
+                    sumar(cantidad, IdProduct);
+                    break;
+                case "Restar":
+                    CarritoCompras.SelectedIndex = e.Item.ItemIndex;
+                    restar(cantidad, IdProduct);
+                    break;
+                default:
+                    Response.Redirect("Carrito.aspx");
+                    break;
             }
         }
         protected void CarritoCompras_ItemDataBound(object sender, DataListItemEventArgs e)
         {
             long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("lblidproducto")).Text);
             int i = 0;
-            foreach(DataRow dtr in ((DataTable)Session["ListaCarrito"]).Rows)
+            foreach (DataRow dtr in ((DataTable)Session["ListaCarrito"]).Rows)
             {
                 if (dtr["idproducto"].ToString() == Convert.ToString(IdProduct) && ProductoLN.GetInstance().Stock(IdProduct) < 1)
                 {
@@ -170,7 +172,7 @@ namespace Pedidos
                 {
                     if (Session["UserSession"] != null)
                     {
-                        Response.Redirect("MiPedido.aspx");
+                        Response.Redirect("GenerarPedido.aspx");
                     }
                     else
                     {

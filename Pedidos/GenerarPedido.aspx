@@ -1,5 +1,4 @@
-﻿<%@ Page Title="Mi pedido" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MiPedido.aspx.cs" Inherits="Pedidos.MiPedido" %>
-
+﻿<%@ Page Title="Generar Pedido" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="GenerarPedido.aspx.cs" Inherits="Pedidos.GenerarPedido1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link href="css/stylepedido.css" rel="stylesheet" />
             <div class="containercss" id="container">
@@ -15,7 +14,7 @@
                         <asp:TextBox ID="txthora" Style="font-weight: 700;" type="time" runat="server" CssClass="inputs" placeholder="Edad"></asp:TextBox>
                         <asp:Label ID="lbltotal" Style="font-weight: 900; color: green; font-size: 15px;" CssClass="pb-2" runat="server" Text=""></asp:Label>
                         <asp:Label ID="lblerrorpedido1" CssClass="error" runat="server" Text="" Visible="false"></asp:Label>
-                        <asp:Button ID="btnpedido1" runat="server" Text="Generar pedido" CssClass="button" OnClick="btnpedido1_Click" />
+                        <asp:Button ID="PedidoDomicilio" runat="server" Text="Generar pedido" CssClass="button" OnClick="PedidoDomicilio_Click"/>
                     </div>
                 </div>
                  <div class="form-container sign-in-container">
@@ -28,7 +27,7 @@
                         <asp:TextBox ID="txthora2" Style="font-weight: 700;" type="time" runat="server" CssClass="inputs" placeholder="Edad"></asp:TextBox>
                         <asp:Label ID="lbltotal2" Style="font-weight: 900; color: green; font-size: 15px;" CssClass="pb-2" runat="server" Text=""></asp:Label>
                         <asp:Label ID="lblerrorpedido2" CssClass="error" runat="server" Text="" Visible="false"></asp:Label>
-                        <asp:Button ID="btnpedido2" runat="server" Text="Generar pedido" CssClass="button" OnClick="btnpedido2_Click" />
+                        <asp:Button ID="PedidoNormal" runat="server" Text="Generar pedido" CssClass="button" OnClick="PedidoNormal_Click"/>
                     </div>
                 </div>
                 <div class="overlay-container">
@@ -47,3 +46,4 @@
                 </div>
             </div>
 </asp:Content>
+
