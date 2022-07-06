@@ -10,10 +10,10 @@
     border: 0;
     color: black;
     padding: 5px 10px;
-    border-radius: 7px;
     margin: 0;
     width: 260px;
     margin-right: 4px;
+    border-radius: 0;
     font-weight: 900;
     text-decoration: none;
     font-size: 15px;
@@ -31,11 +31,11 @@
     color: white;
     font-size: 23px;
     padding: 5px;
-    border-radius: 7px;
     color: black;
     width: 40px;
     font-weight: 900;
     text-decoration: none;
+    border-radius:0;
     background-color: gold;
     transition: all 0.3s ease;
     font-weight: 900;
@@ -43,7 +43,7 @@
 
     .boton:hover {
         color: white;
-        background-color: rgb(61 176 0);
+        background-color: rgb(213 196 0);
     }
 
 
