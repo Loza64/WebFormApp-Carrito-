@@ -5,8 +5,8 @@
 
     <div class="container   pt-5">
         <div class="d-flex text-center pb-2" style="justify-content: center;">
-            <asp:LinkButton ID="btnsearch" runat="server" CssClass="boton fas fa-search" OnClick="btnsearch_Click"></asp:LinkButton>
-            <asp:TextBox ID="txtbuscar" runat="server" CssClass="cajatexto " placeholder="Buscar producto" type="search"></asp:TextBox>
+            <asp:TextBox ID="txtbuscar" runat="server" CssClass="cajatexto " placeholder="Buscar producto" type="search">
+            </asp:TextBox> <asp:LinkButton ID="btnsearch" runat="server" CssClass="boton fas fa-search" OnClick="btnsearch_Click"></asp:LinkButton>
         </div>
         <div style="display:flex;justify-content:center;align-items:center">
             <asp:DataList ID="listaproductos" runat="server" RepeatColumns="3" CssClass="row" OnItemDataBound="listaproductos_ItemDataBound" OnItemCommand="listaproductos_ItemCommand">
