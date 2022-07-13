@@ -110,7 +110,7 @@ namespace Pedidos
 
                 if (gridview.Rows[posicion].Cells[0].Text == Convert.ToString(IdProduct))
                 {
-                    int cantidad = Convert.ToInt32(gridview.Rows[posicion].Cells[5].Text) + 1;
+                    int cantidad = Convert.ToInt32(gridview.Rows[posicion].Cells[4].Text) + 1;
                     var carrito = (DataTable)Session["ListaCarrito"];
                     if (cantidad < ProductoLN.GetInstance().Stock(IdProduct))
                     {
@@ -119,7 +119,7 @@ namespace Pedidos
                             if (drw["IdProducto"].ToString() == Convert.ToString(IdProduct))
                             {
                                 drw["Cantidad"] = cantidad;
-                                drw["SubTotal"] = (decimal)cantidad * Convert.ToDecimal(gridview.Rows[posicion].Cells[4].Text);
+                                drw["SubTotal"] = (decimal)cantidad * Convert.ToDecimal(gridview.Rows[posicion].Cells[5].Text);
                                 break;
                             }
                         }
@@ -131,7 +131,7 @@ namespace Pedidos
                             if (drw["IdProducto"].ToString() == Convert.ToString(IdProduct))
                             {
                                 drw["Cantidad"] = ProductoLN.GetInstance().Stock(IdProduct);
-                                drw["SubTotal"] = (decimal)ProductoLN.GetInstance().Stock(IdProduct) * Convert.ToDecimal(gridview.Rows[posicion].Cells[4].Text);
+                                drw["SubTotal"] = (decimal)ProductoLN.GetInstance().Stock(IdProduct) * Convert.ToDecimal(gridview.Rows[posicion].Cells[5].Text);
                                 break;
                             }
                         }
