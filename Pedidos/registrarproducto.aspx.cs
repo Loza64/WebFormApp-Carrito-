@@ -16,7 +16,7 @@ namespace Pedidos
         {
             Producto producto = new Producto();
             producto.Nombre = txtnombre.Text;
-            producto.Descripcion = txtdescripcion.Text;
+            producto.Detalle = txtdescripcion.Text;
             producto.Stock = Convert.ToInt32(txtstock.Text);
             producto.Imagen = archivo.FileBytes;
             producto.Precio = Convert.ToDecimal(txtprecio.Text);

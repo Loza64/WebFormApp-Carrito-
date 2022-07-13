@@ -51,23 +51,21 @@
                                 <td class="texto celda">
                                     <asp:Image ID="imgproducto" runat="server" ImageUrl='<%#Bind("Imagen") %>' CssClass="imgproducto" Style="width: 80px; height: 80px;" />
                                 </td>
-                                <td class="textodescripcion celda celdadescripcion text-center">
-                                    <asp:Label ID="lbldescripcion" runat="server" Text='<%# Bind("Descripción") %>'></asp:Label>
-                                </td>
                                 <td class="texto celda precio">
                                     <label>$<asp:Label ID="lblprecio" runat="server" Text='<%# Bind("Precio") %>'></asp:Label></label>
                                 </td>
                                 <td class="texto celda text-center">
-                                    <div class="d-flex">
+                                    <div class="d-flex "style="align-items:center">
                                         <asp:LinkButton ID="btnsuma" runat="server" CommandName="Sumar" class=" btn btn-light fas fa-plus" />
-                                        <asp:TextBox type="number" Enabled="false" CssClass="form-control text-center" CommandName="Cantidad" Style="width: 40px; padding: 0; margin: 0; font-weight: 700" ID="txtcantidad" runat="server" Text='<%# Bind("Cantidad") %>'></asp:TextBox>
+                                        <asp:Label type="number" Enabled="false" CssClass="form-control text-center" CommandName="Cantidad" Style="width: 50px; padding: 0; margin: 0; font-weight: 700; background:none;border:none;" ID="txtcantidad" runat="server" Text='<%# Bind("Cantidad") %>'></asp:Label>
                                         <asp:LinkButton ID="btnresta" runat="server" CommandName="Restar" class=" btn btn-light fas fa-minus" />
                                     </div>
                                 </td>
                                 <td class="texto celda precio">
                                     <asp:Label ID="lblsubtotal" runat="server" Text='<%# Bind("SubTotal") %>'></asp:Label>/ST</td>
                                 <td>
-                                    <asp:LinkButton ID="btneliminar" runat="server" CommandName="Eliminar" class="textoboton btn btn-danger fas fa-trash" /></td>
+                                    <asp:LinkButton ID="btneliminar" runat="server" CommandName="Eliminar" class="textoboton btn btn-danger fas fa-trash"/>
+                                </td>
                             </tr>
                         </ItemTemplate>
                     </asp:DataList>

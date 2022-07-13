@@ -22,18 +22,15 @@
                         </div>
                         <div style="display:flex;justify-content:space-between;align-items:center"; width:100%">
                             <label class="precio">$<asp:Label ID="lblprecio" runat="server" Text='<%#Bind("Precio") %>'></asp:Label></label>
-                                <asp:Label ID="lblestado" runat="server" Text='<%# Bind("Estado")%>' style="font-weight:700"></asp:Label>
+                              <asp:Label ID="lblestado" runat="server" Text='<%# Bind("Estado")%>' style="font-weight:700"></asp:Label>
                             </div>
                         <div class="cuerpo-targeta">
                             <asp:Image ID="imgproducto" runat="server" CssClass="imagenproducto" />
                         </div>
                         <div class="pie-targeta">
-                            <div>
-                                <asp:Label ID="txtdescripcion" runat="server" Text='<%# Bind("Descripcion") %>' CssClass="descripcionproducto"></asp:Label>
-                            </div>
                             <div class="botones">
-                                <asp:LinkButton ID="btncarrito" CommandName="carrito" runat="server" Text=" Añadir al carrito" CssClass="botoncarrito fas fa-cart-plus" />
-                                <asp:Button ID="btncomprar" CommandName="comprar" runat="server" Text="$ Comprar producto" CssClass="botoncomprar" />
+                                <asp:Button ID="btncarrito" CommandName="carrito" runat="server" Text="Añadir al carrito" CssClass="botoncarrito" ></asp:Button>
+                                <asp:Button ID="btndetalleproducto" CommandName="detalleproducto" runat="server" Text="Mostrar detalles" CssClass="botondetalle" />
                             </div>
                         </div>
                     </div>

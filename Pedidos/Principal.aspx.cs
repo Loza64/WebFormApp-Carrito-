@@ -20,10 +20,9 @@ namespace Pedidos
                     carritocompras.Columns.Add("IdProducto", System.Type.GetType("System.Int64"));//0
                     carritocompras.Columns.Add("Imagen", System.Type.GetType("System.String"));//1
                     carritocompras.Columns.Add("Nombre", System.Type.GetType("System.String"));//2
-                    carritocompras.Columns.Add("Descripción", System.Type.GetType("System.String"));//3
-                    carritocompras.Columns.Add("Precio", System.Type.GetType("System.Decimal"));//4
-                    carritocompras.Columns.Add("Cantidad", System.Type.GetType("System.Int32"));//5
-                    carritocompras.Columns.Add("SubTotal", System.Type.GetType("System.Decimal"));//6
+                    carritocompras.Columns.Add("Precio", System.Type.GetType("System.Decimal"));//3
+                    carritocompras.Columns.Add("Cantidad", System.Type.GetType("System.Int32"));//4
+                    carritocompras.Columns.Add("SubTotal", System.Type.GetType("System.Decimal"));//5
                     Session["ListaCarrito"] = carritocompras;
                 }
                 try
@@ -51,12 +50,11 @@ namespace Pedidos
         }
         protected void listaproductos_ItemDataBound(object sender, DataListItemEventArgs e)
         {
-            Label txtid = (Label)e.Item.FindControl("txtid");
             Image imgproducto = (Image)e.Item.FindControl("imgproducto");
-            string foto = ProductoLN.GetInstance().ImagenProducto(Convert.ToInt64(txtid.Text));
+            string foto = ProductoLN.GetInstance().ImagenProducto(Convert.ToInt64(((Label)e.Item.FindControl("txtid")).Text));
             imgproducto.ImageUrl = foto;
             Label estado = (Label)e.Item.FindControl("lblestado");
-            if (ProductoLN.GetInstance().Stock(Convert.ToInt64(txtid.Text)) > 0)
+            if (ProductoLN.GetInstance().Stock(Convert.ToInt64(((Label)e.Item.FindControl("txtid")).Text)) > 0)
             {
                 estado.Text = "Disponible";
                 estado.ForeColor = System.Drawing.Color.GreenYellow;
@@ -151,10 +149,9 @@ namespace Pedidos
                             FilaCarrito[0] = prodcut.Id;
                             FilaCarrito[1] = "data:image/jpg;base64," + Convert.ToBase64String(prodcut.Imagen);
                             FilaCarrito[2] = prodcut.Nombre;
-                            FilaCarrito[3] = prodcut.Descripcion;
-                            FilaCarrito[4] = (decimal)prodcut.Precio;
-                            FilaCarrito[5] = 1;
-                            FilaCarrito[6] = prodcut.Precio * 1;
+                            FilaCarrito[3] = (decimal)prodcut.Precio;
+                            FilaCarrito[4] = 1;
+                            FilaCarrito[5] = prodcut.Precio;
                             ListaCarrito.Rows.Add(FilaCarrito);
                             Session["ListaCarrito"] = ListaCarrito;
                             Session["Item"] = Convert.ToString(ListaCarrito.Rows.Count);
@@ -190,10 +187,9 @@ namespace Pedidos
                         FilaCarrito[0] = prodcut.Id;
                         FilaCarrito[1] = "data:image/jpg;base64," + Convert.ToBase64String(prodcut.Imagen);
                         FilaCarrito[2] = prodcut.Nombre;
-                        FilaCarrito[3] = prodcut.Descripcion;
-                        FilaCarrito[4] = (decimal)prodcut.Precio;
-                        FilaCarrito[5] = 1;
-                        FilaCarrito[6] = prodcut.Precio * 1;
+                        FilaCarrito[3] = (decimal)prodcut.Precio;
+                        FilaCarrito[4] = 1;
+                        FilaCarrito[5] = prodcut.Precio;
                         ListaCarrito.Rows.Add(FilaCarrito);
                         Session["ListaCarrito"] = ListaCarrito;
                         Session["Item"] = Convert.ToString(ListaCarrito.Rows.Count);

@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     margin-top: 0;
-    background: #f6f5f7;
+    background: white;
 }
 
 .cajatexto {
@@ -72,8 +72,8 @@
     height: 100%;
     border: solid 1px;
     border-color: lightgray;
-    border-radius: 26px;
-    padding: 10px;
+    border-radius: 10px;
+    padding: 6px;
     margin: 10px;
     transition: all 0.3s ease;
 }
@@ -81,19 +81,18 @@
 .cabeza-targeta {
     border-bottom: solid 1.5px lightgray;
     display: flex;
+    padding:2px;
     align-items: center;
     justify-content: space-between;
 }
 
 .pie-targeta {
     border-top: solid 1.5px lightgray;
-    padding: 4px;
-    height: 100%;
     text-align: center;
 }
 
 .cuerpo-targeta {
-    padding: 20px;
+    padding: 45px;
     text-align: center;
 }
 
@@ -114,49 +113,57 @@
 }
 
 .botones {
-    padding-top: 7px;
+    margin-top:5px;
+    padding:1px;
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
 }
 
 .botoncarrito {
     border: none;
     border: solid 1px;
     background: none;
-    font-size: 18px;
+    font-size: 16px;
+    margin: 5px;
     height: 35px;
-    padding: 6px;
     font-weight: 900;
-    border-radius: 10px;
-    color: Highlight;
+    border-radius: 6px;
+    color: lawngreen;
     text-decoration: none;
-    border-color: Highlight;
+    border-color: lawngreen;
+    width: 100%;
     transition: all 0.3s ease;
 }
 
-.botoncomprar {
+.botondetalle {
     border: none;
     border: solid 1px;
+    margin:5px;
     background: none;
+    width: 100%;
     height: 35px;
-    font-size: 15px;
-    border-radius: 10px;
+    font-size: 16px;
+    border-radius: 6px;
     font-weight: 800;
-    color: lawngreen;
-    border-color: lawngreen;
+    color: blue;
+    border-color: blue;
     transition: all 0.3s ease;
 }
 
-.botoncarrito:hover {
-    background-color: Highlight;
-    color: white;
-}
+    .botoncarrito:hover {
+        background-color: lawngreen;
+        color: white;
+    }
 
-.botoncomprar:hover {
-    background-color: lawngreen;
+.botondetalle:hover {
+    background-color: blue;
     color: white;
 }
 
 .celda {
     padding: 17px 13px;
+    width: 20%;
     border-radius: 20px;
 }
 
@@ -180,15 +187,10 @@
     border-radius: initial;
     border: none;
     border-color: black;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 10px;
     transition: all 0.3s ease;
 }
-
-    .cuerpotabla:hover {
-        box-shadow: 5px 5px 5px 5px rgb(124 124 124);
-    }
-
 .formulariopago {
     background-color: rgb(232 232 232 / 0.70);
     text-align: center;
@@ -218,10 +220,11 @@
     border: none;
     background-color: rgb(255 0 0);
     color: white;
-    border-radius: 10px;
+    border-radius: 16px;
     font-weight: 700;
     font-size: 15px;
-    padding: 6px;
+    width: 70%;
+    padding: 8px;
     transition: all 0.3s ease;
 }
 
@@ -268,10 +271,6 @@
 }
 
 @media(max-width:800px) {
-    .celdadescripcion {
-        display: none;
-    }
-
     .celda {
         padding: 3px 10px;
     }

@@ -118,11 +118,14 @@ namespace DataAcces
                 {
                     product = new Producto();
                     product.Id = Convert.ToInt64(sdr["Id"].ToString());
+                    product.IdCategoria = Convert.ToInt64(sdr["IdCategoria"].ToString());
                     product.Nombre = sdr["Nombre"].ToString();
-                    product.Descripcion = sdr["Descripcion"].ToString();
                     product.Imagen = (byte[])sdr["Imagen"];
+                    product.Company = sdr["Company"].ToString();
+                    product.Detalle = sdr["Detalle"].ToString();
                     product.Stock = Convert.ToInt32(sdr["Stock"].ToString());
                     product.Precio = (decimal)Convert.ToDouble(sdr["Precio"].ToString());
+                    product.Estado = sdr["Estado"].ToString();
                 }
             }
             catch (SqlException ex)
@@ -258,7 +261,7 @@ namespace DataAcces
                 scmd.CommandText = "insert into Producto(Nombre,Descripcion,Imagen,Stock,Precio) values(@Nombre,@Descripcion,@Imagen,@Stock,@Precio)";
                 scmd.CommandType = CommandType.Text;
                 scmd.Parameters.Add("@Nombre", SqlDbType.VarChar).Value = producto.Nombre;
-                scmd.Parameters.Add("@Descripcion", SqlDbType.VarChar).Value = producto.Descripcion;
+                scmd.Parameters.Add("@Descripcion", SqlDbType.VarChar).Value = producto.Detalle;
                 scmd.Parameters.Add("@Imagen", SqlDbType.VarBinary).Value = producto.Imagen;
                 scmd.Parameters.Add("@Stock", SqlDbType.Int).Value = producto.Stock;
                 scmd.Parameters.Add("@Precio", SqlDbType.Decimal).Value = producto.Precio;

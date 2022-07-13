@@ -18,7 +18,7 @@ namespace Pedidos
         protected void CarritoCompras_ItemCommand2(object source, DataListCommandEventArgs e)
         {
             long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("lblidproducto")).Text);
-            int cantidad = Convert.ToInt32(((TextBox)e.Item.FindControl("txtcantidad")).Text);
+            int cantidad = Convert.ToInt32(((Label)e.Item.FindControl("txtcantidad")).Text);
             switch (e.CommandName)
             {
                 case "Eliminar":
