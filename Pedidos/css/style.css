@@ -81,7 +81,7 @@
 .cabeza-targeta {
     border-bottom: solid 1.5px lightgray;
     display: flex;
-    padding:2px;
+    padding: 2px;
     align-items: center;
     justify-content: space-between;
 }
@@ -113,11 +113,11 @@
 }
 
 .botones {
-    margin-top:5px;
-    padding:1px;
-    display:flex;
-    align-items:center;
-    justify-content:space-around;
+    margin-top: 5px;
+    padding: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .botoncarrito {
@@ -139,7 +139,7 @@
 .botondetalle {
     border: none;
     border: solid 1px;
-    margin:5px;
+    margin: 5px;
     background: none;
     width: 100%;
     height: 35px;
@@ -151,20 +151,14 @@
     transition: all 0.3s ease;
 }
 
-    .botoncarrito:hover {
-        background-color: lawngreen;
-        color: white;
-    }
+.botoncarrito:hover {
+    background-color: lawngreen;
+    color: white;
+}
 
 .botondetalle:hover {
     background-color: blue;
     color: white;
-}
-
-.celda {
-    padding: 17px 13px;
-    width: 20%;
-    border-radius: 20px;
 }
 
 .texto {
@@ -183,14 +177,50 @@
     font-size: 14px;
 }
 
-.cuerpotabla {
-    border-radius: initial;
-    border: none;
-    border-color: black;
+.cantidad {
+    font-weight: 900;
+    background: none;
+    width: 40px;
+    height: 100%;
+    font-size: 12px;
+    border: solid 1px blue;
+    padding: 7.2px;
+    margin: 0 10px;
     border-radius: 5px;
-    padding: 10px;
     transition: all 0.3s ease;
 }
+
+.btncantidad {
+    text-decoration: none;
+    color: black;
+    align-items: center;
+    height: 100%;
+    font-weight: 900;
+    font-size: 10px;
+    border: solid 1px blue;
+    padding: 11px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+    .btncantidad:hover {
+        background-color: blue;
+        color: white;
+    }
+
+.cantidad:hover {
+    background-color: blue;
+    color: white;
+}
+
+.cuerpotabla {
+    margin: 120px 0;
+}
+
+.celda {
+    padding: 0 22px;
+}
+
 .formulariopago {
     background-color: rgb(232 232 232 / 0.70);
     text-align: center;
@@ -271,16 +301,10 @@
 }
 
 @media(max-width:800px) {
-    .celda {
-        padding: 3px 10px;
-    }
 
-    .cuerpotabla:hover {
-        box-shadow: 3px 3px 3px 3px rgb(124 124 124);
-    }
 
     .imgproducto {
-        margin-top: 12px;
-        margin-bottom: 12px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 }

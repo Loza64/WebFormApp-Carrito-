@@ -38,10 +38,10 @@
             </div>
 
             <div class="col-sm-8">
-                <div class="table-responsive mb-3" style="width: 100%; overflow: no-display; height: 410px">
-                    <asp:DataList ID="CarritoCompras" runat="server" OnItemCommand="CarritoCompras_ItemCommand2" OnItemDataBound="CarritoCompras_ItemDataBound">
+                <div class="table-responsive mb-3" style="width: 100%; overflow: no-display; height: 387px">
+                    <asp:DataList ID="CarritoCompras" runat="server" OnItemCommand="CarritoCompras_ItemCommand2" OnItemDataBound="CarritoCompras_ItemDataBound" Width="100%">
                         <ItemTemplate>
-                            <tr class="cuerpotabla">
+                            <div class="cuerpotabla">
                                 <td class="d-none">
                                     <asp:Label ID="lblidproducto" runat="server" Text='<%# Bind("IdProducto") %>'></asp:Label>
                                 </td>
@@ -54,24 +54,25 @@
                                 <td class="texto celda precio">
                                     <label>$<asp:Label ID="lblprecio" runat="server" Text='<%# Bind("Precio") %>'></asp:Label></label>
                                 </td>
-                                <td class="texto celda text-center">
-                                    <div class="d-flex "style="align-items:center">
-                                        <asp:LinkButton ID="btnsuma" runat="server" CommandName="Sumar" class="fas fa-plus" style="text-decoration:none; color:black;font-size:20px;"/>
-                                        <asp:Label type="number" Enabled="false" CssClass="form-control text-center" CommandName="Cantidad" Style="width: 50px; padding: 0; margin: 0; font-weight: 700; background:none;border:none;" ID="txtcantidad" runat="server" Text='<%# Bind("Cantidad") %>'></asp:Label>
-                                        <asp:LinkButton ID="btnresta" runat="server" CommandName="Restar" class="fas fa-minus" style="text-decoration:none; color:black;font-size:20px;"/>
+                                <td class="texto celda">
+                                    <div class="d-flex" style="align-items: center; justify-content: space-around">
+                                        <asp:LinkButton ID="btnresta" runat="server" CommandName="Restar" class="fas fa-minus btncantidad" />
+                                        <asp:Label type="number" Enabled="false" CssClass="cantidad text-center" CommandName="Cantidad" Style="" ID="txtcantidad" runat="server" Text='<%# Bind("Cantidad") %>'></asp:Label>
+                                        <asp:LinkButton ID="btnsuma" runat="server" CommandName="Sumar" class="fas fa-plus btncantidad" />
                                     </div>
                                 </td>
                                 <td class="texto celda precio">
                                     <asp:Label ID="lblsubtotal" runat="server" Text='<%# Bind("SubTotal") %>'></asp:Label>/ST</td>
                                 <td>
-                                    <asp:LinkButton ID="btneliminar" runat="server" CommandName="Eliminar" class="textoboton btn btn-danger fas fa-trash"/>
+                                    <div>
+                                        <asp:LinkButton ID="btneliminar" runat="server" CommandName="Eliminar" class="textoboton btn btn-danger fas fa-trash" />
+                                    </div>
                                 </td>
-                            </tr>
+                            </div>
                         </ItemTemplate>
                     </asp:DataList>
                 </div>
             </div>
-
         </div>
     </div>
 </asp:Content>
