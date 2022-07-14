@@ -49,16 +49,16 @@
                                     <asp:Label ID="lblnombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
                                 </td>
                                 <td class="texto celda">
-                                    <asp:Image ID="imgproducto" runat="server" ImageUrl='<%#Bind("Imagen") %>' CssClass="imgproducto" Style="width: 80px; height: 80px;" />
+                                    <asp:Image ID="imgproducto" runat="server" ImageUrl='<%#Bind("Imagen") %>' CssClass="imgproducto" Style="width: 95px; height: 95px;" />
                                 </td>
                                 <td class="texto celda precio">
                                     <label>$<asp:Label ID="lblprecio" runat="server" Text='<%# Bind("Precio") %>'></asp:Label></label>
                                 </td>
                                 <td class="texto celda text-center">
                                     <div class="d-flex "style="align-items:center">
-                                        <asp:LinkButton ID="btnsuma" runat="server" CommandName="Sumar" class=" btn btn-light fas fa-plus" />
+                                        <asp:LinkButton ID="btnsuma" runat="server" CommandName="Sumar" class="fas fa-plus" style="text-decoration:none; color:black;font-size:20px;"/>
                                         <asp:Label type="number" Enabled="false" CssClass="form-control text-center" CommandName="Cantidad" Style="width: 50px; padding: 0; margin: 0; font-weight: 700; background:none;border:none;" ID="txtcantidad" runat="server" Text='<%# Bind("Cantidad") %>'></asp:Label>
-                                        <asp:LinkButton ID="btnresta" runat="server" CommandName="Restar" class=" btn btn-light fas fa-minus" />
+                                        <asp:LinkButton ID="btnresta" runat="server" CommandName="Restar" class="fas fa-minus" style="text-decoration:none; color:black;font-size:20px;"/>
                                     </div>
                                 </td>
                                 <td class="texto celda precio">
