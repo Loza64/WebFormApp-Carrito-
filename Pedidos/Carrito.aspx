@@ -13,7 +13,7 @@
                                 <td class="d-none">
                                     <asp:Label ID="lblidproducto" runat="server" Text='<%# Bind("IdProducto") %>'></asp:Label>
                                 </td>
-                                <td class="texto celda">
+                                <td class="texto celda" style="color:blue;">
                                     <asp:Label ID="lblnombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
                                 </td>
                                 <td class="texto celda">
