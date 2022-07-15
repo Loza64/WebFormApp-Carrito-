@@ -15,13 +15,13 @@
                         <div class="cabeza-targeta">
                             <asp:Label ID="txtid" runat="server" Text='<%# Bind("Id") %>' Style="display: none"></asp:Label>
                             <asp:Label ID="txtnombre" runat="server" Text='<%# Bind("Nombre")%>' CssClass="nombreproducto"></asp:Label>
-                            <div style="font-size:23px;color:greenyellow">
-                                <i class="fas fa-box-open"></i>
+                            <div style="font-size:23px;">
+                                <i class="fas fa-box-open"> </i>
                                 <asp:Label ID="Stock" runat="server" Text='<%# Bind("Stock") %>' style="font-weight:900"></asp:Label>
                             </div>
                         </div>
                         <div style="display:flex;justify-content:space-between;align-items:center"; width:100%">
-                            <label class="precio">$<asp:Label ID="lblprecio" runat="server" Text='<%#Bind("Precio") %>'></asp:Label></label>
+                             <label style="font-weight:800;font-size: 20px;">US$<asp:Label ID="lblprecio" runat="server" Text='<%#Bind("Precio") %>'></asp:Label></label>
                               <asp:Label ID="lblestado" runat="server" Text='<%# Bind("Estado")%>' style="font-weight:700"></asp:Label>
                             </div>
                         <div class="cuerpo-targeta">
