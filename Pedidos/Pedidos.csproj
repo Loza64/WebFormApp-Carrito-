@@ -123,7 +123,6 @@
     <Content Include="Carrito.aspx" />
     <Content Include="css\estilos.css" />
     <Content Include="css\formloginstyle.css" />
-    <Content Include="css\style.css" />
     <Content Include="css\stylepedido.css" />
     <Content Include="DetalleProducto.aspx" />
     <Content Include="GenerarPedido.aspx" />
