@@ -2,7 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <br />
-
     <div class="container   pt-5">
         <div class="d-flex text-center pb-2" style="justify-content: center;">
             <asp:TextBox ID="txtbuscar" runat="server" CssClass="cajatexto " placeholder="Buscar producto" type="search">
@@ -30,7 +29,7 @@
                         <div class="pie-targeta">
                             <div class="botones">
                                 <asp:Button ID="btncarrito" CommandName="carrito" runat="server" Text="Añadir al carrito" CssClass="botoncarrito" ></asp:Button>
-                                <asp:Button ID="btndetalleproducto" CommandName="detalleproducto" runat="server" Text="Mostrar detalles" CssClass="botondetalle" />
+                                <asp:Button ID="btndetalleproducto" CommandName="detalle" runat="server" Text="Mostrar detalles" CssClass="botondetalle" />
                             </div>
                         </div>
                     </div>

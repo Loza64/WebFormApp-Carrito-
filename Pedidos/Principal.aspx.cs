@@ -79,13 +79,14 @@ namespace Pedidos
             {
                 if (e.CommandName == "carrito")
                 {
-                    AddToCart(Convert.ToInt64(IdProduct));
+                    AddToCart(IdProduct);
                     Response.Redirect("Principal.aspx");
                 }
-                else if (e.CommandName == "comprar")
+                else if (e.CommandName == "detalle")
                 {
-                    AddToCart(Convert.ToInt64(IdProduct));
-                    Response.Redirect("Carrito.aspx");
+                    Producto product = ProductoLN.GetInstance().seleccionarproducto(IdProduct);
+                    Session["Producto"] = product;
+                    Response.Redirect("DetalleProducto.aspx");
                 }
             }
         }
