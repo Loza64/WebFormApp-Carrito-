@@ -119,10 +119,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Acces\Login.aspx" />
+    <Content Include="Articulos.aspx" />
     <Content Include="Carrito.aspx" />
     <Content Include="css\formloginstyle.css" />
     <Content Include="css\style.css" />
     <Content Include="css\stylepedido.css" />
+    <Content Include="DetalleProducto.aspx" />
     <Content Include="GenerarPedido.aspx" />
     <Content Include="pedidos.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -150,6 +152,13 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Articulos.aspx.cs">
+      <DependentUpon>Articulos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Articulos.aspx.designer.cs">
+      <DependentUpon>Articulos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Carrito.aspx.cs">
       <DependentUpon>Carrito.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -161,6 +170,13 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Custom\SessionManager.cs" />
+    <Compile Include="DetalleProducto.aspx.cs">
+      <DependentUpon>DetalleProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetalleProducto.aspx.designer.cs">
+      <DependentUpon>DetalleProducto.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GenerarPedido.aspx.cs">
       <DependentUpon>GenerarPedido.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
