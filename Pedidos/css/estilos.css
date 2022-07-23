@@ -181,9 +181,7 @@
 .productoimg .img {
     width: 30rem;
     height: 30rem;
-    border: solid 4px blue;
-    border-radius:20px;
-    margin:12px;
+    margin:10px
 }
 
 
