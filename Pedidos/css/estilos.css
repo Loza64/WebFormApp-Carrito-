@@ -179,25 +179,26 @@
 }
 
 .productoimg .img {
-    width: 30rem;
-    height: 30rem;
-    margin:10px
+    width: 450px;
+    height: 450px;
+    margin:10px;
 }
 
 
 .nombreproducto2 {
-    font-size: 36px;
+    font-size: 33px;
     font-weight: 700;
-    padding:5px;
+    padding:7px;
     color: blue;
 }
 
 .descripcionproducto {
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 500;
     width: 100%;
     height: 100%;
     margin: 12px;
+    color:gray;
 }
 
 @media only screen and (max-width:812px) {
