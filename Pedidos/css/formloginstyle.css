@@ -184,7 +184,7 @@ span {
 
 .overlay {
     background: #FF416C;
-    background: linear-gradient(to top,blue,greenyellow);
+    background: linear-gradient(blue,greenyellow);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 0;
