@@ -3,6 +3,7 @@ using Entities;
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace Logic
 {
@@ -19,21 +20,25 @@ namespace Logic
             return product;
         }
 
-        public DataTable mostrarproducto()
+        public DataTable ShowProducts()
         {
             try
             {
-                return ProductoDAO.GetInstance().mostrarproducto();
+                return ProductoDAO.GetInstance().ShowProducts();
             }
             catch (SqlException ex)
             {
                 throw ex;
             }
-            catch (NullReferenceException ex)
+            catch (SqlNullValueException ex)
             {
                 throw ex;
             }
             catch (TimeoutException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
             {
                 throw ex;
             }
@@ -43,21 +48,25 @@ namespace Logic
             }
         }
 
-        public string ImagenProducto(long id)
+        public string GetImgProduct(long id)
         {
             try
             {
-                return ProductoDAO.GetInstance().ImagenProducto(id);
+                return ProductoDAO.GetInstance().GetImgProduct(id);
             }
             catch (SqlException ex)
             {
                 throw ex;
             }
-            catch (NullReferenceException ex)
+            catch (SqlNullValueException ex)
             {
                 throw ex;
             }
             catch (TimeoutException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
             {
                 throw ex;
             }
@@ -67,21 +76,25 @@ namespace Logic
             }
         }
 
-        public Producto seleccionarproducto(long id)
+        public Producto GetProduct(long id)
         {
             try
             {
-                return ProductoDAO.GetInstance().selectproduct(id);
+                return ProductoDAO.GetInstance().GetProduct(id);
             }
             catch (SqlException ex)
             {
                 throw ex;
             }
-            catch (NullReferenceException ex)
+            catch (SqlNullValueException ex)
             {
                 throw ex;
             }
             catch (TimeoutException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
             {
                 throw ex;
             }
@@ -91,21 +104,25 @@ namespace Logic
             }
         }
 
-        public DataTable buscarproducto(string nombre)
+        public DataTable SearchProduct(string nombre)
         {
             try
             {
-                return ProductoDAO.GetInstance().buscarproducto(nombre);
+                return ProductoDAO.GetInstance().SearchProduct(nombre);
             }
             catch (SqlException ex)
             {
                 throw ex;
             }
-            catch (NullReferenceException ex)
+            catch (SqlNullValueException ex)
             {
                 throw ex;
             }
             catch (TimeoutException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
             {
                 throw ex;
             }
@@ -119,17 +136,21 @@ namespace Logic
         {
             try
             {
-                return ProductoDAO.GetInstance().registrarproducto(producto);
+                return ProductoDAO.GetInstance().NewProduct(producto);
             }
             catch (SqlException ex)
             {
                 throw ex;
             }
-            catch (NullReferenceException ex)
+            catch (SqlNullValueException ex)
             {
                 throw ex;
             }
             catch (TimeoutException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
             {
                 throw ex;
             }
@@ -143,17 +164,21 @@ namespace Logic
         {
             try
             {
-                return ProductoDAO.GetInstance().Stock(Id);
+                return ProductoDAO.GetInstance().GetStockProduct(Id);
             }
             catch (SqlException ex)
             {
                 throw ex;
             }
-            catch (NullReferenceException ex)
+            catch (SqlNullValueException ex)
             {
                 throw ex;
             }
             catch (TimeoutException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
             {
                 throw ex;
             }

@@ -25,7 +25,7 @@ namespace Pedidos
                     lblcompany.Text = product.Company;
                     lbldescripcion.Text = product.Detalle;
                     lblprecio.Text = Convert.ToString(product.Precio);
-                    imgproduct.ImageUrl = ProductoLN.GetInstance().ImagenProducto(product.Id);
+                    imgproduct.ImageUrl = ProductoLN.GetInstance().GetImgProduct(product.Id);
                 }
                 else
                 {
@@ -98,7 +98,7 @@ namespace Pedidos
                 {
                     try
                     {
-                        Producto prodcut = ProductoLN.GetInstance().seleccionarproducto(IdProduct);
+                        Producto prodcut = ProductoLN.GetInstance().GetProduct(IdProduct);
                         if (prodcut != null)
                         {
                             var ListaCarrito = (DataTable)Session["ListaCarrito"];
@@ -136,7 +136,7 @@ namespace Pedidos
             {
                 try
                 {
-                    Producto prodcut = ProductoLN.GetInstance().seleccionarproducto(IdProduct);
+                    Producto prodcut = ProductoLN.GetInstance().GetProduct(IdProduct);
                     if (prodcut != null)
                     {
                         var ListaCarrito = (DataTable)Session["ListaCarrito"];

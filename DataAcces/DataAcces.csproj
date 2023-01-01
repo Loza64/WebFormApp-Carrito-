@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConnectionDB.cs" />
     <Compile Include="DetallePedidoDAO.cs" />
     <Compile Include="PedidoDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -48,10 +49,6 @@
     <Compile Include="UsuarioDAO.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DBConnect\DBConnect.csproj">
-      <Project>{f922f2f0-ee71-4e45-8c39-4c87903f7203}</Project>
-      <Name>DBConnect</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{e1543cfb-832f-4857-a4cb-89cac90a5a30}</Project>
       <Name>Entities</Name>

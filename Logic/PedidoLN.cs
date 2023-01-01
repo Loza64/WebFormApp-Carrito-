@@ -3,6 +3,7 @@ using Entities;
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace Logic
 {
@@ -29,11 +30,15 @@ namespace Logic
             {
                 throw ex;
             }
-            catch (NullReferenceException ex)
+            catch (SqlNullValueException ex)
             {
                 throw ex;
             }
             catch (TimeoutException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
             {
                 throw ex;
             }
@@ -43,21 +48,25 @@ namespace Logic
             }
         }
 
-        public bool registrarpedido(Pedido pedido, DataTable listacarrito)
+        public bool NewPedido(Pedido pedido, DataTable listacarrito)
         {
             try
             {
-                return PedidoDAO.GetInstance().registrarpedido(pedido, listacarrito);
+                return PedidoDAO.GetInstance().NewPedido(pedido, listacarrito);
             }
             catch (SqlException ex)
             {
                 throw ex;
             }
-            catch (NullReferenceException ex)
+            catch (SqlNullValueException ex)
             {
                 throw ex;
             }
             catch (TimeoutException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
             {
                 throw ex;
             }

@@ -2,6 +2,7 @@
 using Entities;
 using System;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace Logic
 {
@@ -19,21 +20,25 @@ namespace Logic
         }
 
 
-        public Usuario InciarSesion(string usuario, string contraseña)
+        public Usuario Login(string usuario, string contraseña)
         {
             try
             {
-                return UsuarioDAO.GetInstance().InciarSesion(usuario, contraseña);
+                return UsuarioDAO.GetInstance().Login(usuario, contraseña);
             }
             catch (SqlException ex)
             {
                 throw ex;
             }
-            catch (NullReferenceException ex)
+            catch (SqlNullValueException ex)
             {
                 throw ex;
             }
             catch (TimeoutException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
             {
                 throw ex;
             }
@@ -53,11 +58,15 @@ namespace Logic
             {
                 throw ex;
             }
-            catch (NullReferenceException ex)
+            catch (SqlNullValueException ex)
             {
                 throw ex;
             }
             catch (TimeoutException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
             {
                 throw ex;
             }

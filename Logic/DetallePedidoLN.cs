@@ -2,6 +2,7 @@
 using Entities;
 using System;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace Logic
 {
@@ -28,11 +29,15 @@ namespace Logic
             {
                 throw ex;
             }
-            catch (NullReferenceException ex)
+            catch (SqlNullValueException ex)
             {
                 throw ex;
             }
             catch (TimeoutException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
             {
                 throw ex;
             }

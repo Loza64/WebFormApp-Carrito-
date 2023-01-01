@@ -85,7 +85,7 @@ namespace Pedidos
                 };
                 try
                 {
-                    bool responce = PedidoLN.GetInstance().registrarpedido(pedido, (DataTable)Session["ListaCarrito"]);
+                    bool responce = PedidoLN.GetInstance().NewPedido(pedido, (DataTable)Session["ListaCarrito"]);
                     if (responce)
                     {
                         Session["ListaCarrito"] = null;
@@ -149,7 +149,7 @@ namespace Pedidos
                         Total = (decimal)Session["Total"],
                         TipoPedido = "Directo en pedidos store"
                     };
-                    bool responce = PedidoLN.GetInstance().registrarpedido(pedido, (DataTable)Session["ListaCarrito"]);
+                    bool responce = PedidoLN.GetInstance().NewPedido(pedido, (DataTable)Session["ListaCarrito"]);
                     if (responce)
                     {
                         Session["ListaCarrito"] = null;

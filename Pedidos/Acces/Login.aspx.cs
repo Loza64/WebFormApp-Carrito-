@@ -3,6 +3,7 @@ using Logic;
 using Pedidos.Custom;
 using System;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.Net.Mail;
 using System.Web.Security;
@@ -36,7 +37,7 @@ namespace Pedidos.Acces
         {
             try
             {
-                Usuario login = UsuarioLN.GetInstance().InciarSesion(txtusuario2.Text, txtcontraseña2.Text);
+                Usuario login = UsuarioLN.GetInstance().Login(txtusuario2.Text, txtcontraseña2.Text);
                 if (login != null)
                 {
                     SessionManager _SessionManager = new SessionManager(Session);
@@ -55,7 +56,15 @@ namespace Pedidos.Acces
             {
                 throw ex;
             }
+            catch (SqlNullValueException ex)
+            {
+                throw ex;
+            }
             catch (TimeoutException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
             {
                 throw ex;
             }
@@ -104,7 +113,15 @@ namespace Pedidos.Acces
                 {
                     throw ex;
                 }
+                catch (SqlNullValueException ex)
+                {
+                    throw ex;
+                }
                 catch (TimeoutException ex)
+                {
+                    throw ex;
+                }
+                catch (NullReferenceException ex)
                 {
                     throw ex;
                 }
@@ -112,12 +129,11 @@ namespace Pedidos.Acces
                 {
                     throw ex;
                 }
-
             }
         }
         private bool emailconfimr(string email)
         {
-            bool responce = false;
+            bool responce;
             try
             {
                 MailAddress mail = new MailAddress(email);
@@ -131,7 +147,7 @@ namespace Pedidos.Acces
         }
         private bool edadconfirm(string edad)
         {
-            bool responce = false;
+            bool responce;
             try
             {
                 int Edad = Convert.ToInt32(edad);

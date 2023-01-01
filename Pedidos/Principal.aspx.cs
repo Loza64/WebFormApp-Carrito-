@@ -3,6 +3,7 @@ using Logic;
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -27,18 +28,22 @@ namespace Pedidos
                 }
                 try
                 {
-                    listaproductos.DataSource = ProductoLN.GetInstance().mostrarproducto();
+                    listaproductos.DataSource = ProductoLN.GetInstance().ShowProducts();
                     listaproductos.DataBind();
                 }
                 catch (SqlException ex)
                 {
                     throw ex;
                 }
-                catch (NullReferenceException ex)
+                catch (SqlNullValueException ex)
                 {
                     throw ex;
                 }
                 catch (TimeoutException ex)
+                {
+                    throw ex;
+                }
+                catch (NullReferenceException ex)
                 {
                     throw ex;
                 }
@@ -51,7 +56,7 @@ namespace Pedidos
         protected void listaproductos_ItemDataBound(object sender, DataListItemEventArgs e)
         {
             Image imgproducto = (Image)e.Item.FindControl("imgproducto");
-            string foto = ProductoLN.GetInstance().ImagenProducto(Convert.ToInt64(((Label)e.Item.FindControl("txtid")).Text));
+            string foto = ProductoLN.GetInstance().GetImgProduct(Convert.ToInt64(((Label)e.Item.FindControl("txtid")).Text));
             imgproducto.ImageUrl = foto;
             Label estado = (Label)e.Item.FindControl("lblestado");
             if (ProductoLN.GetInstance().Stock(Convert.ToInt64(((Label)e.Item.FindControl("txtid")).Text)) > 0)
@@ -84,7 +89,7 @@ namespace Pedidos
                 }
                 else if (e.CommandName == "detalle")
                 {
-                    Producto product = ProductoLN.GetInstance().seleccionarproducto(IdProduct);
+                    Producto product = ProductoLN.GetInstance().GetProduct(IdProduct);
                     Session["Producto"] = product;
                     Response.Redirect("DetalleProducto.aspx");
                 }
@@ -142,7 +147,7 @@ namespace Pedidos
                 {
                     try
                     {
-                        Producto prodcut = ProductoLN.GetInstance().seleccionarproducto(IdProduct);
+                        Producto prodcut = ProductoLN.GetInstance().GetProduct(IdProduct);
                         if (prodcut != null)
                         {
                             var ListaCarrito = (DataTable)Session["ListaCarrito"];
@@ -180,7 +185,7 @@ namespace Pedidos
             {
                 try
                 {
-                    Producto prodcut = ProductoLN.GetInstance().seleccionarproducto(IdProduct);
+                    Producto prodcut = ProductoLN.GetInstance().GetProduct(IdProduct);
                     if (prodcut != null)
                     {
                         var ListaCarrito = (DataTable)Session["ListaCarrito"];
@@ -219,12 +224,12 @@ namespace Pedidos
         {
             if (!string.IsNullOrEmpty(txtbuscar.Text))
             {
-                listaproductos.DataSource = ProductoLN.GetInstance().buscarproducto(txtbuscar.Text);
+                listaproductos.DataSource = ProductoLN.GetInstance().SearchProduct(txtbuscar.Text);
                 listaproductos.DataBind();
             }
             else
             {
-                listaproductos.DataSource = ProductoLN.GetInstance().mostrarproducto();
+                listaproductos.DataSource = ProductoLN.GetInstance().ShowProducts();
                 listaproductos.DataBind();
             }
         }
