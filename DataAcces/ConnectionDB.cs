@@ -7,8 +7,10 @@ namespace DataAcces
     {
         protected SqlConnection GetSqlConnection()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = "Server=(local);Database=Pedidos;Integrated Security=True";
+            SqlConnection con = new SqlConnection
+            {
+                ConnectionString = "Server=(local);Database=Pedidos;Integrated Security=True"
+            };
             return con;
         }
     }
