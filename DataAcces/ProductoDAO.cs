@@ -1,5 +1,4 @@
-﻿using DataAcces;
-using Entities;
+﻿using Entities;
 using System;
 using System.Data;
 using System.Data.SqlClient;

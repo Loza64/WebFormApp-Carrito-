@@ -160,7 +160,7 @@ namespace Logic
             }
         }
 
-        public long Stock (long Id)
+        public long Stock(long Id)
         {
             try
             {
