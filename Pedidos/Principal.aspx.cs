@@ -28,8 +28,8 @@ namespace Pedidos
                 }
                 try
                 {
-                    listaproductos.DataSource = ProductoLN.GetInstance().ShowProducts();
-                    listaproductos.DataBind();
+                    Repeater1.DataSource = ProductoLN.GetInstance().ShowProducts();
+                    Repeater1.DataBind();
                 }
                 catch (SqlException ex)
                 {
@@ -50,48 +50,6 @@ namespace Pedidos
                 catch (Exception ex)
                 {
                     throw ex;
-                }
-            }
-        }
-        protected void listaproductos_ItemDataBound(object sender, DataListItemEventArgs e)
-        {
-            Image imgproducto = (Image)e.Item.FindControl("imgproducto");
-            string foto = ProductoLN.GetInstance().GetImgProduct(Convert.ToInt64(((Label)e.Item.FindControl("txtid")).Text));
-            imgproducto.ImageUrl = foto;
-            Label estado = (Label)e.Item.FindControl("lblestado");
-            if (ProductoLN.GetInstance().Stock(Convert.ToInt64(((Label)e.Item.FindControl("txtid")).Text)) > 0)
-            {
-                estado.Text = "Disponible";
-                estado.ForeColor = System.Drawing.Color.GreenYellow;
-            }
-            else
-            {
-                estado.Text = "No disponible";
-                estado.ForeColor = System.Drawing.Color.Red;
-            }
-            long Stock = Convert.ToInt64(((Label)e.Item.FindControl("Stock")).Text);
-            if (Stock > 9999)
-            {
-                ((Label)e.Item.FindControl("Stock")).Text = "+9999";
-            }
-        }
-        protected void listaproductos_ItemCommand(object source, DataListCommandEventArgs e)
-        {
-            listaproductos.SelectedIndex = e.Item.ItemIndex;
-            int Stock = Convert.ToInt32(((Label)e.Item.FindControl("Stock")).Text);
-            long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("txtid")).Text);
-            if (Stock > 0)
-            {
-                if (e.CommandName == "carrito")
-                {
-                    AddToCart(IdProduct);
-                    Response.Redirect("Principal.aspx");
-                }
-                else if (e.CommandName == "detalle")
-                {
-                    Producto product = ProductoLN.GetInstance().GetProduct(IdProduct);
-                    Session["Producto"] = product;
-                    Response.Redirect("DetalleProducto.aspx");
                 }
             }
         }
@@ -224,13 +182,53 @@ namespace Pedidos
         {
             if (!string.IsNullOrEmpty(txtbuscar.Text))
             {
-                listaproductos.DataSource = ProductoLN.GetInstance().SearchProduct(txtbuscar.Text);
-                listaproductos.DataBind();
+                Repeater1.DataSource = ProductoLN.GetInstance().SearchProduct(txtbuscar.Text);
+                Repeater1.DataBind();
             }
             else
             {
-                listaproductos.DataSource = ProductoLN.GetInstance().ShowProducts();
-                listaproductos.DataBind();
+                Repeater1.DataSource = ProductoLN.GetInstance().ShowProducts();
+                Repeater1.DataBind();
+            }
+        }
+
+        protected void RepeaterCommand(object source, RepeaterCommandEventArgs e)
+        {
+            int Stock = Convert.ToInt32(((Label)e.Item.FindControl("Stock")).Text);
+            long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("txtid")).Text);
+            if (Stock > 0)
+            {
+                if (e.CommandName == "carrito")
+                {
+                    AddToCart(IdProduct);
+                    Response.Redirect("Principal.aspx");
+                }
+                else if (e.CommandName == "detalle")
+                {
+                    Producto product = ProductoLN.GetInstance().GetProduct(IdProduct);
+                    Session["Producto"] = product;
+                    Response.Redirect("DetalleProducto.aspx");
+                }
+            }
+        }
+
+        protected void RepeaterDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            Label estado = (Label)e.Item.FindControl("lblestado");
+            if (ProductoLN.GetInstance().Stock(Convert.ToInt64(((Label)e.Item.FindControl("txtid")).Text)) > 0)
+            {
+                estado.Text = "Disponible";
+                estado.ForeColor = System.Drawing.Color.GreenYellow;
+            }
+            else
+            {
+                estado.Text = "No disponible";
+                estado.ForeColor = System.Drawing.Color.Red;
+            }
+            long Stock = Convert.ToInt64(((Label)e.Item.FindControl("Stock")).Text);
+            if (Stock > 9999)
+            {
+                ((Label)e.Item.FindControl("Stock")).Text = "+9999";
             }
         }
     }
