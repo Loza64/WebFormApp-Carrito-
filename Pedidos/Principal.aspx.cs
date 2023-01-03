@@ -182,6 +182,7 @@ namespace Pedidos
         {
             if (!string.IsNullOrEmpty(txtbuscar.Text))
             {
+                
                 Repeater1.DataSource = ProductoLN.GetInstance().SearchProduct(txtbuscar.Text);
                 Repeater1.DataBind();
             }
