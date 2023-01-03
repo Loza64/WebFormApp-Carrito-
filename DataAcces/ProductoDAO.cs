@@ -191,6 +191,7 @@ namespace DataAcces
                         scmd.CommandType = CommandType.Text;
                         scmd.Parameters.Add("@cmdproducto", SqlDbType.VarChar).Value = nombre;
                         SqlDataReader sdr = scmd.ExecuteReader();
+                        list = new DataTable();
                         list.Load(sdr);
                     }
                     catch (SqlException ex)
