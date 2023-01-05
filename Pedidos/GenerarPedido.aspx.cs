@@ -2,7 +2,6 @@
 using Logic;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Web.UI;
@@ -22,7 +21,8 @@ namespace Pedidos
                     txtnombre2.Text = user.Nombres + " " + user.Apellidos;
 
                     if (Session["carrito"] != null)
-                    {;
+                    {
+                        ;
                         if (((List<ListadoCarrito>)Session["carrito"]).Count != 0)
                         {
                             lbltotal.Text = "Total a pagar: $" + ((double)Session["Total"]).ToString();
