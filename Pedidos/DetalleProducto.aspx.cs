@@ -23,7 +23,7 @@ namespace Pedidos
                     lblcompany.Text = product.Company;
                     lbldescripcion.Text = product.Detalle;
                     lblprecio.Text = Convert.ToString(product.Precio);
-                    imgproduct.ImageUrl = ProductoLN.GetInstance().GetImgProduct(product.Id);
+                    imgproduct.ImageUrl = "data:image/jpg;base64," + Convert.ToBase64String(product.Imagen);
                 }
                 else
                 {
@@ -50,7 +50,6 @@ namespace Pedidos
                         break;
                     }
                 }
-                Session["carrito"] = listadoCarrito;
                 if (!checkProduct)
                 {
                     try
@@ -61,14 +60,13 @@ namespace Pedidos
                             ListadoCarrito carrito = new ListadoCarrito
                             {
                                 IdProducto = product.Id,
-                                Imagen = ProductoLN.GetInstance().GetImgProduct(product.Id),
+                                Imagen = "data:image/jpg;base64," + Convert.ToBase64String(product.Imagen),
                                 Nombre = product.Nombre,
                                 Precio = product.Precio,
                                 Cantidad = 1,
                                 SubTotal = product.Precio
                             };
                             listadoCarrito.Add(carrito);
-                            Session["carrito"] = listadoCarrito;
                         }
                     }
                     catch (SqlException ex)
@@ -99,16 +97,14 @@ namespace Pedidos
                         ListadoCarrito carrito = new ListadoCarrito
                         {
                             IdProducto = product.Id,
-                            Imagen = ProductoLN.GetInstance().GetImgProduct(product.Id),
+                            Imagen = "data:image/jpg;base64," + Convert.ToBase64String(product.Imagen),
                             Nombre = product.Nombre,
                             Precio = product.Precio,
                             Cantidad = 1,
                             SubTotal = product.Precio
                         };
                         listadoCarrito.Add(carrito);
-
                     }
-                    Session["carrito"] = listadoCarrito;
                 }
                 catch (SqlException ex)
                 {
@@ -127,6 +123,7 @@ namespace Pedidos
                     throw ex;
                 }
             }
+            Session["carrito"] = listadoCarrito;
             Session["Item"] = listadoCarrito.Count.ToString();
         }
         protected void btncarrito_Click(object sender, EventArgs e)

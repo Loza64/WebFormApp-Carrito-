@@ -87,56 +87,6 @@ namespace DataAcces
             return list;
         }
 
-        public string GetImgProduct(long id)
-        {
-            string Foto = null;
-            using (con = GetSqlConnection())
-            {
-                using (scmd = new SqlCommand())
-                {
-                    try
-                    {
-                        con.Open();
-                        scmd.Connection = con;
-                        scmd.CommandText = "select Imagen from Producto where Id = @Id";
-                        scmd.CommandType = CommandType.Text;
-                        scmd.Parameters.Add("@Id", SqlDbType.BigInt).Value = id;
-                        sdr = scmd.ExecuteReader();
-                        while (sdr.Read())
-                        {
-                            Foto = "data:image/jpg;base64," + Convert.ToBase64String((byte[])sdr["Imagen"]);
-                        }
-                    }
-                    catch (SqlException ex)
-                    {
-                        throw ex;
-                    }
-                    catch (SqlNullValueException ex)
-                    {
-                        throw ex;
-                    }
-                    catch (TimeoutException ex)
-                    {
-                        throw ex;
-                    }
-                    catch (NullReferenceException ex)
-                    {
-                        throw ex;
-                    }
-                    catch (Exception ex)
-                    {
-                        throw ex;
-                    }
-                    finally
-                    {
-                        con.Close();
-                    }
-                }
-            }
-
-            return Foto;
-        }
-
         public Producto GetProduct(long id)
         {
             Producto product = null;

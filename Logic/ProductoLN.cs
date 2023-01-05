@@ -49,34 +49,6 @@ namespace Logic
             }
         }
 
-        public string GetImgProduct(long id)
-        {
-            try
-            {
-                return ProductoDAO.GetInstance().GetImgProduct(id);
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-            catch (SqlNullValueException ex)
-            {
-                throw ex;
-            }
-            catch (TimeoutException ex)
-            {
-                throw ex;
-            }
-            catch (NullReferenceException ex)
-            {
-                throw ex;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
         public Producto GetProduct(long id)
         {
             try

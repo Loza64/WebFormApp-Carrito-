@@ -23,12 +23,14 @@ namespace Pedidos
         {
             long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("lblidproducto")).Text);
             List<ListadoCarrito> listadoCarrito = (List<ListadoCarrito>)Session["carrito"];
-            foreach (ListadoCarrito carrito in listadoCarrito)
+            if(ProductoLN.GetInstance().Stock(IdProduct) < 1)
             {
-                if (carrito.IdProducto == IdProduct)
+                foreach (ListadoCarrito carrito in listadoCarrito)
                 {
-                    listadoCarrito.Remove(carrito);
-                    break;
+                    if(carrito.IdProducto == IdProduct)
+                    {
+                        listadoCarrito.Remove(carrito); 
+                    }
                 }
             }
             Session["carrito"] = listadoCarrito;
