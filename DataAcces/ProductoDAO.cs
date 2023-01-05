@@ -20,14 +20,13 @@ namespace DataAcces
             return product;
         }
 
-        DataTable list;
+        List<Producto> list;
         SqlConnection con = null;
         SqlCommand scmd = null;
         SqlDataReader sdr = null;
 
         public List<Producto> ShowProducts()
         {
-            List<Producto> list = new List<Producto>();
             Producto product;
             using (con = GetSqlConnection())
             {
@@ -40,19 +39,23 @@ namespace DataAcces
                         scmd.CommandText = "select * from Producto";
                         scmd.CommandType = CommandType.Text;
                         sdr = scmd.ExecuteReader();
-                        while (sdr.Read())
+                        if (sdr.HasRows)
                         {
-                            product = new Producto();
-                            product.Id = Convert.ToInt64(sdr["Id"].ToString());
-                            product.IdCategoria = Convert.ToInt64(sdr["IdCategoria"].ToString());
-                            product.Nombre = sdr["Nombre"].ToString();
-                            product.Imagen = (byte[])sdr["Imagen"];
-                            product.Company = sdr["Company"].ToString();
-                            product.Detalle = sdr["Detalle"].ToString();
-                            product.Stock = Convert.ToInt32(sdr["Stock"].ToString());
-                            product.Precio = (decimal)Convert.ToDouble(sdr["Precio"].ToString());
-                            product.Estado = sdr["Estado"].ToString();
-                            list.Add(product);
+                            new List<Producto>();
+                            while (sdr.Read())
+                            {
+                                product = new Producto();
+                                product.Id = Convert.ToInt64(sdr["Id"].ToString());
+                                product.IdCategoria = Convert.ToInt64(sdr["IdCategoria"].ToString());
+                                product.Nombre = sdr["Nombre"].ToString();
+                                product.Imagen = (byte[])sdr["Imagen"];
+                                product.Company = sdr["Company"].ToString();
+                                product.Detalle = sdr["Detalle"].ToString();
+                                product.Stock = Convert.ToInt32(sdr["Stock"].ToString());
+                                product.Precio = (decimal)Convert.ToDouble(sdr["Precio"].ToString());
+                                product.Estado = sdr["Estado"].ToString();
+                                list.Add(product);
+                            }
                         }
                     }
                     catch (SqlException ex)
@@ -194,6 +197,7 @@ namespace DataAcces
 
         public DataTable SearchProduct(string nombre)
         {
+            Producto product;
             using (con = GetSqlConnection())
             {
                 using (scmd = new SqlCommand())
@@ -205,9 +209,25 @@ namespace DataAcces
                         scmd.CommandText = "select * from Producto where Nombre like '%'+@cmdproducto+'%'";
                         scmd.CommandType = CommandType.Text;
                         scmd.Parameters.Add("@cmdproducto", SqlDbType.VarChar).Value = nombre;
-                        SqlDataReader sdr = scmd.ExecuteReader();
-                        list = new DataTable();
-                        list.Load(sdr);
+                        sdr = scmd.ExecuteReader();
+                        if (sdr.HasRows)
+                        {
+                            new List<Producto>();
+                            while (sdr.Read())
+                            {
+                                product = new Producto();
+                                product.Id = Convert.ToInt64(sdr["Id"].ToString());
+                                product.IdCategoria = Convert.ToInt64(sdr["IdCategoria"].ToString());
+                                product.Nombre = sdr["Nombre"].ToString();
+                                product.Imagen = (byte[])sdr["Imagen"];
+                                product.Company = sdr["Company"].ToString();
+                                product.Detalle = sdr["Detalle"].ToString();
+                                product.Stock = Convert.ToInt32(sdr["Stock"].ToString());
+                                product.Precio = (decimal)Convert.ToDouble(sdr["Precio"].ToString());
+                                product.Estado = sdr["Estado"].ToString();
+                                list.Add(product);
+                            }
+                        }
                     }
                     catch (SqlException ex)
                     {
