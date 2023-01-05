@@ -1,5 +1,7 @@
-﻿using Logic;
+﻿using Entities;
+using Logic;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -15,8 +17,7 @@ namespace Pedidos
                 UpdateCart();
             }
         }
-
-
+        List<ListadoCarrito> listadoCarrito;
         protected void ItemDataBoundCarito(object sender, RepeaterItemEventArgs e)
         {
             long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("lblidproducto")).Text);
@@ -32,7 +33,6 @@ namespace Pedidos
                 i++;
             }
         }
-
         protected void ItemCommanCarrito(object source, RepeaterCommandEventArgs e)
         {
             long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("lblidproducto")).Text);
@@ -53,25 +53,25 @@ namespace Pedidos
                     break;
             }
         }
-
         private void UpdateCart()
         {
             double SubTotal = 0.00;
             double iva = 0.00;
             double Total = 0.00;
-            if (Session["ListaCarrito"] != null)
+            listadoCarrito = (List<ListadoCarrito>)Session["carrito"];
+            if (Session["carrito"] != null)
             {
-                foreach (DataRow datarow in ((DataTable)Session["ListaCarrito"]).Rows)
+                foreach (ListadoCarrito carrito in listadoCarrito)
                 {
-                    SubTotal += Convert.ToDouble(datarow["SubTotal"].ToString());
+                    SubTotal += carrito.SubTotal;
                     iva = (double)Math.Round(SubTotal * 0.13, 2, MidpointRounding.AwayFromZero);
                     Total = (double)Math.Round(iva + SubTotal, 2, MidpointRounding.AwayFromZero);
                 }
-                txtsubtotal.Text = "$" + Convert.ToString(SubTotal);
-                txtiva.Text = "$" + Convert.ToString(iva);
-                txttotal.Text = "$" + Convert.ToString(Total);
-                Session["SubTotal"] = (decimal)SubTotal;
-                Session["Total"] = (decimal)Total;
+                txtsubtotal.Text = "$" + SubTotal.ToString();
+                txtiva.Text = "$" + iva.ToString();
+                txttotal.Text = "$" + Total.ToString();
+                Session["SubTotal"] = SubTotal;
+                Session["Total"] = Total;
             }
             else
             {
@@ -79,22 +79,22 @@ namespace Pedidos
                 txtiva.Text = "$0.00";
                 txttotal.Text = "$0.00";
             }
-            Session["Item"] = Convert.ToString(((DataTable)Session["ListaCarrito"]).Rows.Count);
-            carrito.DataSource = (DataTable)Session["ListaCarrito"];
+            Session["Item"] = listadoCarrito.Count;
+            carrito.DataSource = listadoCarrito;
             carrito.DataBind();
         }
         private void AddQuantity(int cantidad, long IdProduct)
         {
+            listadoCarrito = (List<ListadoCarrito>)Session["carrito"];
             if (cantidad < Logic.ProductoLN.GetInstance().Stock(IdProduct))
             {
-                DataTable datatable = (DataTable)Session["ListaCarrito"];
                 int cant = Convert.ToInt32(cantidad) + 1;
-                foreach (DataRow drw in datatable.Rows)
+                foreach (ListadoCarrito carrito in listadoCarrito)
                 {
-                    if (drw["IdProducto"].ToString() == Convert.ToString(IdProduct))
+                    if (carrito.IdProducto == IdProduct)
                     {
-                        drw["Cantidad"] = cant;
-                        drw["SubTotal"] = cant * Convert.ToDecimal(drw["Precio"].ToString());
+                        carrito.Cantidad = cant;
+                        carrito.SubTotal = cant * carrito.Precio;
                         break;
                     }
                 }
@@ -102,13 +102,12 @@ namespace Pedidos
             }
             else
             {
-                DataTable datatable = (DataTable)Session["ListaCarrito"];
-                foreach (DataRow drw in datatable.Rows)
+                foreach (ListadoCarrito carrito in listadoCarrito)
                 {
-                    if (drw["IdProducto"].ToString() == Convert.ToString(IdProduct))
+                    if (carrito.IdProducto == IdProduct)
                     {
-                        drw["Cantidad"] = Logic.ProductoLN.GetInstance().Stock(IdProduct);
-                        drw["SubTotal"] = Logic.ProductoLN.GetInstance().Stock(IdProduct) * Convert.ToDecimal(drw["Precio"].ToString());
+                        carrito.Cantidad = Logic.ProductoLN.GetInstance().Stock(IdProduct);
+                        carrito.SubTotal = Logic.ProductoLN.GetInstance().Stock(IdProduct) * carrito.Precio;
                         break;
                     }
                 }
@@ -117,16 +116,16 @@ namespace Pedidos
         }
         private void SubtractQuantity(int cantidad, long IdProduct)
         {
-            DataTable datatable = (DataTable)Session["ListaCarrito"];
+            listadoCarrito = (List<ListadoCarrito>)Session["carrito"];
             int cant = cantidad - 1;
             if (cant < 1)
             {
-                foreach (DataRow drw in datatable.Rows)
+                foreach (ListadoCarrito carrito in listadoCarrito)
                 {
-                    if (drw["IdProducto"].ToString() == Convert.ToString(IdProduct))
+                    if (carrito.IdProducto == IdProduct)
                     {
-                        drw["Cantidad"] = 1;
-                        drw["SubTotal"] = Convert.ToDecimal(drw["Precio"].ToString());
+                        carrito.Cantidad = cantidad;
+                        carrito.SubTotal = carrito.Precio;
                         break;
                     }
                 }
@@ -134,12 +133,12 @@ namespace Pedidos
             }
             else
             {
-                foreach (DataRow drw in datatable.Rows)
+                foreach (ListadoCarrito carrito in listadoCarrito)
                 {
-                    if (drw["IdProducto"].ToString() == Convert.ToString(IdProduct))
+                    if (carrito.IdProducto == IdProduct)
                     {
-                        drw["Cantidad"] = cant;
-                        drw["SubTotal"] = cant * Convert.ToDecimal(drw["Precio"].ToString());
+                        carrito.Cantidad = cant;
+                        carrito.SubTotal = cant * carrito.Precio;
                         break;
                     }
                 }
@@ -148,29 +147,23 @@ namespace Pedidos
         }
         private void DeleteProductFromCart(long IdProduct)
         {
-            int i = 0;
-            int fila = 0;
-            DataTable datatable = (DataTable)Session["ListaCarrito"];
-            foreach (DataRow dr in datatable.Rows)
+            listadoCarrito = (List<ListadoCarrito>)Session["carrito"];
+            foreach (ListadoCarrito carrito in listadoCarrito)
             {
-                if (dr[0].ToString() == Convert.ToString(IdProduct))
+                if (carrito.IdProducto == IdProduct)
                 {
-                    fila = i;
+                    listadoCarrito.Remove(carrito);
                     break;
                 }
-                i++;
             }
-            datatable.Rows[fila].Delete();
-            Session["Item"] = Convert.ToString(datatable.Rows.Count);
+            Session["Item"] = listadoCarrito.Count.ToString();
             Response.Redirect("Carrito.aspx");
         }
-
         protected void btnpedido_Click(object sender, EventArgs e)
         {
-            if (Session["ListaCarrito"] != null)
+            if (Session["carrito"] != null)
             {
-                DataTable datatable = (DataTable)Session["ListaCarrito"];
-                if (datatable.Rows.Count != 0)
+                if (listadoCarrito.Count != 0)
                 {
                     if (Session["UserSession"] != null)
                     {

@@ -16,10 +16,9 @@ namespace Pedidos
         {
             if (!Page.IsPostBack)
             {
-                if (Session["ListaCarrito"] == null)
+                if (Session["carrito"] == null)
                 {
-                    List<Carrito> carritocompras = new List<Carrito>();
-                    Session["ListaCarrito"] = carritocompras;
+                    Session["carrito"] = new List<ListadoCarrito>();
                 }
                 try
                 {
@@ -50,70 +49,40 @@ namespace Pedidos
         }
         public void AddToCart(long IdProduct)
         {
-            int i = 0;
-            int posicion = 0;
-            var gridview = new GridView();
-            gridview.DataSource = (DataTable)Session["ListaCarrito"];
-            gridview.DataBind();
-            if (gridview.Rows.Count > 0)
+            bool checkProduct = false;
+            Producto product;
+            List<ListadoCarrito> listadoCarrito = (List<ListadoCarrito>)Session["carrito"];
+
+            //Si el carrito no esta vacio realizara el proceso a continuación caso contrario solo agregara un nuevo producto al carrito
+            if (listadoCarrito.Count > 0)
             {
-                foreach (DataRow dr in ((DataTable)Session["ListaCarrito"]).Rows)
+                //Si el producto existe en el carrito solo aumentara la cantidad caso contrario lo agregara al carrito
+                foreach (ListadoCarrito cart in listadoCarrito)
                 {
-                    if (dr[0].ToString() == Convert.ToString(IdProduct))
+                    if (cart.IdProducto == IdProduct)
                     {
-                        posicion = i;
+                        cart.Cantidad += cart.Cantidad;
+                        checkProduct = true;
                         break;
                     }
-                    i++;
                 }
-
-                if (gridview.Rows[posicion].Cells[0].Text == Convert.ToString(IdProduct))
-                {
-                    int cantidad = Convert.ToInt32(gridview.Rows[posicion].Cells[4].Text) + 1;
-                    var carrito = (DataTable)Session["ListaCarrito"];
-                    if (cantidad < ProductoLN.GetInstance().Stock(IdProduct))
-                    {
-                        foreach (DataRow drw in carrito.Rows)
-                        {
-                            if (drw["IdProducto"].ToString() == Convert.ToString(IdProduct))
-                            {
-                                drw["Cantidad"] = cantidad;
-                                drw["SubTotal"] = (decimal)cantidad * Convert.ToDecimal(gridview.Rows[posicion].Cells[5].Text);
-                                break;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        foreach (DataRow drw in carrito.Rows)
-                        {
-                            if (drw["IdProducto"].ToString() == Convert.ToString(IdProduct))
-                            {
-                                drw["Cantidad"] = ProductoLN.GetInstance().Stock(IdProduct);
-                                drw["SubTotal"] = (decimal)ProductoLN.GetInstance().Stock(IdProduct) * Convert.ToDecimal(gridview.Rows[posicion].Cells[5].Text);
-                                break;
-                            }
-                        }
-                    }
-                }
-                else
+                if (!checkProduct)
                 {
                     try
                     {
-                        Producto prodcut = ProductoLN.GetInstance().GetProduct(IdProduct);
-                        if (prodcut != null)
+                        product = ProductoLN.GetInstance().GetProduct(IdProduct);
+                        if (product != null)
                         {
-                            var ListaCarrito = (DataTable)Session["ListaCarrito"];
-                            DataRow FilaCarrito = ListaCarrito.NewRow();
-                            FilaCarrito[0] = prodcut.Id;
-                            FilaCarrito[1] = "data:image/jpg;base64," + Convert.ToBase64String(prodcut.Imagen);
-                            FilaCarrito[2] = prodcut.Nombre;
-                            FilaCarrito[3] = (decimal)prodcut.Precio;
-                            FilaCarrito[4] = 1;
-                            FilaCarrito[5] = prodcut.Precio;
-                            ListaCarrito.Rows.Add(FilaCarrito);
-                            Session["ListaCarrito"] = ListaCarrito;
-                            Session["Item"] = Convert.ToString(ListaCarrito.Rows.Count);
+                            ListadoCarrito carrito = new ListadoCarrito
+                            {
+                                IdProducto = product.Id,
+                                Imagen = ProductoLN.GetInstance().GetImgProduct(product.Id),
+                                Nombre = product.Detalle,
+                                Precio = product.Precio,
+                                Cantidad = 1,
+                                SubTotal = product.Precio
+                            };
+                            listadoCarrito.Add(carrito);
                         }
                     }
                     catch (SqlException ex)
@@ -138,20 +107,20 @@ namespace Pedidos
             {
                 try
                 {
-                    Producto prodcut = ProductoLN.GetInstance().GetProduct(IdProduct);
-                    if (prodcut != null)
+                    product = ProductoLN.GetInstance().GetProduct(IdProduct);
+                    if (product != null)
                     {
-                        var ListaCarrito = (DataTable)Session["ListaCarrito"];
-                        DataRow FilaCarrito = ListaCarrito.NewRow();
-                        FilaCarrito[0] = prodcut.Id;
-                        FilaCarrito[1] = "data:image/jpg;base64," + Convert.ToBase64String(prodcut.Imagen);
-                        FilaCarrito[2] = prodcut.Nombre;
-                        FilaCarrito[3] = (decimal)prodcut.Precio;
-                        FilaCarrito[4] = 1;
-                        FilaCarrito[5] = prodcut.Precio;
-                        ListaCarrito.Rows.Add(FilaCarrito);
-                        Session["ListaCarrito"] = ListaCarrito;
-                        Session["Item"] = Convert.ToString(ListaCarrito.Rows.Count);
+                        ListadoCarrito carrito = new ListadoCarrito
+                        {
+                            IdProducto = product.Id,
+                            Imagen = ProductoLN.GetInstance().GetImgProduct(product.Id),
+                            Nombre = product.Detalle,
+                            Precio = product.Precio,
+                            Cantidad = 1,
+                            SubTotal = product.Precio
+                        };
+                        listadoCarrito.Add(carrito);
+
                     }
                 }
                 catch (SqlException ex)
@@ -170,14 +139,14 @@ namespace Pedidos
                 {
                     throw ex;
                 }
-
             }
+            Session["Item"] = listadoCarrito.Count.ToString();
         }
         protected void btnsearch_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtbuscar.Text))
             {
-                
+
                 Repeater1.DataSource = ProductoLN.GetInstance().SearchProduct(txtbuscar.Text);
                 Repeater1.DataBind();
             }
