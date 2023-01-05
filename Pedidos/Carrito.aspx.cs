@@ -25,7 +25,7 @@ namespace Pedidos
              lo borrara automaticamente del carrito de compras */
             long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("lblidproducto")).Text);
             List<ListadoCarrito> listadoCarrito = (List<ListadoCarrito>)Session["carrito"];
-            if (ProductoLN.GetInstance().Stock(IdProduct) < 1)
+            if (ProductoLN.GetInstance().Stock(IdProduct) <= 0)
             {
                 foreach (ListadoCarrito carrito in listadoCarrito)
                 {
