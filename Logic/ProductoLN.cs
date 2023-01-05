@@ -105,7 +105,7 @@ namespace Logic
             }
         }
 
-        public DataTable SearchProduct(string nombre)
+        public List<Producto> SearchProduct(string nombre)
         {
             try
             {

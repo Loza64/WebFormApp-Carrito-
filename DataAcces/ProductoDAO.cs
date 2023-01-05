@@ -20,7 +20,7 @@ namespace DataAcces
             return product;
         }
 
-        List<Producto> list;
+        List<Producto> list = null;
         SqlConnection con = null;
         SqlCommand scmd = null;
         SqlDataReader sdr = null;
@@ -41,7 +41,7 @@ namespace DataAcces
                         sdr = scmd.ExecuteReader();
                         if (sdr.HasRows)
                         {
-                            new List<Producto>();
+                            list = new List<Producto>();
                             while (sdr.Read())
                             {
                                 product = new Producto();
@@ -195,7 +195,7 @@ namespace DataAcces
             return product;
         }
 
-        public DataTable SearchProduct(string nombre)
+        public List<Producto> SearchProduct(string nombre)
         {
             Producto product;
             using (con = GetSqlConnection())
@@ -212,7 +212,7 @@ namespace DataAcces
                         sdr = scmd.ExecuteReader();
                         if (sdr.HasRows)
                         {
-                            new List<Producto>();
+                            list = new List<Producto>();
                             while (sdr.Read())
                             {
                                 product = new Producto();
