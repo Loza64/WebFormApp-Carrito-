@@ -441,9 +441,15 @@ table {
 }
 
 /*carrito*/
+@media only screen and (max-width:400px) {
+    table {
+        font-size: 1px;
+    }
+}
 @media only screen and (max-width:775px) {
     table {
-        font-size: 13px;
+        font-size: 10.5px;
+        font-weight:bold;
     }
 
     .cantidad {
