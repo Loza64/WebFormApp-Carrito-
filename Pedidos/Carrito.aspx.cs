@@ -21,16 +21,14 @@ namespace Pedidos
         protected void ItemDataBoundCarito(object sender, RepeaterItemEventArgs e)
         {
             long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("lblidproducto")).Text);
-            int i = 0;
-            foreach (DataRow dtr in ((DataTable)Session["ListaCarrito"]).Rows)
+            listadoCarrito = (List<ListadoCarrito>)Session["carrito"];
+            foreach (ListadoCarrito carrito in listadoCarrito)
             {
-                if (dtr["idproducto"].ToString() == Convert.ToString(IdProduct) && ProductoLN.GetInstance().Stock(IdProduct) < 1)
+                if (carrito.IdProducto == IdProduct)
                 {
-                    ((DataTable)Session["ListaCarrito"]).Rows[i].Delete();
-                    Response.Redirect("Carrito.aspx");
+                    listadoCarrito.Remove(carrito);
                     break;
                 }
-                i++;
             }
         }
         protected void ItemCommanCarrito(object source, RepeaterCommandEventArgs e)
@@ -59,6 +57,8 @@ namespace Pedidos
             double iva = 0.00;
             double Total = 0.00;
             listadoCarrito = (List<ListadoCarrito>)Session["carrito"];
+            carrito.DataSource = listadoCarrito;
+            carrito.DataBind();
             if (Session["carrito"] != null)
             {
                 foreach (ListadoCarrito carrito in listadoCarrito)
@@ -80,8 +80,6 @@ namespace Pedidos
                 txttotal.Text = "$0.00";
             }
             Session["Item"] = listadoCarrito.Count;
-            carrito.DataSource = listadoCarrito;
-            carrito.DataBind();
         }
         private void AddQuantity(int cantidad, long IdProduct)
         {

@@ -23,13 +23,13 @@
                             <ItemTemplate>
                                 <tr>
                                     <td class="d-none">
-                                        <asp:Label ID="lblidproducto" runat="server" Text='<%# Bind("IdProducto") %>'></asp:Label>
+                                        <asp:Label ID="lblidproducto" runat="server" Text='<%# Eval("IdProducto") %>'></asp:Label>
                                     </td>
                                     <td class="dis-none">
                                         <asp:Image ID="imgproducto" runat="server" ImageUrl='<%#Eval("Imagen") %>' />
                                     </td>
                                     <td>
-                                        <asp:Label ID="lblnombre" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
+                                        <asp:Label ID="lblnombre" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
                                     </td>
                                     <td>
                                         <asp:Label ID="lblprecio" runat="server" Text='<%# "$"+Eval("Precio") %>' CssClass="item-price"></asp:Label>
