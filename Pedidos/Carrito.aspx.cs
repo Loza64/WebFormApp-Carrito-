@@ -34,12 +34,12 @@ namespace Pedidos
                         if (carrito.IdProducto == IdProduct)
                         {
                             listadoCarrito.Remove(carrito);
+                            Session["carrito"] = listadoCarrito;
                             Response.Redirect("Carrito.aspx");
                             break;
                         }
                     }
                 }
-                Session["carrito"] = listadoCarrito;
             }
         }
         protected void ItemCommanCarrito(object source, RepeaterCommandEventArgs e)
