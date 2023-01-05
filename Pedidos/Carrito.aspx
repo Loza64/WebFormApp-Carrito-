@@ -11,9 +11,9 @@
                         <tr>
                             <th class="d-none">Id</th>
                             <th class="dis-none">Producto</th>
-                            <th>Descripción</th>
+                            <th>Nombre</th>
                             <th>Precio</th>
-                            <th>Cantidad</th>
+                            <th>Cant</th>
                             <th>Subtotal</th>
                             <th>Quitar</th>
                         </tr>
