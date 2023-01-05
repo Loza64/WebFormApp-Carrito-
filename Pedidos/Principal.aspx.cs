@@ -135,7 +135,7 @@ namespace Pedidos
                 }
             }
             Session["carrito"] = listadoCarrito;
-            Session["Item"] = listadoCarrito.Count.ToString();
+            Response.Redirect("Principal.aspx");
         }
         protected void btnsearch_Click(object sender, EventArgs e)
         {
@@ -160,7 +160,6 @@ namespace Pedidos
                 if (e.CommandName == "carrito")
                 {
                     AddToCart(IdProduct);
-                    Response.Redirect("Principal.aspx");
                 }
                 else if (e.CommandName == "detalle")
                 {

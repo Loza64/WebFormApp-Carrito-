@@ -28,14 +28,7 @@ namespace Pedidos
                         lblacceder.Text = "Iniciar Sesión";
                     }
                 }
-                if (Session["Item"] != null)
-                {
-                    lblcuenta.Text = (string)Session["Item"];
-                }
-                else
-                {
-                    lblcuenta.Text = "0";
-                }
+                lblcuenta.Text = ((List<ListadoCarrito>)Session["carrito"]).Count.ToString();
             }
         }
 

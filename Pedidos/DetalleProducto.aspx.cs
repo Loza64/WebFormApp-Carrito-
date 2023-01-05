@@ -122,13 +122,12 @@ namespace Pedidos
                 }
             }
             Session["carrito"] = listadoCarrito;
-            Session["Item"] = listadoCarrito.Count.ToString();
+            Response.Redirect("DetalleProducto.aspx");
         }
         protected void btncarrito_Click(object sender, EventArgs e)
         {
             Producto product = (Producto)Session["Producto"];
             AddToCart(product.Id);
-            Response.Redirect("DetalleProducto.aspx");
         }
         protected void btnprincipal_Click1(object sender, EventArgs e)
         {

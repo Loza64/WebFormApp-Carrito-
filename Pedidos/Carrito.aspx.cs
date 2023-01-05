@@ -34,7 +34,6 @@ namespace Pedidos
                         if (carrito.IdProducto == IdProduct)
                         {
                             listadoCarrito.Remove(carrito);
-                            Session["carrito"] = listadoCarrito;
                             Response.Redirect("Carrito.aspx");
                             break;
                         }
@@ -148,6 +147,7 @@ namespace Pedidos
                     }
                 }
             }
+            Session["carrito"] = listadoCarrito;
             Response.Redirect("Carrito.aspx");
         }
         private void DeleteProductFromCart(long IdProduct, List<ListadoCarrito> listadoCarrito)
@@ -160,8 +160,7 @@ namespace Pedidos
                     break;
                 }
             }
-            Response.Redirect("Carrito.aspx");
-            Session["Item"] = listadoCarrito.Count.ToString();
+            Session["carrito"] = listadoCarrito;
             Response.Redirect("Carrito.aspx");
         }
         protected void btnpedido_Click(object sender, EventArgs e)

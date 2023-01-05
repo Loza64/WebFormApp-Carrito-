@@ -81,7 +81,7 @@ namespace Pedidos
                 };
                 try
                 {
-                    bool responce = PedidoLN.GetInstance().NewPedido(pedido, ((List<ListadoCarrito>)Session["carrito"]);
+                    bool responce = PedidoLN.GetInstance().NewPedido(pedido, (List<ListadoCarrito>)Session["carrito"]);
                     if (responce)
                     {
                         Session["ListaCarrito"] = null;
@@ -145,7 +145,7 @@ namespace Pedidos
                         Total = (double)Session["Total"],
                         TipoPedido = "Directo en pedidos store"
                     };
-                    bool responce = PedidoLN.GetInstance().NewPedido(pedido, ((List<ListadoCarrito>)Session["carrito"]));
+                    bool responce = PedidoLN.GetInstance().NewPedido(pedido, (List<ListadoCarrito>)Session["carrito"]);
                     if (responce)
                     {
                         Session["ListaCarrito"] = null;
