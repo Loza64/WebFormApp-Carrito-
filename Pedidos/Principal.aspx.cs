@@ -2,7 +2,6 @@
 using Logic;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Web.UI;
@@ -16,10 +15,6 @@ namespace Pedidos
         {
             if (!Page.IsPostBack)
             {
-                if (Session["carrito"] == null)
-                {
-                    Session["carrito"] = new List<ListadoCarrito>();
-                }
                 try
                 {
                     Repeater1.DataSource = ProductoLN.GetInstance().ShowProducts();
@@ -66,6 +61,7 @@ namespace Pedidos
                         break;
                     }
                 }
+                Session["carrito"] = listadoCarrito;
                 if (!checkProduct)
                 {
                     try
@@ -77,12 +73,13 @@ namespace Pedidos
                             {
                                 IdProducto = product.Id,
                                 Imagen = ProductoLN.GetInstance().GetImgProduct(product.Id),
-                                Nombre = product.Detalle,
+                                Nombre = product.Nombre,
                                 Precio = product.Precio,
                                 Cantidad = 1,
                                 SubTotal = product.Precio
                             };
                             listadoCarrito.Add(carrito);
+                            Session["carrito"] = listadoCarrito;
                         }
                     }
                     catch (SqlException ex)
@@ -114,13 +111,13 @@ namespace Pedidos
                         {
                             IdProducto = product.Id,
                             Imagen = ProductoLN.GetInstance().GetImgProduct(product.Id),
-                            Nombre = product.Detalle,
+                            Nombre = product.Nombre,
                             Precio = product.Precio,
                             Cantidad = 1,
                             SubTotal = product.Precio
                         };
                         listadoCarrito.Add(carrito);
-
+                        Session["carrito"] = listadoCarrito;
                     }
                 }
                 catch (SqlException ex)
@@ -156,7 +153,6 @@ namespace Pedidos
                 Repeater1.DataBind();
             }
         }
-
         protected void RepeaterCommand(object source, RepeaterCommandEventArgs e)
         {
             int Stock = Convert.ToInt32(((Label)e.Item.FindControl("Stock")).Text);
@@ -176,7 +172,6 @@ namespace Pedidos
                 }
             }
         }
-
         protected void RepeaterDataBound(object sender, RepeaterItemEventArgs e)
         {
             Label estado = (Label)e.Item.FindControl("lblestado");

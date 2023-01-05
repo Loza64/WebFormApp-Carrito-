@@ -2,7 +2,6 @@
 using Logic;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -14,14 +13,16 @@ namespace Pedidos
         {
             if (!Page.IsPostBack)
             {
-                UpdateCart();
+                if (Session["carrito"] != null)
+                {
+                    UpdateCart((List<ListadoCarrito>)Session["carrito"]);
+                }
             }
         }
-        List<ListadoCarrito> listadoCarrito;
         protected void ItemDataBoundCarito(object sender, RepeaterItemEventArgs e)
         {
             long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("lblidproducto")).Text);
-            listadoCarrito = (List<ListadoCarrito>)Session["carrito"];
+            List<ListadoCarrito> listadoCarrito = (List<ListadoCarrito>)Session["carrito"];
             foreach (ListadoCarrito carrito in listadoCarrito)
             {
                 if (carrito.IdProducto == IdProduct)
@@ -30,6 +31,7 @@ namespace Pedidos
                     break;
                 }
             }
+            Session["carrito"] = listadoCarrito;
         }
         protected void ItemCommanCarrito(object source, RepeaterCommandEventArgs e)
         {
@@ -38,25 +40,24 @@ namespace Pedidos
             switch (e.CommandName)
             {
                 case "Eliminar":
-                    DeleteProductFromCart(IdProduct);
+                    DeleteProductFromCart(IdProduct, (List<ListadoCarrito>)Session["carrito"]);
                     break;
                 case "Sumar":
-                    AddQuantity(cantidad, IdProduct);
+                    AddQuantity(cantidad, IdProduct, (List<ListadoCarrito>)Session["carrito"]);
                     break;
                 case "Restar":
-                    SubtractQuantity(cantidad, IdProduct);
+                    SubtractQuantity(cantidad, IdProduct, (List<ListadoCarrito>)Session["carrito"]);
                     break;
                 default:
                     Response.Redirect("Carrito.aspx");
                     break;
             }
         }
-        private void UpdateCart()
+        private void UpdateCart(List<ListadoCarrito> listadoCarrito)
         {
             double SubTotal = 0.00;
             double iva = 0.00;
             double Total = 0.00;
-            listadoCarrito = (List<ListadoCarrito>)Session["carrito"];
             carrito.DataSource = listadoCarrito;
             carrito.DataBind();
             if (Session["carrito"] != null)
@@ -79,11 +80,10 @@ namespace Pedidos
                 txtiva.Text = "$0.00";
                 txttotal.Text = "$0.00";
             }
-            Session["Item"] = listadoCarrito.Count;
+            Session["Item"] = listadoCarrito.Count.ToString();
         }
-        private void AddQuantity(int cantidad, long IdProduct)
+        private void AddQuantity(int cantidad, long IdProduct, List<ListadoCarrito> listadoCarrito)
         {
-            listadoCarrito = (List<ListadoCarrito>)Session["carrito"];
             if (cantidad < Logic.ProductoLN.GetInstance().Stock(IdProduct))
             {
                 int cant = Convert.ToInt32(cantidad) + 1;
@@ -96,7 +96,6 @@ namespace Pedidos
                         break;
                     }
                 }
-                Response.Redirect("Carrito.aspx");
             }
             else
             {
@@ -109,12 +108,12 @@ namespace Pedidos
                         break;
                     }
                 }
-                Response.Redirect("Carrito.aspx");
             }
+            Session["carrito"] = listadoCarrito;
+            Response.Redirect("Carrito.aspx");
         }
-        private void SubtractQuantity(int cantidad, long IdProduct)
+        private void SubtractQuantity(int cantidad, long IdProduct, List<ListadoCarrito> listadoCarrito)
         {
-            listadoCarrito = (List<ListadoCarrito>)Session["carrito"];
             int cant = cantidad - 1;
             if (cant < 1)
             {
@@ -127,7 +126,6 @@ namespace Pedidos
                         break;
                     }
                 }
-                Response.Redirect("Carrito.aspx");
             }
             else
             {
@@ -140,12 +138,12 @@ namespace Pedidos
                         break;
                     }
                 }
-                Response.Redirect("Carrito.aspx");
             }
+            Response.Redirect("Carrito.aspx");
+            Response.Redirect("Carrito.aspx");
         }
-        private void DeleteProductFromCart(long IdProduct)
+        private void DeleteProductFromCart(long IdProduct, List<ListadoCarrito> listadoCarrito)
         {
-            listadoCarrito = (List<ListadoCarrito>)Session["carrito"];
             foreach (ListadoCarrito carrito in listadoCarrito)
             {
                 if (carrito.IdProducto == IdProduct)
@@ -154,6 +152,7 @@ namespace Pedidos
                     break;
                 }
             }
+            Response.Redirect("Carrito.aspx");
             Session["Item"] = listadoCarrito.Count.ToString();
             Response.Redirect("Carrito.aspx");
         }
@@ -161,7 +160,7 @@ namespace Pedidos
         {
             if (Session["carrito"] != null)
             {
-                if (listadoCarrito.Count != 0)
+                if (((List<ListadoCarrito>)Session["carrito"]).Count != 0)
                 {
                     if (Session["UserSession"] != null)
                     {

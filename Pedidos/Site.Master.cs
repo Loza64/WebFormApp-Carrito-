@@ -1,5 +1,6 @@
 ﻿using Entities;
 using System;
+using System.Collections.Generic;
 using System.Web.UI;
 
 namespace Pedidos
@@ -10,6 +11,10 @@ namespace Pedidos
         {
             if (!Page.IsPostBack)
             {
+                if (Session["carrito"] == null)
+                {
+                    Session["carrito"] = new List<ListadoCarrito>();
+                }
                 if (Session["UserSession"] != null)
                 {
                     Usuario user = (Usuario)Session["UserSession"];
@@ -17,7 +22,6 @@ namespace Pedidos
                     {
                         lblusuario.Text = user.Email;
                         lblacceder.Text = "Cerrar Sesión";
-
                     }
                     else
                     {
