@@ -1,6 +1,7 @@
 ﻿using Entities;
 using Logic;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
@@ -17,13 +18,7 @@ namespace Pedidos
             {
                 if (Session["ListaCarrito"] == null)
                 {
-                    DataTable carritocompras = new DataTable();
-                    carritocompras.Columns.Add("IdProducto", System.Type.GetType("System.Int64"));//0
-                    carritocompras.Columns.Add("Imagen", System.Type.GetType("System.String"));//1
-                    carritocompras.Columns.Add("Nombre", System.Type.GetType("System.String"));//2
-                    carritocompras.Columns.Add("Precio", System.Type.GetType("System.Decimal"));//3
-                    carritocompras.Columns.Add("Cantidad", System.Type.GetType("System.Int32"));//4
-                    carritocompras.Columns.Add("SubTotal", System.Type.GetType("System.Decimal"));//5
+                    List<Carrito> carritocompras = new List<Carrito>();
                     Session["ListaCarrito"] = carritocompras;
                 }
                 try

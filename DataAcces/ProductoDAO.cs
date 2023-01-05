@@ -1,5 +1,6 @@
 ﻿using Entities;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
@@ -24,8 +25,10 @@ namespace DataAcces
         SqlCommand scmd = null;
         SqlDataReader sdr = null;
 
-        public DataTable ShowProducts()
+        public List<Producto> ShowProducts()
         {
+            List<Producto> list = new List<Producto>();
+            Producto product;
             using (con = GetSqlConnection())
             {
                 using (scmd = new SqlCommand())
@@ -37,8 +40,20 @@ namespace DataAcces
                         scmd.CommandText = "select * from Producto";
                         scmd.CommandType = CommandType.Text;
                         sdr = scmd.ExecuteReader();
-                        list = new DataTable();
-                        list.Load(sdr);
+                        while (sdr.Read())
+                        {
+                            product = new Producto();
+                            product.Id = Convert.ToInt64(sdr["Id"].ToString());
+                            product.IdCategoria = Convert.ToInt64(sdr["IdCategoria"].ToString());
+                            product.Nombre = sdr["Nombre"].ToString();
+                            product.Imagen = (byte[])sdr["Imagen"];
+                            product.Company = sdr["Company"].ToString();
+                            product.Detalle = sdr["Detalle"].ToString();
+                            product.Stock = Convert.ToInt32(sdr["Stock"].ToString());
+                            product.Precio = (decimal)Convert.ToDouble(sdr["Precio"].ToString());
+                            product.Estado = sdr["Estado"].ToString();
+                            list.Add(product);
+                        }
                     }
                     catch (SqlException ex)
                     {

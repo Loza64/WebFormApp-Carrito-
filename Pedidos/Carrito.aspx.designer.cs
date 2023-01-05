@@ -15,13 +15,13 @@ namespace Pedidos
     {
 
         /// <summary>
-        /// Control CarritoCompras.
+        /// Control carrito.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList CarritoCompras;
+        protected global::System.Web.UI.WebControls.Repeater carrito;
 
         /// <summary>
         /// Control txtsubtotal.

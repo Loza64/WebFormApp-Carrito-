@@ -15,30 +15,9 @@ namespace Pedidos
                 UpdateCart();
             }
         }
-        protected void CarritoCompras_ItemCommand2(object source, DataListCommandEventArgs e)
-        {
-            long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("lblidproducto")).Text);
-            int cantidad = Convert.ToInt32(((Label)e.Item.FindControl("txtcantidad")).Text);
-            switch (e.CommandName)
-            {
-                case "Eliminar":
-                    CarritoCompras.SelectedIndex = e.Item.ItemIndex;
-                    deleteitem(IdProduct);
-                    break;
-                case "Sumar":
-                    CarritoCompras.SelectedIndex = e.Item.ItemIndex;
-                    sumar(cantidad, IdProduct);
-                    break;
-                case "Restar":
-                    CarritoCompras.SelectedIndex = e.Item.ItemIndex;
-                    restar(cantidad, IdProduct);
-                    break;
-                default:
-                    Response.Redirect("Carrito.aspx");
-                    break;
-            }
-        }
-        protected void CarritoCompras_ItemDataBound(object sender, DataListItemEventArgs e)
+
+
+        protected void ItemDataBoundCarito(object sender, RepeaterItemEventArgs e)
         {
             long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("lblidproducto")).Text);
             int i = 0;
@@ -53,7 +32,58 @@ namespace Pedidos
                 i++;
             }
         }
-        private void sumar(int cantidad, long IdProduct)
+
+        protected void ItemCommanCarrito(object source, RepeaterCommandEventArgs e)
+        {
+            long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("lblidproducto")).Text);
+            int cantidad = Convert.ToInt32(((Label)e.Item.FindControl("txtcantidad")).Text);
+            switch (e.CommandName)
+            {
+                case "Eliminar":
+                    DeleteProductFromCart(IdProduct);
+                    break;
+                case "Sumar":
+                    AddQuantity(cantidad, IdProduct);
+                    break;
+                case "Restar":
+                    SubtractQuantity(cantidad, IdProduct);
+                    break;
+                default:
+                    Response.Redirect("Carrito.aspx");
+                    break;
+            }
+        }
+
+        private void UpdateCart()
+        {
+            double SubTotal = 0.00;
+            double iva = 0.00;
+            double Total = 0.00;
+            if (Session["ListaCarrito"] != null)
+            {
+                foreach (DataRow datarow in ((DataTable)Session["ListaCarrito"]).Rows)
+                {
+                    SubTotal += Convert.ToDouble(datarow["SubTotal"].ToString());
+                    iva = (double)Math.Round(SubTotal * 0.13, 2, MidpointRounding.AwayFromZero);
+                    Total = (double)Math.Round(iva + SubTotal, 2, MidpointRounding.AwayFromZero);
+                }
+                txtsubtotal.Text = "$" + Convert.ToString(SubTotal);
+                txtiva.Text = "$" + Convert.ToString(iva);
+                txttotal.Text = "$" + Convert.ToString(Total);
+                Session["SubTotal"] = (decimal)SubTotal;
+                Session["Total"] = (decimal)Total;
+            }
+            else
+            {
+                txtsubtotal.Text = "$0.00";
+                txtiva.Text = "$0.00";
+                txttotal.Text = "$0.00";
+            }
+            Session["Item"] = Convert.ToString(((DataTable)Session["ListaCarrito"]).Rows.Count);
+            carrito.DataSource = (DataTable)Session["ListaCarrito"];
+            carrito.DataBind();
+        }
+        private void AddQuantity(int cantidad, long IdProduct)
         {
             if (cantidad < Logic.ProductoLN.GetInstance().Stock(IdProduct))
             {
@@ -85,36 +115,7 @@ namespace Pedidos
                 Response.Redirect("Carrito.aspx");
             }
         }
-        private void UpdateCart()
-        {
-            double SubTotal = 0.00;
-            double iva = 0.00;
-            double Total = 0.00;
-            if (Session["ListaCarrito"] != null)
-            {
-                foreach (DataRow datarow in ((DataTable)Session["ListaCarrito"]).Rows)
-                {
-                    SubTotal += Convert.ToDouble(datarow["SubTotal"].ToString());
-                    iva = (double)Math.Round(SubTotal * 0.13, 2, MidpointRounding.AwayFromZero);
-                    Total = (double)Math.Round(iva + SubTotal, 2, MidpointRounding.AwayFromZero);
-                }
-                txtsubtotal.Text = "$" + Convert.ToString(SubTotal);
-                txtiva.Text = "$" + Convert.ToString(iva);
-                txttotal.Text = "$" + Convert.ToString(Total);
-                Session["SubTotal"] = (decimal)SubTotal;
-                Session["Total"] = (decimal)Total;
-            }
-            else
-            {
-                txtsubtotal.Text = "$0.00";
-                txtiva.Text = "$0.00";
-                txttotal.Text = "$0.00";
-            }
-            Session["Item"] = Convert.ToString(((DataTable)Session["ListaCarrito"]).Rows.Count);
-            CarritoCompras.DataSource = (DataTable)Session["ListaCarrito"];
-            CarritoCompras.DataBind();
-        }
-        private void restar(int cantidad, long IdProduct)
+        private void SubtractQuantity(int cantidad, long IdProduct)
         {
             DataTable datatable = (DataTable)Session["ListaCarrito"];
             int cant = cantidad - 1;
@@ -145,7 +146,7 @@ namespace Pedidos
                 Response.Redirect("Carrito.aspx");
             }
         }
-        private void deleteitem(long IdProduct)
+        private void DeleteProductFromCart(long IdProduct)
         {
             int i = 0;
             int fila = 0;
@@ -163,6 +164,7 @@ namespace Pedidos
             Session["Item"] = Convert.ToString(datatable.Rows.Count);
             Response.Redirect("Carrito.aspx");
         }
+
         protected void btnpedido_Click(object sender, EventArgs e)
         {
             if (Session["ListaCarrito"] != null)
@@ -189,6 +191,5 @@ namespace Pedidos
                 Response.Redirect("Principal.aspx");
             }
         }
-
     }
 }
