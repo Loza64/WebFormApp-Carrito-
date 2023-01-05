@@ -1,6 +1,7 @@
 ﻿using Entities;
 using Logic;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -20,13 +21,12 @@ namespace Pedidos
                     txtnombre.Text = user.Nombres + " " + user.Apellidos;
                     txtnombre2.Text = user.Nombres + " " + user.Apellidos;
 
-                    if (Session["ListaCarrito"] != null)
-                    {
-                        DataTable list = (DataTable)Session["ListaCarrito"];
-                        if (list.Rows.Count != 0)
+                    if (Session["carrito"] != null)
+                    {;
+                        if (((List<ListadoCarrito>)Session["carrito"]).Count != 0)
                         {
-                            lbltotal.Text = "Total a pagar: $" + Convert.ToString((decimal)Session["Total"]);
-                            lbltotal2.Text = "Total a pagar: $" + Convert.ToString((decimal)Session["Total"]);
+                            lbltotal.Text = "Total a pagar: $" + ((double)Session["Total"]).ToString();
+                            lbltotal2.Text = "Total a pagar: $" + ((double)Session["Total"]).ToString();
                         }
                         else
                         {
@@ -66,7 +66,7 @@ namespace Pedidos
             else
             {
                 Usuario user = (Usuario)Session["UserSession"];
-                Pedido pedido = new Pedido()
+                Pedido pedido = new Pedido
                 {
                     Direccion = txtdireccion.Text,
                     Estado = "Pendiente",
@@ -81,7 +81,7 @@ namespace Pedidos
                 };
                 try
                 {
-                    bool responce = PedidoLN.GetInstance().NewPedido(pedido, (DataTable)Session["ListaCarrito"]);
+                    bool responce = PedidoLN.GetInstance().NewPedido(pedido, (List<ListadoCarrito>)Session["carrito"]);
                     if (responce)
                     {
                         Session["ListaCarrito"] = null;
@@ -145,7 +145,7 @@ namespace Pedidos
                         Total = (decimal)Session["Total"],
                         TipoPedido = "Directo en pedidos store"
                     };
-                    bool responce = PedidoLN.GetInstance().NewPedido(pedido, (DataTable)Session["ListaCarrito"]);
+                    bool responce = PedidoLN.GetInstance().NewPedido(pedido, (List<ListadoCarrito>)Session["ListaCarrito"]);
                     if (responce)
                     {
                         Session["ListaCarrito"] = null;

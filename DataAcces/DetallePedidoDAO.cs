@@ -44,7 +44,7 @@ namespace DataAcces
                         if (upload != 0)
                         {
                             long cantidad = ProductoDAO.GetInstance().GetStockProduct(detallePedido.IdProducto) - detallePedido.cantidad;
-                            if (cantidad < 0)
+                            if (cantidad <= 0)
                             {
                                 ProductoDAO.GetInstance().UpdateStock(0, detallePedido.IdProducto);
                                 ProductoDAO.GetInstance().UpdateStateProduct(detallePedido.IdProducto);

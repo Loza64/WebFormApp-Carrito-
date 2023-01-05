@@ -4,9 +4,9 @@
     {
         public long CodPedido { set; get; }
         public long IdProducto { set; get; }
-        public decimal Precio { set; get; }
-        public int cantidad { set; get; }
-        public decimal SubTotal { set; get; }
-        public decimal TotalPagar { set; get; }
+        public double Precio { set; get; }
+        public long cantidad { set; get; }
+        public double SubTotal { set; get; }
+        public double TotalPagar { set; get; }
     }
 }

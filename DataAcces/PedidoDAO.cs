@@ -1,5 +1,6 @@
 ﻿using Entities;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
@@ -72,7 +73,7 @@ namespace DataAcces
             }
             return codpedido;
         }
-        public bool NewPedido(Pedido pedido, DataTable listacarrito)
+        public bool NewPedido(Pedido pedido, List<ListadoCarrito> listacarrito)
         {
             bool responce = false;
             using (con = GetSqlConnection())
@@ -98,17 +99,16 @@ namespace DataAcces
                         int upload = scmd.ExecuteNonQuery();
                         if (upload != 0)
                         {
-                            foreach (DataRow Row in listacarrito.Rows)
+                            foreach (ListadoCarrito carrito in listacarrito)
                             {
-                                double TotalDePagar = (Convert.ToDouble(Row[6]) * 0.13) + Convert.ToDouble(Row[6]);
                                 DetallePedido detalle = new DetallePedido()
                                 {
                                     CodPedido = pedido.CodPedido,
-                                    IdProducto = Convert.ToInt64(Row[0]),
-                                    Precio = Convert.ToDecimal(Row[4]),
-                                    cantidad = Convert.ToInt32(Row[5]),
-                                    SubTotal = Convert.ToDecimal(Row[6]),
-                                    TotalPagar = Math.Round((decimal)TotalDePagar, 2, MidpointRounding.AwayFromZero)
+                                    IdProducto = carrito.IdProducto,
+                                    Precio = carrito.Precio,
+                                    cantidad = carrito.Cantidad,
+                                    SubTotal = carrito.SubTotal,
+                                    TotalPagar = Math.Round(((carrito.SubTotal * 0.13) + carrito.SubTotal), 2, MidpointRounding.AwayFromZero)
                                 };
                                 DetallePedidoDAO.GetInstance().RegistrarDetallePedido(detalle);
                             }

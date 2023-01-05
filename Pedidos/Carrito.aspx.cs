@@ -21,6 +21,8 @@ namespace Pedidos
         }
         protected void ItemDataBoundCarito(object sender, RepeaterItemEventArgs e)
         {
+            /* Si el producto que esta en el carrito ya no esta disponible en stock, 
+             lo borrara automaticamente del carrito de compras */
             long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("lblidproducto")).Text);
             List<ListadoCarrito> listadoCarrito = (List<ListadoCarrito>)Session["carrito"];
             if(ProductoLN.GetInstance().Stock(IdProduct) < 1)
