@@ -19,7 +19,7 @@ namespace Pedidos
             producto.Detalle = txtdescripcion.Text;
             producto.Stock = Convert.ToInt32(txtstock.Text);
             producto.Imagen = archivo.FileBytes;
-            producto.Precio = Convert.ToDecimal(txtprecio.Text);
+            producto.Precio = Convert.ToDouble(txtprecio.Text);
             return producto;
         }
 

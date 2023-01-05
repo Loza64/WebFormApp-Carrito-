@@ -52,7 +52,7 @@ namespace DataAcces
                                 product.Company = sdr["Company"].ToString();
                                 product.Detalle = sdr["Detalle"].ToString();
                                 product.Stock = Convert.ToInt32(sdr["Stock"].ToString());
-                                product.Precio = (decimal)Convert.ToDouble(sdr["Precio"].ToString());
+                                product.Precio = Convert.ToDouble(sdr["Precio"].ToString());
                                 product.Estado = sdr["Estado"].ToString();
                                 list.Add(product);
                             }
@@ -162,7 +162,7 @@ namespace DataAcces
                             product.Company = sdr["Company"].ToString();
                             product.Detalle = sdr["Detalle"].ToString();
                             product.Stock = Convert.ToInt32(sdr["Stock"].ToString());
-                            product.Precio = (decimal)Convert.ToDouble(sdr["Precio"].ToString());
+                            product.Precio = Convert.ToDouble(sdr["Precio"].ToString());
                             product.Estado = sdr["Estado"].ToString();
                         }
                     }
