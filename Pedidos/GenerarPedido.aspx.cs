@@ -84,8 +84,7 @@ namespace Pedidos
                     bool responce = PedidoLN.GetInstance().NewPedido(pedido, (List<ListadoCarrito>)Session["carrito"]);
                     if (responce)
                     {
-                        Session["ListaCarrito"] = null;
-                        Session["Item"] = null;
+                        Session["carrito"] = null;
                         ClientScript.RegisterClientScriptBlock(this.GetType(), "", "load()", true);
                     }
                 }
@@ -148,8 +147,7 @@ namespace Pedidos
                     bool responce = PedidoLN.GetInstance().NewPedido(pedido, (List<ListadoCarrito>)Session["carrito"]);
                     if (responce)
                     {
-                        Session["ListaCarrito"] = null;
-                        Session["Item"] = null;
+                        Session["carrito"] = null;
                         ClientScript.RegisterClientScriptBlock(this.GetType(), "", "load()", true);
                     }
                 }
