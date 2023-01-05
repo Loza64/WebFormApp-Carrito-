@@ -12,8 +12,8 @@ namespace Entities
         public DateTime FechaEntrega { set; get; }
         public DateTime HoraEntrega { set; get; }
         public string Estado { set; get; }
-        public decimal SubTotal { set; get; }
-        public decimal Total { set; get; }
+        public double SubTotal { set; get; }
+        public double Total { set; get; }
 
         public Pedido() { }
     }

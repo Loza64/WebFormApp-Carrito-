@@ -23,19 +23,24 @@ namespace Pedidos
         {
             /* Si el producto que esta en el carrito ya no esta disponible en stock, 
              lo borrara automaticamente del carrito de compras */
-            long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("lblidproducto")).Text);
-            List<ListadoCarrito> listadoCarrito = (List<ListadoCarrito>)Session["carrito"];
-            if (ProductoLN.GetInstance().Stock(IdProduct) <= 0)
+            if (Session["carrito"] != null)
             {
-                foreach (ListadoCarrito carrito in listadoCarrito)
+                long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("lblidproducto")).Text);
+                List<ListadoCarrito> listadoCarrito = (List<ListadoCarrito>)Session["carrito"];
+                if (ProductoLN.GetInstance().Stock(IdProduct) < 1)
                 {
-                    if (carrito.IdProducto == IdProduct)
+                    foreach (ListadoCarrito carrito in listadoCarrito)
                     {
-                        listadoCarrito.Remove(carrito);
+                        if (carrito.IdProducto == IdProduct)
+                        {
+                            listadoCarrito.Remove(carrito);
+                            Response.Redirect("Carrito.aspx");
+                            break;
+                        }
                     }
                 }
+                Session["carrito"] = listadoCarrito;
             }
-            Session["carrito"] = listadoCarrito;
         }
         protected void ItemCommanCarrito(object source, RepeaterCommandEventArgs e)
         {
@@ -143,7 +148,6 @@ namespace Pedidos
                     }
                 }
             }
-            Response.Redirect("Carrito.aspx");
             Response.Redirect("Carrito.aspx");
         }
         private void DeleteProductFromCart(long IdProduct, List<ListadoCarrito> listadoCarrito)

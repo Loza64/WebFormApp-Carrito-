@@ -68,20 +68,20 @@ namespace Pedidos
                 Usuario user = (Usuario)Session["UserSession"];
                 Pedido pedido = new Pedido
                 {
+                    IdUsuario = user.Id,
+                    NombreCliente = txtnombre.Text,
                     Direccion = txtdireccion.Text,
                     Estado = "Pendiente",
                     CodPedido = codpedido,
                     FechaEntrega = Convert.ToDateTime(txtfecha.Text),
                     HoraEntrega = Convert.ToDateTime(txthora.Text),
-                    IdUsuario = user.Id,
-                    SubTotal = (decimal)Session["SubTotal"],
-                    NombreCliente = txtnombre.Text,
-                    Total = (decimal)Session["Total"],
+                    SubTotal = (double)Session["SubTotal"],
+                    Total = (double)Session["Total"],
                     TipoPedido = "Domicilio"
                 };
                 try
                 {
-                    bool responce = PedidoLN.GetInstance().NewPedido(pedido, (List<ListadoCarrito>)Session["carrito"]);
+                    bool responce = PedidoLN.GetInstance().NewPedido(pedido, ((List<ListadoCarrito>)Session["carrito"]);
                     if (responce)
                     {
                         Session["ListaCarrito"] = null;
@@ -141,11 +141,11 @@ namespace Pedidos
                         HoraEntrega = Convert.ToDateTime(txthora2.Text),
                         IdUsuario = user.Id,
                         NombreCliente = txtnombre2.Text,
-                        SubTotal = (decimal)Session["SubTotal"],
-                        Total = (decimal)Session["Total"],
+                        SubTotal = (double)Session["SubTotal"],
+                        Total = (double)Session["Total"],
                         TipoPedido = "Directo en pedidos store"
                     };
-                    bool responce = PedidoLN.GetInstance().NewPedido(pedido, (List<ListadoCarrito>)Session["ListaCarrito"]);
+                    bool responce = PedidoLN.GetInstance().NewPedido(pedido, ((List<ListadoCarrito>)Session["carrito"]));
                     if (responce)
                     {
                         Session["ListaCarrito"] = null;
