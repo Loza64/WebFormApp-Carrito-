@@ -33,7 +33,7 @@ namespace DataAcces
                     {
                         con.Open();
                         scmd.Connection = con;
-                        scmd.CommandText = "select * from Usuario where (Usuario = @Usuario or Email = @Email) and Convert(varchar(max),DECRYPTBYPASSPHRASE('SystemPedidosDBPasswordSecurity',Contraseña))= @Contraseña";
+                        scmd.CommandText = "select * from Usuario where (Usuario = @Usuario or Email = @Email) and Convert(varchar(max),DECRYPTBYPASSPHRASE('SystemPedidosDBPasswordSecurity',Contraseña)) = @Contraseña";
                         scmd.CommandType = System.Data.CommandType.Text;
                         scmd.Parameters.Add("@Usuario", SqlDbType.VarChar).Value = usuario;
                         scmd.Parameters.AddWithValue("@Email", SqlDbType.VarChar).Value = usuario;
