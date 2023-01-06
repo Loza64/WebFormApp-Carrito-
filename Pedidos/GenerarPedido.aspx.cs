@@ -134,7 +134,7 @@ namespace Pedidos
                     Pedido pedido = new Pedido()
                     {
                         Direccion = "Pedidos Store",
-                        Estado = "Pendiente",
+                        Estado = "Presencial",
                         CodPedido = codpedido,
                         FechaEntrega = Convert.ToDateTime(txtfecha2.Text),
                         HoraEntrega = Convert.ToDateTime(txthora2.Text),
