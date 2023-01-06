@@ -29,7 +29,7 @@ namespace Pedidos.Acces
             usuario.Edad = Convert.ToInt32(txtedad.Text);
             usuario.Telefono = Txttelefono.Text;
             usuario.Email = txtemail.Text;
-            usuario.Contraseña = txtcontraseña.Text;
+            usuario.Password = txtcontraseña.Text;
             usuario.Genero = ddlgenero.Text;
             return usuario;
         }

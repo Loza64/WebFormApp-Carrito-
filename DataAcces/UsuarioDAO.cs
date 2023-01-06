@@ -33,11 +33,11 @@ namespace DataAcces
                     {
                         con.Open();
                         scmd.Connection = con;
-                        scmd.CommandText = "select * from Usuario where (Usuario = @Usuario or Email = @Email) and Convert(varchar(max),DECRYPTBYPASSPHRASE('SystemPedidosDBPasswordSecurity',Contraseña)) = @Contraseña";
+                        scmd.CommandText = "select * from Usuario where (Usuario = @Usuario or Email = @Email) and Convert(nvarchar(max),DECRYPTBYPASSPHRASE('SystemPedidosDBPasswordSecurity',Contraseña)) = @Contraseña";
                         scmd.CommandType = System.Data.CommandType.Text;
                         scmd.Parameters.Add("@Usuario", SqlDbType.VarChar).Value = usuario;
                         scmd.Parameters.AddWithValue("@Email", SqlDbType.VarChar).Value = usuario;
-                        scmd.Parameters.AddWithValue("@Contraseña", SqlDbType.VarChar).Value = contraseña;
+                        scmd.Parameters.AddWithValue("@Contraseña", SqlDbType.NVarChar).Value = contraseña;
                         SqlDataReader sdr = scmd.ExecuteReader();
                         while (sdr.Read())
                         {
@@ -91,7 +91,7 @@ namespace DataAcces
                     {
                         con.Open();
                         scmd.Connection = con;
-                        scmd.CommandText = "insert into Usuario (Usuario,Nombres,Apellidos,Genero,Telefono,Edad,Email,Contraseña) values (@Usuario,@Nombres,@Apellidos,@Genero,@Telefono,@Edad,@Email,ENCRYPTBYPASSPHRASE('SystemPedidosDBPasswordSecurity',@Contraseña))";
+                        scmd.CommandText = "insert into Usuario (Usuario,Nombres,Apellidos,Genero,Telefono,Edad,Email,Contraseña) values (@Usuario,@Nombres,@Apellidos,@Genero,@Telefono,@Edad,@Email,ENCRYPTBYPASSPHRASE('SystemPedidosDBPasswordSecurity',@Password))";
                         scmd.CommandType = System.Data.CommandType.Text;
                         scmd.Parameters.AddWithValue("@Usuario", SqlDbType.VarChar).Value = user.Username;
                         scmd.Parameters.AddWithValue("@Nombres", SqlDbType.VarChar).Value = user.Nombres;
@@ -100,7 +100,7 @@ namespace DataAcces
                         scmd.Parameters.AddWithValue("@Telefono", SqlDbType.VarChar).Value = user.Telefono;
                         scmd.Parameters.AddWithValue("@Edad", SqlDbType.Int).Value = user.Edad;
                         scmd.Parameters.AddWithValue("@Email", SqlDbType.VarChar).Value = user.Email;
-                        scmd.Parameters.AddWithValue("@Contraseña", SqlDbType.VarChar).Value = user.Contraseña;
+                        scmd.Parameters.AddWithValue("@Password", SqlDbType.NVarChar).Value = user.Password;
                         int upload = scmd.ExecuteNonQuery();
                         if (upload != 0)
                         {

@@ -10,7 +10,7 @@
         public string Telefono { set; get; }
         public int Edad { set; get; }
         public string Email { set; get; }
-        public string Contraseña { set; get; }
+        public string Password { set; get; }
 
         public Usuario() { }
 
