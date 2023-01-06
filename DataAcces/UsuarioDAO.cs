@@ -22,7 +22,7 @@ namespace DataAcces
         SqlConnection con = null;
         SqlCommand scmd = null;
 
-        public Usuario Login(string usuario, string contraseña)
+        public Usuario Login(string usuario, string password)
         {
             Usuario user = null;
             using (con = GetSqlConnection())
@@ -33,11 +33,11 @@ namespace DataAcces
                     {
                         con.Open();
                         scmd.Connection = con;
-                        scmd.CommandText = "select * from Usuario where (Usuario = @Usuario or Email = @Email) and Convert(nvarchar(max),DECRYPTBYPASSPHRASE('SystemPedidosDBPasswordSecurity',Contraseña)) = @Contraseña";
+                        scmd.CommandText = "select * from Usuario where (Usuario = @Usuario or Email = @Email) and Convert(nvarchar(max),DECRYPTBYPASSPHRASE('SystemPedidosDBPasswordSecurity',Password)) = @Password";
                         scmd.CommandType = System.Data.CommandType.Text;
                         scmd.Parameters.Add("@Usuario", SqlDbType.VarChar).Value = usuario;
                         scmd.Parameters.AddWithValue("@Email", SqlDbType.VarChar).Value = usuario;
-                        scmd.Parameters.AddWithValue("@Contraseña", SqlDbType.NVarChar).Value = contraseña;
+                        scmd.Parameters.AddWithValue("@Password", SqlDbType.NVarChar).Value = password;
                         SqlDataReader sdr = scmd.ExecuteReader();
                         while (sdr.Read())
                         {
@@ -91,7 +91,7 @@ namespace DataAcces
                     {
                         con.Open();
                         scmd.Connection = con;
-                        scmd.CommandText = "insert into Usuario (Usuario,Nombres,Apellidos,Genero,Telefono,Edad,Email,Contraseña) values (@Usuario,@Nombres,@Apellidos,@Genero,@Telefono,@Edad,@Email,ENCRYPTBYPASSPHRASE('SystemPedidosDBPasswordSecurity',@Password))";
+                        scmd.CommandText = "insert into Usuario (Usuario,Nombres,Apellidos,Genero,Telefono,Edad,Email,Password) values (@Usuario,@Nombres,@Apellidos,@Genero,@Telefono,@Edad,@Email,ENCRYPTBYPASSPHRASE('SystemPedidosDBPasswordSecurity',@Password))";
                         scmd.CommandType = System.Data.CommandType.Text;
                         scmd.Parameters.AddWithValue("@Usuario", SqlDbType.VarChar).Value = user.Username;
                         scmd.Parameters.AddWithValue("@Nombres", SqlDbType.VarChar).Value = user.Nombres;
