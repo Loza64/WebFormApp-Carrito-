@@ -95,7 +95,7 @@ namespace DataAcces
                         scmd.Parameters.AddWithValue("@HoraEntrega", pedido.HoraEntrega);
                         scmd.Parameters.Add("@Estado", SqlDbType.VarChar).Value = pedido.Estado;
                         scmd.Parameters.Add("@SubTotal", SqlDbType.Decimal).Value = pedido.SubTotal;
-                        scmd.Parameters.Add("@Total", SqlDbType.Decimal).Value = pedido.Total;
+                        scmd.Parameters.Add("@Total", SqlDbType.Decimal).Value = pedido.PagoTotal;
                         int upload = scmd.ExecuteNonQuery();
                         if (upload != 0)
                         {

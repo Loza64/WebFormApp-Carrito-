@@ -13,7 +13,7 @@ namespace Entities
         public DateTime HoraEntrega { set; get; }
         public string Estado { set; get; }
         public double SubTotal { set; get; }
-        public double Total { set; get; }
+        public double PagoTotal { set; get; }
 
         public Pedido() { }
     }

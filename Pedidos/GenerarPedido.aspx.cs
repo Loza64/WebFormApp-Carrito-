@@ -68,16 +68,16 @@ namespace Pedidos
                 Usuario user = (Usuario)Session["UserSession"];
                 Pedido pedido = new Pedido
                 {
+                    CodPedido = codpedido,
                     IdUsuario = user.Id,
                     NombreCliente = txtnombre.Text,
+                    TipoPedido = "Domicilio",
                     Direccion = txtdireccion.Text,
-                    Estado = "Pendiente",
-                    CodPedido = codpedido,
                     FechaEntrega = Convert.ToDateTime(txtfecha.Text),
                     HoraEntrega = Convert.ToDateTime(txthora.Text),
                     SubTotal = (double)Session["SubTotal"],
-                    Total = (double)Session["Total"],
-                    TipoPedido = "Domicilio"
+                    PagoTotal = (double)Session["Total"],
+                    Estado = "Pendiente"
                 };
                 try
                 {
@@ -131,18 +131,18 @@ namespace Pedidos
                 try
                 {
                     Usuario user = (Usuario)Session["UserSession"];
-                    Pedido pedido = new Pedido()
+                    Pedido pedido = new Pedido
                     {
-                        Direccion = "Pedidos Store",
-                        Estado = "Presencial",
                         CodPedido = codpedido,
-                        FechaEntrega = Convert.ToDateTime(txtfecha2.Text),
-                        HoraEntrega = Convert.ToDateTime(txthora2.Text),
                         IdUsuario = user.Id,
                         NombreCliente = txtnombre2.Text,
+                        TipoPedido = "Presencial",
+                        Direccion = "Pedidos Store",
+                        FechaEntrega = Convert.ToDateTime(txtfecha2.Text),
+                        HoraEntrega = Convert.ToDateTime(txthora2.Text),
                         SubTotal = (double)Session["SubTotal"],
-                        Total = (double)Session["Total"],
-                        TipoPedido = "Directo en pedidos store"
+                        PagoTotal = (double)Session["Total"],
+                        Estado = "Pendiente"
                     };
                     bool responce = PedidoLN.GetInstance().NewPedido(pedido, (List<ListadoCarrito>)Session["carrito"]);
                     if (responce)
