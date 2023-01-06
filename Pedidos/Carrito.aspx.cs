@@ -2,7 +2,6 @@
 using Logic;
 using System;
 using System.Collections.Generic;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace Pedidos
@@ -11,12 +10,9 @@ namespace Pedidos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (Session["carrito"] != null)
             {
-                if (Session["carrito"] != null)
-                {
-                    UpdateCart((List<ListadoCarrito>)Session["carrito"]);
-                }
+                UpdateCart((List<ListadoCarrito>)Session["carrito"]);
             }
         }
         protected void ItemDataBoundCarito(object sender, RepeaterItemEventArgs e)
@@ -56,10 +52,8 @@ namespace Pedidos
                 case "Restar":
                     SubtractQuantity(cantidad, IdProduct, (List<ListadoCarrito>)Session["carrito"]);
                     break;
-                default:
-                    Response.Redirect("Carrito.aspx");
-                    break;
             }
+            Response.Redirect("Carrito.aspx");
         }
         private void UpdateCart(List<ListadoCarrito> listadoCarrito)
         {
@@ -118,7 +112,6 @@ namespace Pedidos
                 }
             }
             Session["carrito"] = listadoCarrito;
-            Response.Redirect("Carrito.aspx");
         }
         private void SubtractQuantity(int cantidad, long IdProduct, List<ListadoCarrito> listadoCarrito)
         {
@@ -148,7 +141,6 @@ namespace Pedidos
                 }
             }
             Session["carrito"] = listadoCarrito;
-            Response.Redirect("Carrito.aspx");
         }
         private void DeleteProductFromCart(long IdProduct, List<ListadoCarrito> listadoCarrito)
         {
@@ -161,7 +153,6 @@ namespace Pedidos
                 }
             }
             Session["carrito"] = listadoCarrito;
-            Response.Redirect("Carrito.aspx");
         }
         protected void btnpedido_Click(object sender, EventArgs e)
         {
