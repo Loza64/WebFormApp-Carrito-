@@ -22,7 +22,6 @@ namespace Pedidos
 
                     if (Session["carrito"] != null)
                     {
-                        ;
                         if (((List<ListadoCarrito>)Session["carrito"]).Count != 0)
                         {
                             lbltotal.Text = "Total a pagar: $" + ((double)Session["Total"]).ToString();
