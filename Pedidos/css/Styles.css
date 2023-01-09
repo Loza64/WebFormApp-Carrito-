@@ -461,6 +461,11 @@ table {
     }
 }
 
+@media only screen and (max-width:470px){
+    .dis-none {
+        display: none;
+    }
+}
 @media only screen and (max-width:820px) {
     table {
         font-size: 10.5px;
@@ -473,10 +478,6 @@ table {
         border-radius: 5px;
         margin: 0 10px;
         transition: all 0.2s ease-in-out;
-    }
-
-    .dis-none {
-        display: none;
     }
 
     .flex-buttoms {
