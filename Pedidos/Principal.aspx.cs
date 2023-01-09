@@ -17,8 +17,8 @@ namespace Pedidos
             {
                 try
                 {
-                    Repeater1.DataSource = ProductoLN.GetInstance().ShowProducts();
-                    Repeater1.DataBind();
+                    productsList.DataSource = ProductoLN.GetInstance().ShowProducts();
+                    productsList.DataBind();
                 }
                 catch (SqlException ex)
                 {
@@ -75,7 +75,8 @@ namespace Pedidos
                                 Nombre = product.Nombre,
                                 Precio = product.Precio,
                                 Cantidad = 1,
-                                SubTotal = product.Precio
+                                SubTotal = product.Precio,
+                                Total = (double)Math.Round((product.Precio * 0.13) + product.Precio, 2, MidpointRounding.AwayFromZero)
                             };
                             listadoCarrito.Add(carrito);
                         }
@@ -112,7 +113,8 @@ namespace Pedidos
                             Nombre = product.Nombre,
                             Precio = product.Precio,
                             Cantidad = 1,
-                            SubTotal = product.Precio
+                            SubTotal = product.Precio,
+                            Total = (double)Math.Round((product.Precio * 0.13) + product.Precio, 2, MidpointRounding.AwayFromZero)
                         };
                         listadoCarrito.Add(carrito);
                     }
@@ -142,16 +144,16 @@ namespace Pedidos
             if (!string.IsNullOrEmpty(txtbuscar.Text))
             {
 
-                Repeater1.DataSource = ProductoLN.GetInstance().SearchProduct(txtbuscar.Text);
-                Repeater1.DataBind();
+                productsList.DataSource = ProductoLN.GetInstance().SearchProduct(txtbuscar.Text);
+                productsList.DataBind();
             }
             else
             {
-                Repeater1.DataSource = ProductoLN.GetInstance().ShowProducts();
-                Repeater1.DataBind();
+                productsList.DataSource = ProductoLN.GetInstance().ShowProducts();
+                productsList.DataBind();
             }
         }
-        protected void RepeaterCommand(object source, RepeaterCommandEventArgs e)
+        protected void productsListCommand(object source, RepeaterCommandEventArgs e)
         {
             int Stock = Convert.ToInt32(((Label)e.Item.FindControl("Stock")).Text);
             long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("txtid")).Text);
@@ -169,7 +171,7 @@ namespace Pedidos
                 }
             }
         }
-        protected void RepeaterDataBound(object sender, RepeaterItemEventArgs e)
+        protected void productsListDataBound(object sender, RepeaterItemEventArgs e)
         {
             Label estado = (Label)e.Item.FindControl("lblestado");
             if (ProductoLN.GetInstance().Stock(Convert.ToInt64(((Label)e.Item.FindControl("txtid")).Text)) > 0)

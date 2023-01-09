@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <br />
     <div class="pt-5">
-        <h2 class="text-center"> <i class="fas fa-shopping-cart "></i> Mi carrito de compras <i class="fas fa-shopping-cart "></i></h2>
+        <h2 class="text-center"><i class="fas fa-shopping-cart "></i>Mi carrito de compras <i class="fas fa-shopping-cart "></i></h2>
         <div class="flex-carrito">
             <div class="contenedor-carrito">
                 <table>
@@ -15,6 +15,7 @@
                             <th>Precio</th>
                             <th>Cant</th>
                             <th>Subtotal</th>
+                            <th>Total</th>
                             <th>Quitar</th>
                         </tr>
                     </thead>
@@ -37,12 +38,16 @@
                                     <td>
                                         <div class="flex-buttoms">
                                             <asp:LinkButton ID="btnresta" runat="server" CommandName="Restar" class="fas fa-minus btn-quantity" />
-                                            <asp:Label type="number" CssClass="cantidad text-center" CommandName="Cantidad" ID="txtcantidad" runat="server" Text='<%# Bind("Cantidad") %>'></asp:Label>
+                                            <asp:Label type="number" CssClass="cantidad text-center"  ID="txtcantidad" runat="server" Text='<%# Bind("Cantidad") %>'></asp:Label>
                                             <asp:LinkButton ID="btnsuma" runat="server" CommandName="Sumar" class="fas fa-plus btn-quantity" />
                                         </div>
                                     </td>
                                     <td>
-                                        <asp:Label ID="lblsubtotal" runat="server" Text='<%#"$"+ Eval("SubTotal") %>' CssClass="item-price"></asp:Label></td>
+                                        <asp:Label ID="lblsubtotal" runat="server" Text='<%#"$"+ Eval("SubTotal") %>' CssClass="item-price"></asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="Label1" runat="server" Text='<%#"$"+ Eval("Total") %>' CssClass="item-price"></asp:Label>
+                                    </td>
                                     <td>
                                         <div>
                                             <asp:LinkButton ID="btneliminar" runat="server" CommandName="Eliminar" class="textoboton btn btn-danger fas fa-trash" />

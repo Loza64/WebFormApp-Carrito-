@@ -108,7 +108,7 @@ namespace DataAcces
                                     Precio = carrito.Precio,
                                     cantidad = carrito.Cantidad,
                                     SubTotal = carrito.SubTotal,
-                                    TotalPagar = Math.Round(((carrito.SubTotal * 0.13) + carrito.SubTotal), 2, MidpointRounding.AwayFromZero)
+                                    TotalPagar = carrito.Total
                                 };
                                 DetallePedidoDAO.GetInstance().RegistrarDetallePedido(detalle);
                             }

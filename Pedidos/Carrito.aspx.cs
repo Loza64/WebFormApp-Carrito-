@@ -47,28 +47,28 @@ namespace Pedidos
                     DeleteProductFromCart(IdProduct, (List<ListadoCarrito>)Session["carrito"]);
                     break;
                 case "Sumar":
-                    AddQuantity(cantidad, IdProduct, (List<ListadoCarrito>)Session["carrito"]);
+                    Quantity(cantidad + 1, IdProduct, (List<ListadoCarrito>)Session["carrito"]);
                     break;
                 case "Restar":
-                    SubtractQuantity(cantidad, IdProduct, (List<ListadoCarrito>)Session["carrito"]);
+                    Quantity(cantidad - 1, IdProduct, (List<ListadoCarrito>)Session["carrito"]);
                     break;
             }
             Response.Redirect("Carrito.aspx");
         }
         private void UpdateCart(List<ListadoCarrito> listadoCarrito)
         {
+            carrito.DataSource = listadoCarrito;
+            carrito.DataBind();
             double SubTotal = 0.00;
             double iva = 0.00;
             double Total = 0.00;
-            carrito.DataSource = listadoCarrito;
-            carrito.DataBind();
             if (Session["carrito"] != null)
             {
                 foreach (ListadoCarrito carrito in listadoCarrito)
                 {
                     SubTotal += carrito.SubTotal;
                     iva = (double)Math.Round(SubTotal * 0.13, 2, MidpointRounding.AwayFromZero);
-                    Total = (double)Math.Round(iva + SubTotal, 2, MidpointRounding.AwayFromZero);
+                    Total += carrito.Total;
                 }
                 txtsubtotal.Text = "$" + SubTotal.ToString();
                 txtiva.Text = "$" + iva.ToString();
@@ -84,18 +84,34 @@ namespace Pedidos
             }
             Session["Item"] = listadoCarrito.Count.ToString();
         }
-        private void AddQuantity(int cantidad, long IdProduct, List<ListadoCarrito> listadoCarrito)
+        private void Quantity(int cantidad, long IdProduct, List<ListadoCarrito> listadoCarrito)
         {
-            if (cantidad < Logic.ProductoLN.GetInstance().Stock(IdProduct))
+            if (cantidad >= 1)
             {
-                int cant = Convert.ToInt32(cantidad) + 1;
-                foreach (ListadoCarrito carrito in listadoCarrito)
+                if (cantidad < Logic.ProductoLN.GetInstance().Stock(IdProduct))
                 {
-                    if (carrito.IdProducto == IdProduct)
+                    foreach (ListadoCarrito carrito in listadoCarrito)
                     {
-                        carrito.Cantidad = cant;
-                        carrito.SubTotal = cant * carrito.Precio;
-                        break;
+                        if (carrito.IdProducto == IdProduct)
+                        {
+                            carrito.Cantidad = cantidad;
+                            carrito.SubTotal = cantidad * carrito.Precio;
+                            carrito.Total = (double)Math.Round((carrito.SubTotal * 0.13) + carrito.SubTotal, 2, MidpointRounding.AwayFromZero);
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (ListadoCarrito carrito in listadoCarrito)
+                    {
+                        if (carrito.IdProducto == IdProduct)
+                        {
+                            carrito.Cantidad = Logic.ProductoLN.GetInstance().Stock(IdProduct);
+                            carrito.SubTotal = Logic.ProductoLN.GetInstance().Stock(IdProduct) * carrito.Precio;
+                            carrito.Total = (double)Math.Round((carrito.SubTotal * 0.13) + carrito.SubTotal, 2, MidpointRounding.AwayFromZero);
+                            break;
+                        }
                     }
                 }
             }
@@ -105,37 +121,9 @@ namespace Pedidos
                 {
                     if (carrito.IdProducto == IdProduct)
                     {
-                        carrito.Cantidad = Logic.ProductoLN.GetInstance().Stock(IdProduct);
-                        carrito.SubTotal = Logic.ProductoLN.GetInstance().Stock(IdProduct) * carrito.Precio;
-                        break;
-                    }
-                }
-            }
-            Session["carrito"] = listadoCarrito;
-        }
-        private void SubtractQuantity(int cantidad, long IdProduct, List<ListadoCarrito> listadoCarrito)
-        {
-            int cant = cantidad - 1;
-            if (cant < 1)
-            {
-                foreach (ListadoCarrito carrito in listadoCarrito)
-                {
-                    if (carrito.IdProducto == IdProduct)
-                    {
-                        carrito.Cantidad = cantidad;
+                        carrito.Cantidad = 1;
                         carrito.SubTotal = carrito.Precio;
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                foreach (ListadoCarrito carrito in listadoCarrito)
-                {
-                    if (carrito.IdProducto == IdProduct)
-                    {
-                        carrito.Cantidad = cant;
-                        carrito.SubTotal = cant * carrito.Precio;
+                        carrito.Total = (double)Math.Round((carrito.SubTotal * 0.13) + carrito.SubTotal, 2, MidpointRounding.AwayFromZero);
                         break;
                     }
                 }

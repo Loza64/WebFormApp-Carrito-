@@ -8,6 +8,7 @@
         public double Precio { set; get; }
         public long Cantidad { set; get; }
         public double SubTotal { set; get; }
+        public double Total { set; get; }
 
         public ListadoCarrito() { }
     }

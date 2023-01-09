@@ -10,7 +10,7 @@
         </div>
         <div class="container-fluid">
             <div class="row">
-                <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="RepeaterCommand" OnItemDataBound="RepeaterDataBound">
+                <asp:Repeater ID="productsList" runat="server" OnItemCommand="productsListCommand" OnItemDataBound="productsListDataBound">
                     <ItemTemplate>
                         <div class="col-md-4 my-2">
                             <div class="targeta">
