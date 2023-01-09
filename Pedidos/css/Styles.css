@@ -243,23 +243,6 @@
 }
 
 /*Diseño del carrito de compras*/
-.textoboton {
-    margin: 0 22px;
-    font-weight: 800;
-    font-size: 17px;
-    color: red;
-    text-decoration: none;
-    transition: all .2s ease-in-out;
-}
-
-    .textoboton:hover {
-        color: red;
-    }
-
-    .textoboton:active {
-        transform: scale(90%);
-    }
-
 table {
     width: 100%;
     border-collapse: collapse;
@@ -329,6 +312,22 @@ table {
         background-color: blue;
     }
 
+.textoboton {
+    margin: 0 22px;
+    font-weight: 800;
+    font-size: 18px;
+    color: red;
+    text-decoration: none;
+    transition: all .1s ease-in-out;
+}
+
+    .textoboton:hover {
+        color: red;
+    }
+
+    .textoboton:active {
+        transform: scale(90%);
+    }
 
 /*Formulario de pedido*/
 .form-pago {
@@ -458,6 +457,7 @@ table {
 @media only screen and (max-width:400px) {
     table {
         font-size: 1px;
+        font-weight:900;
     }
 }
 
