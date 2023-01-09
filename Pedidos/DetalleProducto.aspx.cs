@@ -62,7 +62,8 @@ namespace Pedidos
                                 Nombre = product.Nombre,
                                 Precio = product.Precio,
                                 Cantidad = 1,
-                                SubTotal = product.Precio
+                                SubTotal = product.Precio,
+                                Total = (double)Math.Round((product.Precio * 0.13) + product.Precio, 2, MidpointRounding.AwayFromZero)
                             };
                             listadoCarrito.Add(carrito);
                         }
@@ -99,7 +100,8 @@ namespace Pedidos
                             Nombre = product.Nombre,
                             Precio = product.Precio,
                             Cantidad = 1,
-                            SubTotal = product.Precio
+                            SubTotal = product.Precio,
+                            Total = (double)Math.Round((product.Precio * 0.13) + product.Precio, 2, MidpointRounding.AwayFromZero)
                         };
                         listadoCarrito.Add(carrito);
                     }
@@ -122,7 +124,7 @@ namespace Pedidos
                 }
             }
             Session["carrito"] = listadoCarrito;
-            Response.Redirect("DetalleProducto.aspx");
+            Response.Redirect("Principal.aspx");
         }
         protected void btncarrito_Click(object sender, EventArgs e)
         {
