@@ -246,8 +246,19 @@
 .textoboton {
     margin: 0 22px;
     font-weight: 800;
-    font-size: 14px;
+    font-size: 17px;
+    color: red;
+    text-decoration: none;
+    transition: all .2s ease-in-out;
 }
+
+    .textoboton:hover {
+        color: red;
+    }
+
+    .textoboton:active {
+        transform: scale(90%);
+    }
 
 table {
     width: 100%;
@@ -294,7 +305,7 @@ table {
     text-decoration: none;
     color: black;
     border: solid 2px blue;
-    padding: 4px;
+    padding: 2px;
     border-radius: 5px;
     transition: all 0.2s ease-in-out;
 }
@@ -306,10 +317,11 @@ table {
 
 .cantidad {
     border: solid 2px blue;
-    padding: 3px 9px;
+    padding: 0px 5px;
     border-radius: 5px;
     margin: 0 10px;
     transition: all 0.2s ease-in-out;
+    text-align:center;
 }
 
     .cantidad:hover {
@@ -326,7 +338,7 @@ table {
     text-align: center;
     border-radius: 10px;
     box-shadow: 4px 4px 4px grey;
-    padding:14px
+    padding: 14px
 }
 
     .form-pago label {
@@ -360,13 +372,15 @@ table {
         }
 
 /*Posicionar carrito y formulario*/
-.flex-carrito{
-    display:flex;
+.flex-carrito {
+    display: flex;
 }
-.contenedor-carrito{
-    width:100%;
-    margin:2px;
+
+.contenedor-carrito {
+    width: 100%;
+    margin: 2px;
 }
+
 .contenedor-formulario {
     width: 50%;
     margin: 2px;
@@ -446,15 +460,16 @@ table {
         font-size: 1px;
     }
 }
-@media only screen and (max-width:775px) {
+
+@media only screen and (max-width:820px) {
     table {
         font-size: 10.5px;
-        font-weight:bold;
+        font-weight: bold;
     }
 
     .cantidad {
         border: solid 2px blue;
-        padding: 1px 8px;
+        padding: 0px 5px;
         border-radius: 5px;
         margin: 0 10px;
         transition: all 0.2s ease-in-out;
@@ -476,8 +491,9 @@ table {
     table tbody tr td span {
         margin: 10px;
     }
+
     .flex-carrito {
-        flex-direction:column-reverse;
+        flex-direction: column-reverse;
     }
 
     .contenedor-carrito {
@@ -490,4 +506,3 @@ table {
         margin: 9px 3px;
     }
 }
-

@@ -122,8 +122,8 @@
     <Content Include="Articulos.aspx" />
     <Content Include="Carrito.aspx" />
     <Content Include="css\formloginstyle.css" />
-    <Content Include="css\Style.css" />
     <Content Include="css\stylepedido.css" />
+    <Content Include="css\Styles.css" />
     <Content Include="DetalleProducto.aspx" />
     <Content Include="GenerarPedido.aspx" />
     <Content Include="pedidos.ico" />
