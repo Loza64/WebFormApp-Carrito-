@@ -121,10 +121,10 @@
     <Content Include="Acces\Login.aspx" />
     <Content Include="Articulos.aspx" />
     <Content Include="Carrito.aspx" />
-    <Content Include="css\Estilos.css" />
     <Content Include="css\formloginstyle.css" />
     <Content Include="css\stylepedido.css" />
     <Content Include="css\Styles.css" />
+    <Content Include="css\StyleSheet.css" />
     <Content Include="DetalleProducto.aspx" />
     <Content Include="GenerarPedido.aspx" />
     <Content Include="pedidos.ico" />

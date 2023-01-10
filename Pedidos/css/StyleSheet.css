@@ -19,97 +19,222 @@
     border-bottom: solid 5px greenyellow;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    z-index: 4;
+    align-items: center;
 }
-    .navbar-container .flex {
+
+    .navbar-container .navbar-dis-none {
+        display: none;
+    }
+
+.notificacion {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+    .notificacion .navbar-dis-none {
+        display: none;
+    }
+
+.navbar-container .flex {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-container .logo label {
+    font-weight: 900;
+    color: white;
+    font-size: 25px;
+}
+
+.navbar-container .flex div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+    .navbar-container .flex div nav {
         display: flex;
-        flex-direction: row;
-        align-items: center;
+        justify-content: flex-start;
     }
 
-    .navbar-container .logo label {
-        font-weight: 900;
-        color: white;
-        font-size: 25px;
-    }
-
-    .navbar-container .flex nav a {
-        color: white;
-        margin: 0 8px;
-        text-decoration: none;
-        font-weight: bold;
-        transition: all .2s ease-in-out;
-    }
-
-        .navbar-container .flex nav a:hover {
-            color: greenyellow;
-        }
-
-        .navbar-container .flex nav a i {
-            margin-right: 5px;
-            font-size: 17px;
-        }
-
-    .navbar-container .flex .busqueda {
-        display: flex;
-        margin: 0 16px;
-        flex-direction: row;
-    }
-
-        .navbar-container .flex .busqueda .cajatexto {
-            outline: none;
-            border: 0;
-            color: black;
-            padding: 8px 10px;
-            margin: 0;
-            width: 100%;
-            border-radius: 0;
-            font-weight: 900;
-            border-radius: 7px 0px 0px 7px;
-            text-decoration: none;
-            font-size: 15px;
-            transition: all 0.3s ease;
-            background-color: white;
-        }
-
-        .navbar-container .flex .busqueda .boton {
-            border: 0;
+        .navbar-container .flex div nav a {
             color: white;
-            font-size: 23px;
-            padding: 8px;
-            width: 40px;
-            font-weight: 900;
-            border-radius: 10px;
+            margin: 0 10px;
             text-decoration: none;
-            border-radius: 0px 7px 7px 0px;
-            background-color: white;
-            color: blue;
-            transition: all 0.3s ease;
-            border-left: solid 1px greenyellow;
-            font-weight: 900;
+            font-weight: bold;
+            transition: all .2s ease-in-out;
         }
 
-            .navbar-container .flex .busqueda .boton:hover {
-                background-color: rgb(225, 225, 225);
+.navbar-container .flex nav a:hover {
+    color: greenyellow;
+}
+
+.navbar-container .flex nav a i {
+    margin-right: 5px;
+    font-size: 17px;
+}
+
+
+.navbar-container .flex .busqueda {
+    display: flex;
+    margin: 0 16px;
+    flex-direction: row;
+}
+
+    .navbar-container .flex .busqueda .cajatexto {
+        outline: none;
+        border: 0;
+        color: black;
+        padding: 8px 10px;
+        margin: 0;
+        width: 100%;
+        border-radius: 0;
+        font-weight: 900;
+        border-radius: 7px 0px 0px 7px;
+        text-decoration: none;
+        font-size: 15px;
+        transition: all 0.3s ease;
+        background-color: white;
+    }
+
+    .navbar-container .flex .busqueda .boton {
+        border: 0;
+        color: white;
+        font-size: 23px;
+        padding: 8px;
+        width: 40px;
+        font-weight: 900;
+        border-radius: 10px;
+        text-decoration: none;
+        border-radius: 0px 7px 7px 0px;
+        background-color: white;
+        color: blue;
+        transition: all 0.3s ease;
+        border-left: solid 1px greenyellow;
+        font-weight: 900;
+    }
+
+        .navbar-container .flex .busqueda .boton:hover {
+            background-color: rgb(225, 225, 225);
+        }
+
+.navbar-container .flex .user i {
+    margin-right: 3px;
+    font-size: 17px;
+}
+
+.navbar-container .flex .user a {
+    color: white;
+    margin: 0 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all .2s ease-in-out;
+}
+
+    .navbar-container .flex .user a:hover {
+        color: greenyellow;
+    }
+
+
+/*Diseño responcivo del navbar*/
+@media only screen and (max-width:1282px) {
+    .navbar-container .navbar-dis-none {
+        display: block;
+    }
+
+        .navbar-container .navbar-dis-none .menu {
+            transition: all .1s ease-in-out;
+            color: white;
+            background: greenyellow;
+            padding: 0px 9px;
+            font-size: 23px;
+            font-weight: 900;
+            border-radius: 3px;
+        }
+
+            .navbar-container .navbar-dis-none .menu:active {
+                background: #7fcf05;
             }
 
-    .navbar-container .flex .user i {
-        margin-right: 3px;
-        font-size: 17px;
+    .notificacion .navbar-dis-none {
+        display: flex;
+        flex-direction: row;
     }
 
-    .navbar-container .flex .user a {
-        color: white;
-        margin: 0 5px;
-        text-decoration: none;
-        font-weight: bold;
-        transition: all .2s ease-in-out;
+    .navbar-container .flex {
+        position: absolute;
+        overflow: hidden;
+        z-index: 0;
+        top: 61.2px;
+        left: -300px;
+        height: 100vh;
+        padding: 0 15px;
+        background: rgb(0, 0, 0, 0.86);
+        display: flex;
+        align-items: start;
+        transition: all .25s ease-in-out;
+    }
+    .navbar-container .active-menu {
+        transition: all .25s ease-in-out;
+        left: 0px;
     }
 
-        .navbar-container .flex .user a:hover {
-            color: greenyellow;
+        .navbar-container .flex div {
+            margin-top: 20px;
+            z-index: -2;
+            flex-direction: column-reverse;
+            justify-content: flex-start;
+            width: 100%;
         }
 
+            .navbar-container .flex div nav {
+                flex-direction: column-reverse;
+                width: 100%;
+            }
+
+                .navbar-container .flex div nav a {
+                    text-align: left;
+                    width: 100%;
+                    margin: 10px 0;
+                }
+
+            .navbar-container .flex div .user {
+                width: 100%;
+            }
+
+                .navbar-container .flex div .user a {
+                    text-align: left;
+                    width: 100%;
+                }
+
+            .navbar-container .flex div .busqueda {
+                align-items: center;
+                margin: 10px 0;
+            }
+
+                .navbar-container .flex div .busqueda .cajatexto {
+                    background: none;
+                    border-radius: 0px;
+                    border-bottom:solid 2px greenyellow;
+                    color:white;
+                }
+
+                .navbar-container .flex div .busqueda .boton {
+                    padding: 7.8px 4px;
+                    background: none;
+                    color:greenyellow;
+                    border-radius: 0px;
+                    border-left: 0px;
+                    border-bottom: solid 2px greenyellow;
+                }
+                    .navbar-container .flex div .busqueda .boton:hover {
+                        background: none;
+                        color: #7fcf05;
+                    }
+}
 
 /*Fin diseño navbar*/
 ::-webkit-scrollbar {

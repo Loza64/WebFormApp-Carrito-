@@ -14,29 +14,37 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
-    <link href="css/Estilos.css" rel="stylesheet" />
+    <link href="css/StyleSheet.css" rel="stylesheet" />
     <script src="JS/JavaScript.js"></script>
 </head>
 <body class="body-login">
     <form runat="server">
         <div class="navbar-container">
-            <div class="logo">
-                <a href="Principal.aspx">
-                    <label>Pedidos Store</label></a>
-            </div>
-            <div class="flex">
-                <nav>
-                    <a href="#"><i class="fas fa-cog"></i>Terminos de la tienda</a>
-                    <a href="#"><i class="fa fa-tags"></i>Ver Categorias</a>
-                    <a href="#"><i class="fa fa-clipboard-list"></i>Tus pedidos</a>
-                    <a href="Carrito.aspx"><i class="fas fa-shopping-cart"></i>Carrito(<asp:Label ID="lblcuenta" runat="server"></asp:Label>)</a>
-                </nav>
-                <div class="busqueda">
-                    <asp:TextBox ID="txtbuscar" runat="server" CssClass="cajatexto " placeholder="Buscar" type="search"></asp:TextBox>
-                    <asp:LinkButton ID="btnsearch" runat="server" CssClass="boton fas fa-search"></asp:LinkButton>
+            <a href="Principal.aspx" class="logo">
+                <label>Pedidos Store</label>
+            </a>
+            <div class="flex" id="menu">
+                <div>
+                    <nav>
+                        <a href="#"><i class="fas fa-cog"></i>Terminos de la tienda</a>
+                        <a href="#"><i class="fa fa-tags"></i>Ver Categorias</a>
+                        <a href="#"><i class="fa fa-clipboard-list"></i>Tus pedidos</a>
+                        <a href="Carrito.aspx"><i class="fas fa-shopping-cart"></i>Carrito(<asp:Label ID="lblcuenta" runat="server"></asp:Label>)</a>
+                        <a class="notificacion"><i class="fas fa-bell"></i>
+                            <label class="navbar-dis-none">Notificaciones</label></a>
+                    </nav>
+                    <div class="busqueda">
+                        <asp:TextBox ID="txtbuscar" runat="server" CssClass="cajatexto " placeholder="Buscar" type="search"></asp:TextBox>
+                        <asp:LinkButton ID="btnsearch" runat="server" CssClass="boton fas fa-search"></asp:LinkButton>
+                    </div>
+                    <div class="user">
+                        <a href="Acces/Login.aspx"><i class="far fa-user-circle"></i>Iniciar sesión</a>
+                    </div>
                 </div>
-                <div class="user">
-                    <a href="Acces/Login.aspx"><i class="far fa-user-circle"></i>Iniciar sesión</a>
+            </div>
+            <div class="navbar-dis-none">
+                <div class="menu" id="btn-menu">
+                    <i class="fas fa-bars"></i>
                 </div>
             </div>
         </div>
@@ -46,5 +54,19 @@
         </div>
     </form>
     <script src="JS/main.js"></script>
+    <script>
+        let btnmenu = document.getElementById("btn-menu");
+        let menu = document.getElementById("menu");
+        let activemenu = false;
+        btnmenu.addEventListener('click', () => {
+            if (!activemenu) {
+                menu.classList.add("active-menu");
+                activemenu = true;
+            } else {
+                menu.classList.remove("active-menu");
+                activemenu = false;
+            }
+        })
+    </script>
 </body>
 </html>
