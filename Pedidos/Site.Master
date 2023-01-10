@@ -68,7 +68,7 @@
             } else {
                 iconmenu.classList.add("fa-bars");
                 iconmenu.classList.remove("fa-times");
-                menu.style.left = "-300px";
+                menu.style.left = "-320px";
                 activemenu = false;
             }
         })

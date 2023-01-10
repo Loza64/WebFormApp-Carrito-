@@ -166,16 +166,17 @@
 
     .navbar-container .flex {
         position: absolute;
-        overflow: hidden;
+        overflow: scroll;
         z-index: 0;
         top: 61.2px;
-        left:-300px;
+        left:-320px;
         height: 100vh;
         padding: 0 15px;
         background: rgb(0, 0, 0, 0.86);
         display: flex;
         align-items: start;
         transition: all .25s ease-in-out;
+        padding-bottom:100px;
     }
 
         .navbar-container .flex div {
