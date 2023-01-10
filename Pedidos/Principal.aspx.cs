@@ -141,7 +141,8 @@ namespace Pedidos
         }
         protected void btnsearch_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtbuscar.Text))
+            /*
+             if (!string.IsNullOrEmpty(txtbuscar.Text))
             {
 
                 productsList.DataSource = ProductoLN.GetInstance().SearchProduct(txtbuscar.Text);
@@ -152,6 +153,7 @@ namespace Pedidos
                 productsList.DataSource = ProductoLN.GetInstance().ShowProducts();
                 productsList.DataBind();
             }
+             */
         }
         protected void productsListCommand(object source, RepeaterCommandEventArgs e)
         {

@@ -15,7 +15,9 @@ namespace Pedidos
                 {
                     Session["carrito"] = new List<ListadoCarrito>();
                 }
-                if (Session["UserSession"] != null)
+                lblcuenta.Text = ((List<ListadoCarrito>)Session["carrito"]).Count.ToString();
+                /*
+                 if (Session["UserSession"] != null)
                 {
                     Usuario user = (Usuario)Session["UserSession"];
                     if (user != null)
@@ -28,7 +30,7 @@ namespace Pedidos
                         lblacceder.Text = "Iniciar Sesión";
                     }
                 }
-                lblcuenta.Text = ((List<ListadoCarrito>)Session["carrito"]).Count.ToString();
+                 */
             }
         }
 

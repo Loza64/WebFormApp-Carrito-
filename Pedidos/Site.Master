@@ -14,55 +14,30 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
-    <link href="css/Styles.css" rel="stylesheet" />
+    <link href="css/Estilos.css" rel="stylesheet" />
     <script src="JS/JavaScript.js"></script>
 </head>
 <body class="body-login">
     <form runat="server">
-        <nav class="navbar navbar-expand-lg navbar-light text-white ancho" style="font-weight: 900; color: white; width: 100%; position: fixed; z-index: 1; align-items: center; background: darkblue">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="Principal.aspx" style="color: white">Pedidos Store</a>
-                <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="fas fa-bars"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent" style="align-items: center;">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Principal.aspx" style="color: white"><i class="fas fa-home"></i> Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="Articulos.aspx" style="color: white"><i class="fas fa-plus-circle"></i> Ver mas articulos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="Carrito.aspx" style="color: white"><i class="fas fa-shopping-cart"></i> Carrito(<asp:Label ID="lblcuenta" runat="server"></asp:Label>)</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle fas fa-user" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-weight: 900; color: white; text-decoration: none; margin-left: 12px">
-                                <asp:Label ID="lblusuario" runat="server" Text="Iniciar Sesión" Style="font-weight: 900"></asp:Label>
-                            </a>
-                            <ul class="dropdown-menu text-center dropdown-menu-dark" style="width: 100%;" aria-labelledby="navbarDropdown">
-                                <li>
-                                    <a class="dropdown-item" style="font-weight: 900" href="#">Mi perfil</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" style="font-weight: 900" href="#">Configuración</a>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="Acces/Login.aspx">
-                                        <asp:Label ID="lblacceder" runat="server" Text="Iniciar Sesión" Style="font-weight: 900"></asp:Label>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+        <div class="navbar-container">
+            <div class="logo">
+                <a href="Principal.aspx">
+                    <label>Pedidos Store</label></a>
             </div>
-        </nav>
+            <nav>
+                <a href="#"><i class="fas fa-cog"></i>Terminos de la tienda</a>
+                <a href="#"><i class="fa fa-tags"></i>Ver Categorias</a>
+                <a href="#"><i class="fa fa-clipboard-list"></i>Tus pedidos</a>
+            </nav>
+            <div class="busqueda">
+                <asp:TextBox ID="txtbuscar" runat="server" CssClass="cajatexto " placeholder="Buscar" type="search"></asp:TextBox>
+                <asp:LinkButton ID="btnsearch" runat="server" CssClass="boton fas fa-search"></asp:LinkButton>
+            </div>
+            <div class="user">
+                <a href="Carrito.aspx"><i class="fas fa-shopping-cart"></i>Carrito(<asp:Label ID="lblcuenta" runat="server"></asp:Label>)</a>
+                <a href="Acces/Login.aspx"><i class="far fa-user-circle"></i>Iniciar sesión</a>
+            </div>
+        </div>
         <div class="container-fluid body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>

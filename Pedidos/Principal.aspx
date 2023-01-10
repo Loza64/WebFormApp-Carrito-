@@ -3,11 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <br />
     <div class="container   pt-5">
-        <div class="d-flex text-center pb-2" style="justify-content: center;">
-            <asp:TextBox ID="txtbuscar" runat="server" CssClass="cajatexto " placeholder="Buscar producto" type="search">
-            </asp:TextBox>
-            <asp:LinkButton ID="btnsearch" runat="server" CssClass="boton fas fa-search" OnClick="btnsearch_Click"></asp:LinkButton>
-        </div>
         <div class="container-fluid">
             <div class="row">
                 <asp:Repeater ID="productsList" runat="server" OnItemCommand="productsListCommand" OnItemDataBound="productsListDataBound">

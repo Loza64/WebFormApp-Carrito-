@@ -12,10 +12,101 @@
 }
 /*Diseño de la barra de navegación*/
 .navbar-container {
-    background: linear-gradient(blue,greenyellow);
-    position:fixed;
+    background: blue;
+    position: fixed;
+    width: 100%;
+    padding: 9px 13px;
+    border-bottom: solid 5px greenyellow;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
-/*Fin diseño*/
+
+    .navbar-container .logo label {
+        font-weight: 900;
+        color: white;
+        font-size: 25px;
+    }
+
+    .navbar-container nav a {
+        color: white;
+        margin: 0 8px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all .2s ease-in-out;
+    }
+
+        .navbar-container nav a:hover {
+            color: greenyellow;
+        }
+
+    .navbar-container nav a i {
+        margin-right: 5px;
+        font-size: 17px;
+    }
+
+    .navbar-container .busqueda {
+        display: flex;
+        flex-direction: row;
+    }
+
+        .navbar-container .busqueda .cajatexto {
+            outline: none;
+            border: 0;
+            color: black;
+            padding: 8px 10px;
+            margin: 0;
+            width: 100%;
+            border-radius: 0;
+            font-weight: 900;
+            border-radius: 7px 0px 0px 7px;
+            text-decoration: none;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+
+        .navbar-container .busqueda .boton {
+            border: 0;
+            color: white;
+            font-size: 23px;
+            padding: 8px;
+            width: 40px;
+            font-weight: 900;
+            border-radius: 10px;
+            text-decoration: none;
+            border-radius: 0px 7px 7px 0px;
+            background-color: white;
+            color: blue;
+            transition: all 0.3s ease;
+            border-left: solid 1px greenyellow;
+            font-weight: 900;
+        }
+
+            .navbar-container .busqueda .boton:hover {
+                background-color: rgb(225, 225, 225);
+            }
+
+    .navbar-container .user i {
+        margin-right: 3px;
+        font-size:17px;
+    }
+
+    .navbar-container .user a {
+        color: white;
+        margin: 0 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all .2s ease-in-out;
+    }
+
+        .navbar-container .user a:hover {
+            color: greenyellow;
+        }
+
+
+/*Fin diseño navbar*/
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -25,53 +116,9 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(blue,greenyellow);
+    background: linear-gradient(greenyellow,blue);
     border-radius: 10px;
 }
-
-.cajatexto {
-    outline: none;
-    border: 0;
-    color: black;
-    padding: 8px 10px;
-    margin: 0;
-    width: 50%;
-    border-radius: 0;
-    font-weight: 900;
-    border-radius: 7px 0px 0px 7px;
-    text-decoration: none;
-    font-size: 15px;
-    transition: all 0.3s ease;
-    background-color: rgb(238 238 238)
-}
-
-    .cajatexto:hover {
-        background-color: #e2e2e2
-    }
-
-
-.boton {
-    border: 0;
-    color: white;
-    font-size: 23px;
-    padding: 8px;
-    width: 40px;
-    font-weight: 900;
-    border-radius: 10px;
-    text-decoration: none;
-    border-radius: 0px 7px 7px 0px;
-    background-color: blue;
-    transition: all 0.3s ease;
-    font-weight: 900;
-}
-
-    .boton:hover {
-        color: white;
-        background-color: darkblue;
-    }
-
-
-
 
 .fila {
     width: 100%;
