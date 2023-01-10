@@ -19,9 +19,13 @@
     border-bottom: solid 5px greenyellow;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 }
+    .navbar-container .flex {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
 
     .navbar-container .logo label {
         font-weight: 900;
@@ -29,7 +33,7 @@
         font-size: 25px;
     }
 
-    .navbar-container nav a {
+    .navbar-container .flex nav a {
         color: white;
         margin: 0 8px;
         text-decoration: none;
@@ -37,21 +41,22 @@
         transition: all .2s ease-in-out;
     }
 
-        .navbar-container nav a:hover {
+        .navbar-container .flex nav a:hover {
             color: greenyellow;
         }
 
-    .navbar-container nav a i {
-        margin-right: 5px;
-        font-size: 17px;
-    }
+        .navbar-container .flex nav a i {
+            margin-right: 5px;
+            font-size: 17px;
+        }
 
-    .navbar-container .busqueda {
+    .navbar-container .flex .busqueda {
         display: flex;
+        margin: 0 16px;
         flex-direction: row;
     }
 
-        .navbar-container .busqueda .cajatexto {
+        .navbar-container .flex .busqueda .cajatexto {
             outline: none;
             border: 0;
             color: black;
@@ -67,7 +72,7 @@
             background-color: white;
         }
 
-        .navbar-container .busqueda .boton {
+        .navbar-container .flex .busqueda .boton {
             border: 0;
             color: white;
             font-size: 23px;
@@ -84,16 +89,16 @@
             font-weight: 900;
         }
 
-            .navbar-container .busqueda .boton:hover {
+            .navbar-container .flex .busqueda .boton:hover {
                 background-color: rgb(225, 225, 225);
             }
 
-    .navbar-container .user i {
+    .navbar-container .flex .user i {
         margin-right: 3px;
-        font-size:17px;
+        font-size: 17px;
     }
 
-    .navbar-container .user a {
+    .navbar-container .flex .user a {
         color: white;
         margin: 0 5px;
         text-decoration: none;
@@ -101,7 +106,7 @@
         transition: all .2s ease-in-out;
     }
 
-        .navbar-container .user a:hover {
+        .navbar-container .flex .user a:hover {
             color: greenyellow;
         }
 

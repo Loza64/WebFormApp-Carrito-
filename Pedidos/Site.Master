@@ -24,18 +24,20 @@
                 <a href="Principal.aspx">
                     <label>Pedidos Store</label></a>
             </div>
-            <nav>
-                <a href="#"><i class="fas fa-cog"></i>Terminos de la tienda</a>
-                <a href="#"><i class="fa fa-tags"></i>Ver Categorias</a>
-                <a href="#"><i class="fa fa-clipboard-list"></i>Tus pedidos</a>
-            </nav>
-            <div class="busqueda">
-                <asp:TextBox ID="txtbuscar" runat="server" CssClass="cajatexto " placeholder="Buscar" type="search"></asp:TextBox>
-                <asp:LinkButton ID="btnsearch" runat="server" CssClass="boton fas fa-search"></asp:LinkButton>
-            </div>
-            <div class="user">
-                <a href="Carrito.aspx"><i class="fas fa-shopping-cart"></i>Carrito(<asp:Label ID="lblcuenta" runat="server"></asp:Label>)</a>
-                <a href="Acces/Login.aspx"><i class="far fa-user-circle"></i>Iniciar sesión</a>
+            <div class="flex">
+                <nav>
+                    <a href="#"><i class="fas fa-cog"></i>Terminos de la tienda</a>
+                    <a href="#"><i class="fa fa-tags"></i>Ver Categorias</a>
+                    <a href="#"><i class="fa fa-clipboard-list"></i>Tus pedidos</a>
+                    <a href="Carrito.aspx"><i class="fas fa-shopping-cart"></i>Carrito(<asp:Label ID="lblcuenta" runat="server"></asp:Label>)</a>
+                </nav>
+                <div class="busqueda">
+                    <asp:TextBox ID="txtbuscar" runat="server" CssClass="cajatexto " placeholder="Buscar" type="search"></asp:TextBox>
+                    <asp:LinkButton ID="btnsearch" runat="server" CssClass="boton fas fa-search"></asp:LinkButton>
+                </div>
+                <div class="user">
+                    <a href="Acces/Login.aspx"><i class="far fa-user-circle"></i>Iniciar sesión</a>
+                </div>
             </div>
         </div>
         <div class="container-fluid body-content">
