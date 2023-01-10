@@ -44,7 +44,7 @@
             </div>
             <div class="navbar-dis-none">
                 <div class="menu" id="btn-menu">
-                    <i class="fas fa-bars"></i>
+                    <i class="fas fa-bars" id="iconmenu"></i>
                 </div>
             </div>
         </div>
@@ -55,15 +55,20 @@
     </form>
     <script src="JS/main.js"></script>
     <script>
+        let iconmenu = document.getElementById("iconmenu");
         let btnmenu = document.getElementById("btn-menu");
         let menu = document.getElementById("menu");
         let activemenu = false;
         btnmenu.addEventListener('click', () => {
             if (!activemenu) {
-                menu.classList.add("active-menu");
+                iconmenu.classList.remove("fa-bars");
+                iconmenu.classList.add("fa-times");
+                menu.style.left = "0px";
                 activemenu = true;
             } else {
-                menu.classList.remove("active-menu");
+                iconmenu.classList.add("fa-bars");
+                iconmenu.classList.remove("fa-times");
+                menu.style.left = "-300px";
                 activemenu = false;
             }
         })
