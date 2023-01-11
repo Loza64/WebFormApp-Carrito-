@@ -14,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
-    <link href="css/StyleSheet.css" rel="stylesheet" />
+    <link href="css/StylePedidosStore.css" rel="stylesheet" />
     <script src="JS/JavaScript.js"></script>
 </head>
 <body class="body-login">
@@ -38,7 +38,10 @@
                         <asp:LinkButton ID="btnsearch" runat="server" CssClass="boton fas fa-search"></asp:LinkButton>
                     </div>
                     <div class="user">
-                        <a href="Acces/Login.aspx"><i class="far fa-user-circle"></i>Iniciar sesión</a>
+                        <a href="Acces/Login.aspx">
+                            <i class="far fa-user-circle"></i>
+                            <asp:Label ID="lblLogin" runat="server"></asp:Label>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -54,6 +57,8 @@
         </div>
     </form>
     <script>
+
+        //Functions mnavbar menu
         let iconmenu = document.getElementById("iconmenu");
         let btnmenu = document.getElementById("btn-menu");
         let menu = document.getElementById("menu");

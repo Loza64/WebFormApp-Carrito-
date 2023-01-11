@@ -20,7 +20,9 @@ namespace Pedidos.Acces
                 Session["UserSession"] = null;
             }
         }
-        private Usuario getEntities()
+        /*
+         * 
+           private Usuario getEntities()
         {
             Usuario usuario = new Usuario();
             usuario.Username = txtusuario.Text;
@@ -33,7 +35,8 @@ namespace Pedidos.Acces
             usuario.Genero = ddlgenero.Text;
             return usuario;
         }
-        protected void btnlogin_Click(object sender, EventArgs e)
+
+         protected void btnlogin_Click(object sender, EventArgs e)
         {
             try
             {
@@ -131,6 +134,7 @@ namespace Pedidos.Acces
                 }
             }
         }
+         */
         private bool emailconfimr(string email)
         {
             bool responce;
@@ -160,6 +164,9 @@ namespace Pedidos.Acces
             return responce;
         }
 
+        protected void btnLogin_Click1(object sender, EventArgs e)
+        {
 
+        }
     }
 }

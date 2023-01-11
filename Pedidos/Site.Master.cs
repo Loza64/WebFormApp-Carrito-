@@ -16,21 +16,14 @@ namespace Pedidos
                     Session["carrito"] = new List<ListadoCarrito>();
                 }
                 lblcuenta.Text = ((List<ListadoCarrito>)Session["carrito"]).Count.ToString();
-                /*
-                 if (Session["UserSession"] != null)
+                if (Session["UserSession"] != null)
                 {
-                    Usuario user = (Usuario)Session["UserSession"];
-                    if (user != null)
-                    {
-                        lblusuario.Text = user.Email;
-                        lblacceder.Text = "Cerrar Sesión";
-                    }
-                    else
-                    {
-                        lblacceder.Text = "Iniciar Sesión";
-                    }
+                    lblLogin.Text = "Mi perfil";
                 }
-                 */
+                else
+                {
+                    lblLogin.Text = "Iniciar sesión";
+                }
             }
         }
 

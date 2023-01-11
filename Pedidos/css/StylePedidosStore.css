@@ -138,6 +138,9 @@
         color: greenyellow;
     }
 
+#lblLogin {
+    cursor: default;
+}
 
 /*Diseño responcivo del navbar*/
 @media only screen and (max-width:1282px) {
@@ -169,14 +172,14 @@
         overflow: scroll;
         z-index: 0;
         top: 61.2px;
-        left:-320px;
+        left: -320px;
         height: 100vh;
         padding: 0 15px;
         background: rgb(0, 0, 0, 0.86);
         display: flex;
         align-items: start;
         transition: all .25s ease-in-out;
-        padding-bottom:100px;
+        padding-bottom: 100px;
     }
 
         .navbar-container .flex div {
@@ -215,18 +218,19 @@
                 .navbar-container .flex div .busqueda .cajatexto {
                     background: none;
                     border-radius: 0px;
-                    border-bottom:solid 2px greenyellow;
-                    color:white;
+                    border-bottom: solid 2px greenyellow;
+                    color: white;
                 }
 
                 .navbar-container .flex div .busqueda .boton {
                     padding: 7.8px 4px;
                     background: none;
-                    color:greenyellow;
+                    color: greenyellow;
                     border-radius: 0px;
                     border-left: 0px;
                     border-bottom: solid 2px greenyellow;
                 }
+
                     .navbar-container .flex div .busqueda .boton:hover {
                         background: none;
                         color: #7fcf05;
