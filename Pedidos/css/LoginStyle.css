@@ -1,41 +1,41 @@
 ﻿
 .contenedor {
-    position: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
-    margin-top:28px;
+    padding-top: 90px;
 }
 
-.form-container{
-    display:flex;
-    width:800px;
-    height:500px;
-    border-radius:10px;
-    overflow:hidden;
-    border:solid 2px lightgrey;
+.form-container {
+    display: flex;
+    width: 800px;
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: solid 2px lightgrey;
 }
+
 .contenido {
     background: linear-gradient(to top left,blue,greenyellow);
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction:column;
-    width:100%;
-    height:100%;
-    color:white;
-    font-size:35px;
-    font-weight:bold;
-    text-align:center;
-    padding:14px;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+    padding: 14px;
 }
 
-    .formulario {
-        width: 100%;
-        height: 100%;
-    }
+.formulario {
+    width: 100%;
+    height: 100%;
+}
 
 .login-container {
     display: flex;
@@ -98,9 +98,11 @@
     width: 100%;
     transition: all .1s ease-in-out;
 }
+
     .form-buttom:active {
         transform: scale(95%);
     }
+
 .buttom-tranparent {
     font-size: 15px;
     border: solid 2px white;
@@ -111,19 +113,23 @@
     width: 70%;
     transition: all .1s ease-in-out;
 }
+
     .buttom-tranparent:active {
         transform: scale(95%);
     }
 
 @media(max-width:570px) {
-    .form-container{
-            margin:0 10px;
-            flex-direction:column-reverse;
-        }
-        .contenido{
-            font-size:20px;
-        }
+    .form-container {
+        margin: 0 10px;
+        flex-direction: column-reverse;
+        height:auto;
+    }
+
+    .contenido {
+        font-size: 20px;
+    }
+
     .buttom-tranparent {
         font-size: 13px;
     }
-    }
+}
