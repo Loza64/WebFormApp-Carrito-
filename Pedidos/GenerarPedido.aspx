@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Generar Pedido" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="GenerarPedido.aspx.cs" Inherits="Pedidos.GenerarPedido1" %>
+﻿<%@ Page Title="Mi pedido" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="GenerarPedido.aspx.cs" Inherits="Pedidos.GenerarPedido1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link href="css/stylepedido.css" rel="stylesheet" />
             <div class="containercss" id="container">

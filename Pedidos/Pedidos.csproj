@@ -125,6 +125,7 @@
     <Content Include="css\StylePedidosStore.css" />
     <Content Include="DetalleProducto.aspx" />
     <Content Include="GenerarPedido.aspx" />
+    <Content Include="Login.aspx" />
     <Content Include="pedidos.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -183,6 +184,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Principal.aspx.cs">
       <DependentUpon>Principal.aspx</DependentUpon>

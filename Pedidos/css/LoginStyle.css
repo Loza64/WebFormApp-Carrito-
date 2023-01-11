@@ -1,25 +1,39 @@
-﻿* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
+﻿
+.contenedor {
     position: fixed;
-    width: 100%;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.contenedor-formulario{
-    display:flex;
-    flex-direction:row;
-}
-.content-form {
     width: 100%;
     height: 100%;
-    background-color: blue;
+    margin-top:28px;
+}
+
+.form-container{
+    display:flex;
+    width:800px;
+    height:500px;
+    border-radius:10px;
+    overflow:hidden;
+    border:solid 2px lightgrey;
+}
+.contenido {
+    background: linear-gradient(to top left,blue,greenyellow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+    height:100%;
+    color:white;
+    font-size:35px;
+    font-weight:bold;
+    text-align:center;
+    padding:14px;
+}
+
+.formulario {
+    width: 100%;
+    height:100%;
 }
 
 .login-container {
@@ -30,7 +44,8 @@ body {
     width: 100%;
     height: 100%;
     padding: 10px;
-    background: white;
+    z-index: 1;
+    overflow: hidden;
 }
 
 .signup-container {
@@ -38,10 +53,14 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 100%;
-    height: 100%;
+    width: 560px;
+    height: auto;
     padding: 10px;
-    background: white;
+    z-index: 0;
+    background: none;
+    opacity: 0;
+    border: solid 3px lightgrey;
+    border-radius: 10px;
 }
 
     .signup-container div {
@@ -56,7 +75,7 @@ body {
 
 .texto {
     text-align: center;
-    background: lightgrey;
+    background: none;
     border: 3px solid lightgrey;
     border-radius: 20px;
     padding: 6px;
@@ -68,15 +87,29 @@ body {
     width: 100%;
 }
 
-.boton {
+.form-buttom {
     text-align: center;
-    background: linear-gradient(to right,blue,greenyellow);
+    background: linear-gradient(to right, blue, greenyellow);
     border: 0;
-    padding: 6px;
+    padding: 8px;
     font-size: 15px;
     font-weight: 900;
     color: white;
     border-radius: 10px;
     margin: 15px 0;
     width: 100%;
+    transition: all .1s ease-in-out;
 }
+    .form-buttom:active {
+        transform: scale(95%);
+    }
+
+    @media(max-width:570px){
+        .form-container{
+            margin:0 10px;
+            flex-direction:column-reverse;
+        }
+        .contenido{
+            font-size:24px;
+        }
+    }
