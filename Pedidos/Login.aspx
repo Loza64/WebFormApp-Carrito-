@@ -12,7 +12,7 @@
                     <asp:Button ID="btnlogin" runat="server" Text="Iniciar sesión" CssClass="form-buttom" OnClick="btnlogin_Click" />
                     <a href="#">¿Olvidaste tu contraseña?</a>
                 </div>
-                <div class="signup-container  ">
+                <div class="signup-container">
                     <asp:TextBox ID="txtusuario" runat="server" placeholder="Usuario" CssClass="texto"></asp:TextBox>
                     <div>
                         <asp:TextBox ID="txtnombres" runat="server" placeholder="Nombres" CssClass="texto"></asp:TextBox>
