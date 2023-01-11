@@ -118,7 +118,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Acces\Login.aspx" />
     <Content Include="Articulos.aspx" />
     <Content Include="Carrito.aspx" />
     <Content Include="css\LoginStyle.css" />
@@ -142,13 +141,6 @@
     <Content Include="Bundle.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Acces\Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Acces\Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Articulos.aspx.cs">
       <DependentUpon>Articulos.aspx</DependentUpon>
