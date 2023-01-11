@@ -132,7 +132,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="img\iconuser.png" />
     <Content Include="Principal.aspx" />
     <Content Include="registrarproducto.aspx" />
     <Content Include="Site.Master" />
