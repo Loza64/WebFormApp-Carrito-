@@ -5,14 +5,14 @@
     <div class="contenedor">
         <div class="form-container">
             <div class="formulario">
-                <div class="login-container d-none">
+                <div class="login-container">
                     <h1>Iniciar sesión</h1>
                     <asp:TextBox ID="txtusuario2" runat="server" placeholder="Usuario" CssClass="texto"></asp:TextBox>
                     <asp:TextBox ID="txtpassword2" runat="server" placeholder="Contraseña" CssClass="texto" type="password"></asp:TextBox>
                     <asp:Button ID="btnlogin" runat="server" Text="Iniciar sesión" CssClass="form-buttom" OnClick="btnlogin_Click" />
                     <a href="#">¿Olvidaste tu contraseña?</a>
                 </div>
-                <div class="signup-container">
+                <div class="signup-container d-none">
                     <asp:TextBox ID="txtusuario" runat="server" placeholder="Usuario" CssClass="texto"></asp:TextBox>
                     <div>
                         <asp:TextBox ID="txtnombres" runat="server" placeholder="Nombres" CssClass="texto"></asp:TextBox>

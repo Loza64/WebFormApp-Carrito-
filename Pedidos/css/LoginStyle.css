@@ -121,6 +121,9 @@
             flex-direction:column-reverse;
         }
         .contenido{
-            font-size:24px;
+            font-size:20px;
         }
+    .buttom-tranparent {
+        font-size: 13px;
+    }
     }
