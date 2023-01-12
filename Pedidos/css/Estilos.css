@@ -522,7 +522,7 @@ table {
     border-radius: 10px;
     box-shadow: 0 0 0 3px greenyellow, 0.4em 0.4em 1em blue;
     padding: 14px;
-    margin:10px;
+    margin:0 10px;
 }
 
     .form-pago label {
@@ -562,7 +562,6 @@ table {
 
 .contenedor-carrito {
     width: 100%;
-    margin: 4px;
 }
 
 .contenedor-formulario {
@@ -620,6 +619,7 @@ table {
         width: 100px;
         height: 100px;
     }
+    
 }
 
 @media only screen and (max-width:1199px) {
@@ -677,16 +677,17 @@ table {
 
     .flex-carrito {
         flex-direction: column-reverse;
+        margin:0;
     }
 
     .contenedor-carrito {
         width: 100%;
-        margin: 9px 3px;
+        margin: 20px 0px;
     }
 
     .contenedor-formulario {
         width: 100%;
-        margin: 9px 3px;
+        margin: 8px 0px;
     }
 }
 
@@ -864,6 +865,7 @@ table {
 
     .contenido {
         font-size: 20px;
+        width:100%;
     }
 
         .contenido label {
