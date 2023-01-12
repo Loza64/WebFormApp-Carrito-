@@ -18,7 +18,7 @@ namespace Pedidos
                 lblcuenta.Text = ((List<ListadoCarrito>)Session["carrito"]).Count.ToString();
                 if (Session["UserSession"] != null)
                 {
-                    lblLogin.Text = ((Usuario)Session["UserSession"]).Username;
+                    lblLogin.Text = ((Usuario)Session["UserSession"]).Username + " <i class=\"fa fa-sign-out\" aria-hidden=\"true\"></i>";
                 }
                 else
                 {
