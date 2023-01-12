@@ -124,6 +124,7 @@ namespace Pedidos
                 }
             }
             Session["carrito"] = listadoCarrito;
+            Response.Redirect("/DetalleProducto");
         }
         protected void btncarrito_Click(object sender, EventArgs e)
         {
