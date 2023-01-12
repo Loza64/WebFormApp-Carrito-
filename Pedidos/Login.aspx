@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="Iniciar sesión" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Pedidos.Login" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <link href="css/LoginStyle.css" rel="stylesheet" />
     <div class="contenedor">
         <div class="form-container">
             <div class="formulario">

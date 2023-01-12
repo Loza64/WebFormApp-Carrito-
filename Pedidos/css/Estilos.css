@@ -6,11 +6,7 @@
     box-sizing: border-box;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
 /*Diseño de la barra de navegación*/
 .navbar-container {
     background: blue;
@@ -707,17 +703,20 @@ table {
     height: 500px;
     border-radius: 10px;
     overflow: hidden;
-    border: solid 2px lightgrey;
-    margin-top:50px;
+    margin-top: 50px;
+    box-shadow:   0 0 0 3px greenyellow, 0.4em 0.4em 1em blue ;
 }
-
+.form-container a{
+    font-size:13px;
+    font-weight:bold;
+}
 .contenido {
-    background: linear-gradient(to top left,blue,greenyellow);
+    background: linear-gradient(to bottom,blue,greenyellow);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 100%;
+    width: 70%;
     height: 100%;
     color: white;
     font-size: 35px;
@@ -730,18 +729,21 @@ table {
     width: 100%;
     height: 100%;
 }
+    .formulario h1{
+        font-weight:900;
+    }
 
-.login-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    padding: 10px;
-    z-index: 1;
-    overflow: hidden;
-}
+    .login-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        z-index: 1;
+        overflow: hidden;
+    }
 
 .texto::placeholder {
     color: rgb(139, 139, 139);
@@ -765,7 +767,7 @@ table {
     text-align: center;
     background: linear-gradient(to right, blue, greenyellow);
     border: 0;
-    padding: 8px;
+    padding: 6px 2px;
     font-size: 15px;
     font-weight: 900;
     color: white;
@@ -839,7 +841,7 @@ table {
 @media(max-width:570px) {
 
     .form-container {
-       margin-inline:30px;
+        margin-inline: 25px;
         flex-direction: column-reverse;
         height: auto;
     }
@@ -856,7 +858,31 @@ table {
         font-size: 20px;
     }
 
+        .contenido label {
+            margin: 14px 0;
+        }
+
     .buttom-tranparent {
         font-size: 13px;
+        margin: 14px 0;
+    }
+}
+
+@media only screen and (max-width:280px) {
+    .contenido {
+        font-size: 18px;
+    }
+
+    .buttom-tranparent {
+        font-size: 8px;
+    }
+    .texto {
+        font-size: 8px;
+    }
+    .formulario h1 {
+        font-size: 19px;
+    }
+    .form-buttom {
+        font-size: 12px;
     }
 }
