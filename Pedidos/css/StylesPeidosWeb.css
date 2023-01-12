@@ -35,7 +35,7 @@
         display: none;
     }
 
-.navbar-container .flex {
+.navbar-container .flex-menu {
     display: flex;
     align-items: center;
 }
@@ -46,18 +46,18 @@
     font-size: 25px;
 }
 
-.navbar-container .flex div {
+.navbar-container .flex-menu div {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-    .navbar-container .flex div nav {
+    .navbar-container .flex-menu div nav {
         display: flex;
         justify-content: flex-start;
     }
 
-        .navbar-container .flex div nav a {
+        .navbar-container .flex-menu div nav a {
             color: white;
             margin: 0 10px;
             text-decoration: none;
@@ -65,23 +65,23 @@
             transition: all .2s ease-in-out;
         }
 
-.navbar-container .flex nav a:hover {
+.navbar-container .flex-menu nav a:hover {
     color: greenyellow;
 }
 
-.navbar-container .flex nav a i {
+.navbar-container .flex-menu nav a i {
     margin-right: 5px;
     font-size: 17px;
 }
 
 
-.navbar-container .flex .busqueda {
+.navbar-container .flex-menu .busqueda {
     display: flex;
     margin: 0 16px;
     flex-direction: row;
 }
 
-    .navbar-container .flex .busqueda .cajatexto {
+    .navbar-container .flex-menu .busqueda .cajatexto {
         outline: none;
         border: 0;
         color: black;
@@ -97,7 +97,7 @@
         background-color: white;
     }
 
-    .navbar-container .flex .busqueda .boton {
+    .navbar-container .flex-menu .busqueda .boton {
         border: 0;
         color: white;
         font-size: 23px;
@@ -114,16 +114,16 @@
         font-weight: 900;
     }
 
-        .navbar-container .flex .busqueda .boton:hover {
+        .navbar-container .flex-menu .busqueda .boton:hover {
             background-color: rgb(225, 225, 225);
         }
 
-.navbar-container .flex .user i {
+.navbar-container .flex-menu .user i {
     margin-right: 3px;
     font-size: 17px;
 }
 
-.navbar-container .flex .user a {
+.navbar-container .flex-menu .user a {
     color: white;
     margin: 0 5px;
     text-decoration: none;
@@ -131,7 +131,7 @@
     transition: all .2s ease-in-out;
 }
 
-    .navbar-container .flex .user a:hover {
+    .navbar-container .flex-menu .user a:hover {
         color: greenyellow;
     }
 
@@ -164,7 +164,7 @@
         flex-direction: row;
     }
 
-    .navbar-container .flex {
+    .navbar-container .flex-menu {
         position: absolute;
         overflow: scroll;
         z-index: 0;
@@ -179,7 +179,7 @@
         padding-bottom: 100px;
     }
 
-        .navbar-container .flex div {
+        .navbar-container .flex-menu div {
             margin-top: 20px;
             z-index: -2;
             flex-direction: column-reverse;
@@ -187,39 +187,39 @@
             width: 100%;
         }
 
-            .navbar-container .flex div nav {
+            .navbar-container .flex-menu div nav {
                 flex-direction: column-reverse;
                 width: 100%;
             }
 
-                .navbar-container .flex div nav a {
+                .navbar-container .flex-menu div nav a {
                     text-align: left;
                     width: 100%;
                     margin: 10px 0;
                 }
 
-            .navbar-container .flex div .user {
+            .navbar-container .flex-menu div .user {
                 width: 100%;
             }
 
-                .navbar-container .flex div .user a {
+                .navbar-container .flex-menu div .user a {
                     text-align: left;
                     width: 100%;
                 }
 
-            .navbar-container .flex div .busqueda {
+            .navbar-container .flex-menu div .busqueda {
                 align-items: center;
                 margin: 10px 0;
             }
 
-                .navbar-container .flex div .busqueda .cajatexto {
+                .navbar-container .flex-menu div .busqueda .cajatexto {
                     background: none;
                     border-radius: 0px;
                     border-bottom: solid 2px greenyellow;
                     color: white;
                 }
 
-                .navbar-container .flex div .busqueda .boton {
+                .navbar-container .flex-menu div .busqueda .boton {
                     padding: 7.8px 4px;
                     background: none;
                     color: greenyellow;
@@ -228,7 +228,7 @@
                     border-bottom: solid 2px greenyellow;
                 }
 
-                    .navbar-container .flex div .busqueda .boton:hover {
+                    .navbar-container .flex-menu div .busqueda .boton:hover {
                         background: none;
                         color: #7fcf05;
                     }
@@ -373,16 +373,16 @@
 
 
 /*Detalles del producto*/
-.flex {
+.details-product .flex {
     display: flex;
-    align-items: center;
     justify-content: space-around;
+    margin:25px 0;
 }
 
-.productoimg .img {
-    width: 445px;
-    height: 445px;
-    margin: 10px;
+.details-product .productoimg .img {
+    width: 400px;
+    height: 400px;
+    margin: 0 25px;
     border-radius: 20px;
     padding: 3px;
     background: linear-gradient(to top,blue,greenyellow);
@@ -396,30 +396,30 @@
     margin: 0;
 }
 
-.nombreproducto3 {
+.details-product .flex div .nombreproducto3 {
     font-size: 24px;
     font-weight: 700;
     color: blue;
 }
 
-.precio2 {
+.details-product .flex div .precio2 {
     color: green;
     font-size: 24px;
     font-weight: 700;
 }
 
-.stock {
+.details-product .flex div .stock {
     font-size: 22px;
     font-weight: 900;
 }
 
-    .stock i {
+    .details-product .flex div .stock i {
         font-size: 22.5px;
         font-weight: 900;
         margin-right: 3px;
     }
 
-.descripcionproducto {
+.details-product .flex div .descripcionproducto {
     font-size: 15px;
     font-weight: 500;
     width: 100%;
@@ -572,30 +572,31 @@ table {
 
 /*Adaptacion a dispositvos moviles*/
 @media(max-width:410px) {
-    .productoimg .img {
+    .details-product .flex .productoimg .img {
         width: 100%;
         height: 100%;
     }
 
-    .descripcionproducto {
+    .details-product .flex div .descripcionproducto {
         font-size: 12px;
         font-weight: bold;
     }
 }
 
 @media only screen and (max-width:1000px) {
-    .flex {
+    .details-product .flex {
         display: block;
     }
 
-    .productoimg {
-        text-align: center;
-    }
-
-        .productoimg .img {
-            width: 300px;
-            height: 300px;
+        .details-product .flex .productoimg {
+            text-align: center;
         }
+
+            .details-product .flex .productoimg .img {
+                width: 300px;
+                height: 300px;
+                margin-bottom: 20px;
+            }
 
     .botones {
         flex-direction: column;
@@ -850,6 +851,7 @@ table {
     color: red;
     font-weight: bold;
 }
+
 .succesmessage {
     color: green;
     font-weight: bold;

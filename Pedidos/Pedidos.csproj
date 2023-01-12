@@ -120,7 +120,7 @@
   <ItemGroup>
     <Content Include="Articulos.aspx" />
     <Content Include="Carrito.aspx" />
-    <Content Include="css\StylesDesing.css" />
+    <Content Include="css\StylesPeidosWeb.css" />
     <Content Include="DetalleProducto.aspx" />
     <Content Include="GenerarPedido.aspx" />
     <Content Include="JS\script.js" />

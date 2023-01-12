@@ -124,7 +124,6 @@ namespace Pedidos
                 }
             }
             Session["carrito"] = listadoCarrito;
-            Response.Redirect("Principal.aspx");
         }
         protected void btncarrito_Click(object sender, EventArgs e)
         {
@@ -133,7 +132,7 @@ namespace Pedidos
         }
         protected void btnprincipal_Click1(object sender, EventArgs e)
         {
-            Response.Redirect("Principal.aspx");
+            Response.Redirect("/Principal");
         }
     }
 }
