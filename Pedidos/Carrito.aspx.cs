@@ -149,11 +149,11 @@ namespace Pedidos
                 {
                     if (Session["UserSession"] != null)
                     {
-                        Response.Redirect("GenerarPedido.aspx");
+                        Response.Redirect("/GenerarPedido");
                     }
                     else
                     {
-                        Response.Redirect("Acces/Login.aspx");
+                        Response.Redirect("Login");
                     }
                 }
                 else
