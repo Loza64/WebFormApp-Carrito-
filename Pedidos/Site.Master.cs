@@ -18,7 +18,7 @@ namespace Pedidos
                 lblcuenta.Text = ((List<ListadoCarrito>)Session["carrito"]).Count.ToString();
                 if (Session["UserSession"] != null)
                 {
-                    lblLogin.Text = "Mi perfil";
+                    lblLogin.Text = ((Usuario)Session["UserSession"]).Username;
                 }
                 else
                 {
