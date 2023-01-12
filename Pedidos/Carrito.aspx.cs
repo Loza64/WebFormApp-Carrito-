@@ -163,7 +163,7 @@ namespace Pedidos
             }
             else
             {
-                Response.Redirect("Principal.aspx");
+                Response.Redirect("/Principal");
             }
         }
     }

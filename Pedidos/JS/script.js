@@ -38,57 +38,10 @@ closemodal.addEventListener('click', () => {
     formsignup.style.transform = "scale(0%)";
 })
 
-//Sweet alert`s functions
-function errorpedido() {
-    Swal.fire({
-        icon: 'error',
-        title: 'Su carrito de compras esta vacio, escoja almenos un producto',
-    })
-}
 
-function errorproducto() {
-    Swal.fire({
-        icon: 'error',
-        title: 'Llene todo los campos por favor',
-    })
-}
+//Formulario pago functios
 
-function load() {
-    let timerInterval
-    Swal.fire({
-        title: 'Realizando pedido, por favor espere!',
-        html: 'Por favor espere <b></b>.',
-        timer: 2000,
-        timerProgressBar: true,
-        didOpen: () => {
-            Swal.showLoading()
-            timerInterval = setInterval(() => {
-                const content = Swal.getHtmlContainer()
-                if (content) {
-                    const b = content.querySelector('b')
-                    if (b) {
-                        b.textContent = Swal.getTimerLeft()
-                    }
-                }
-            }, 100)
-        },
-        willClose: () => {
-            clearInterval(timerInterval)
-        }
-    }).then((result) => {
-        /* Read more about handling dismissals below */
-        if (result.dismiss === Swal.DismissReason.timer) {
-            alertme();
-        }
-    })
-}
-
-function alertme() {
-    swal.fire(
-        "En hora buena!",
-        "Su pedido se realizo de manera exitosa, te hemos enviado un email con tu numero de pedido junto con los productos que solicitates, si no lo recives realiza tu pedido nuevamente.",
-        "success"
-    ).then(function () {
-        parent.location.href = "Principal.aspx"
-    });
-}
+let btnpago = document.getElementById("btnpedido");
+btnpago.addEventListener('click', (e) => {
+    e.preventDefault;
+})

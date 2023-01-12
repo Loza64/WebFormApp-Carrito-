@@ -123,6 +123,7 @@
     <Content Include="css\StylesPeidosWeb.css" />
     <Content Include="DetalleProducto.aspx" />
     <Content Include="GenerarPedido.aspx" />
+    <Content Include="JS\alerts.js" />
     <Content Include="JS\script.js" />
     <Content Include="Login.aspx" />
     <Content Include="pedidos.ico" />
