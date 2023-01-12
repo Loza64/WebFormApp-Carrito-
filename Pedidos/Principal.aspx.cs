@@ -137,7 +137,7 @@ namespace Pedidos
                 }
             }
             Session["carrito"] = listadoCarrito;
-            Response.Redirect("Principal.aspx");
+            Response.Redirect("/Principal");
         }
         protected void btnsearch_Click(object sender, EventArgs e)
         {
@@ -169,7 +169,7 @@ namespace Pedidos
                 {
                     Producto product = ProductoLN.GetInstance().GetProduct(IdProduct);
                     Session["Producto"] = product;
-                    Response.Redirect("DetalleProducto.aspx");
+                    Response.Redirect("/DetalleProducto");
                 }
             }
         }
