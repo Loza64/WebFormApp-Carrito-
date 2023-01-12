@@ -19,7 +19,7 @@
 <body class="body-login">
     <form runat="server">
         <div class="navbar-container">
-            <a href="Principal.aspx" class="logo">
+            <a href="/Principal" class="logo">
                 <label>Pedidos Store</label>
             </a>
             <div class="flex" id="menu">
@@ -28,7 +28,7 @@
                         <a href="#"><i class="fas fa-cog"></i>Terminos de la tienda</a>
                         <a href="#"><i class="fa fa-tags"></i>Ver Categorias</a>
                         <a href="#"><i class="fa fa-clipboard-list"></i>Tus pedidos</a>
-                        <a href="Carrito.aspx"><i class="fas fa-shopping-cart"></i>Carrito(<asp:Label ID="lblcuenta" runat="server"></asp:Label>)</a>
+                        <a href="/Carrito"><i class="fas fa-shopping-cart"></i>Carrito(<asp:Label ID="lblcuenta" runat="server"></asp:Label>)</a>
                         <a class="notificacion"><i class="fas fa-bell"></i>
                             <label class="navbar-dis-none">Notificaciones</label>
                         </a>
@@ -38,7 +38,7 @@
                         <asp:LinkButton ID="btnsearch" runat="server" CssClass="boton fas fa-search"></asp:LinkButton>
                     </div>
                     <div class="user">
-                        <a href="Login.aspx">
+                        <a href="/Login">
                             <i class="far fa-user-circle"></i>
                             <asp:Label ID="lblLogin" runat="server"></asp:Label>
                         </a>
