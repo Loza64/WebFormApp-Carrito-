@@ -53,7 +53,7 @@ namespace Pedidos
                     Quantity(cantidad - 1, IdProduct, (List<ListadoCarrito>)Session["carrito"]);
                     break;
             }
-            Response.Redirect("Carrito.aspx");
+            Response.Redirect("/Carrito");
         }
         private void UpdateCart(List<ListadoCarrito> listadoCarrito)
         {
@@ -82,7 +82,6 @@ namespace Pedidos
                 txtiva.Text = "$0.00";
                 txttotal.Text = "$0.00";
             }
-            Session["Item"] = listadoCarrito.Count.ToString();
         }
         private void Quantity(int cantidad, long IdProduct, List<ListadoCarrito> listadoCarrito)
         {
