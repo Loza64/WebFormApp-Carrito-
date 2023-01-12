@@ -8,6 +8,7 @@
                     <h1>Iniciar sesión</h1>
                     <asp:TextBox ID="txtusuario2" runat="server" placeholder="Usuario" CssClass="texto"></asp:TextBox>
                     <asp:TextBox ID="txtpassword2" runat="server" placeholder="Contraseña" CssClass="texto" type="password"></asp:TextBox>
+                    <asp:Label ID="lblerrorlogin" runat="server" CssClass="errormessage" Visible="false"></asp:Label>
                     <asp:Button ID="btnlogin" runat="server" Text="Iniciar sesión" CssClass="form-buttom" OnClick="btnlogin_Click" />
                     <a href="#">¿Olvidaste tu contraseña?</a>
                 </div>
@@ -42,6 +43,8 @@
                 <asp:TextBox ID="txttelefono" runat="server" placeholder="Teléfono" CssClass="texto"></asp:TextBox>
             </div>
             <asp:TextBox ID="txtpassword" runat="server" placeholder="contraseña" CssClass="texto" type="password"></asp:TextBox>
+            <asp:Label ID="lblsuccessignup" runat="server"  CssClass="succesmessage" Visible="true"></asp:Label>
+            <asp:Label ID="lblerrorsignup" runat="server"  CssClass="errormessage" Visible="false"></asp:Label>
             <asp:Button ID="btnsignup" runat="server" Text="Registrarme" CssClass="form-buttom" OnClick="btnsignup_Click" />
         </div>
     </div>

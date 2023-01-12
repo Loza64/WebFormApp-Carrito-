@@ -78,7 +78,8 @@ namespace Pedidos
                 }
                 else
                 {
-                    
+                    lblerrorlogin.Visible = true;
+                    lblerrorlogin.Text = "Usuario o contraseña incorrectos.";
                 }
             }
             catch (SqlException ex)
@@ -125,11 +126,13 @@ namespace Pedidos
                     bool SingIn = UsuarioLN.GetInstance().SignUp(usuario);
                     if (SingIn)
                     {
-                        
+                        lblsuccessignup.Visible = true;
+                        lblsuccessignup.Text = "Registro realizado exitosamente.";
                     }
                     else
                     {
-                       
+                        lblerrorsignup.Visible = true;
+                        lblerrorsignup.Text = "Usuario, correo o teléfono ya son usados por otro usuario.";
                     }
                 }
                 catch (SqlException ex)

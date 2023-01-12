@@ -33,6 +33,15 @@ namespace Pedidos
         protected global::System.Web.UI.WebControls.TextBox txtpassword2;
 
         /// <summary>
+        /// Control lblerrorlogin.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblerrorlogin;
+
+        /// <summary>
         /// Control btnlogin.
         /// </summary>
         /// <remarks>
@@ -112,6 +121,24 @@ namespace Pedidos
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtpassword;
+
+        /// <summary>
+        /// Control lblsuccessignup.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblsuccessignup;
+
+        /// <summary>
+        /// Control lblerrorsignup.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblerrorsignup;
 
         /// <summary>
         /// Control btnsignup.

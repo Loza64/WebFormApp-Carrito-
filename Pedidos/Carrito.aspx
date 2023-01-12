@@ -14,7 +14,7 @@
                             <th>Nombre</th>
                             <th>Precio</th>
                             <th>Cant</th>
-                            <th>Subtotal</th>
+                            <th>SubTotal</th>
                             <th class="dis-none">Total</th>
                             <th>Quitar</th>
                         </tr>
