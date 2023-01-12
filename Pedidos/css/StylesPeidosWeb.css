@@ -119,7 +119,6 @@
         }
 
 .navbar-container .flex-menu .user i {
-    margin:0 5px;
     font-size: 17px;
 }
 
@@ -140,6 +139,7 @@
 
 #lblLogin {
     cursor: default;
+    margin: 0 10px;
 }
 
 /*Diseño responcivo del navbar*/
