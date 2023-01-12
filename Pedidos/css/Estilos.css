@@ -376,12 +376,16 @@
 .flex {
     display: flex;
     align-items: center;
+    justify-content: space-around;
 }
 
 .productoimg .img {
-    width: 450px;
-    height: 450px;
+    width: 445px;
+    height: 445px;
     margin: 10px;
+    border-radius: 20px;
+    padding: 3px;
+    background: linear-gradient(to top,blue,greenyellow);
 }
 
 
@@ -389,6 +393,7 @@
     font-size: 30px;
     font-weight: 700;
     color: blue;
+    margin: 0;
 }
 
 .nombreproducto3 {
@@ -513,11 +518,11 @@ table {
 .form-pago {
     display: flex;
     flex-direction: column;
-    border-top: solid 4px greenyellow;
     text-align: center;
     border-radius: 10px;
-    box-shadow: 4px 4px 4px grey;
-    padding: 14px
+    box-shadow: 0 0 0 3px greenyellow, 0.4em 0.4em 1em blue;
+    padding: 14px;
+    margin:10px;
 }
 
     .form-pago label {
@@ -557,7 +562,7 @@ table {
 
 .contenedor-carrito {
     width: 100%;
-    margin: 2px;
+    margin: 4px;
 }
 
 .contenedor-formulario {
@@ -704,12 +709,14 @@ table {
     border-radius: 10px;
     overflow: hidden;
     margin-top: 50px;
-    box-shadow:   0 0 0 3px greenyellow, 0.4em 0.4em 1em blue ;
+    box-shadow: 0 0 0 3px greenyellow, 0.4em 0.4em 1em blue;
 }
-.form-container a{
-    font-size:13px;
-    font-weight:bold;
-}
+
+    .form-container a {
+        font-size: 13px;
+        font-weight: bold;
+    }
+
 .contenido {
     background: linear-gradient(to bottom,blue,greenyellow);
     display: flex;
@@ -729,21 +736,22 @@ table {
     width: 100%;
     height: 100%;
 }
-    .formulario h1{
-        font-weight:900;
+
+    .formulario h1 {
+        font-weight: 900;
     }
 
-    .login-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        width: 100%;
-        height: 100%;
-        padding: 10px;
-        z-index: 1;
-        overflow: hidden;
-    }
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    z-index: 1;
+    overflow: hidden;
+}
 
 .texto::placeholder {
     color: rgb(139, 139, 139);
@@ -876,12 +884,15 @@ table {
     .buttom-tranparent {
         font-size: 8px;
     }
+
     .texto {
         font-size: 8px;
     }
+
     .formulario h1 {
         font-size: 19px;
     }
+
     .form-buttom {
         font-size: 12px;
     }
