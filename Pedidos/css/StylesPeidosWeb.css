@@ -122,15 +122,15 @@
     font-size: 17px;
 }
 
+.navbar-container .flex-menu .user .fa-sign-out {
+    font-size: 15px;
+}
 .navbar-container .flex-menu .user a {
     color: white;
     margin: 0 5px;
     text-decoration: none;
     font-weight: bold;
     transition: all .2s ease-in-out;
-    display: flex;
-    align-items: center;
-    flex-direction: row
 }
 
     .navbar-container .flex-menu .user a:hover {
@@ -139,7 +139,6 @@
 
 #lblLogin {
     cursor: default;
-    margin: 0 10px;
 }
 
 /*Diseño responcivo del navbar*/

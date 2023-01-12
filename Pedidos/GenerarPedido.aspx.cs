@@ -29,21 +29,20 @@ namespace Pedidos
                         }
                         else
                         {
-                            Response.Redirect("Principal.aspx");
+                            Response.Redirect("/Principal");
                         }
                     }
                     else
                     {
-                        Response.Redirect("Principal.aspx");
+                        Response.Redirect("/Principal");
                     }
                 }
                 else
                 {
-                    Response.Redirect("Acces/Login.aspx");
+                    Response.Redirect("/Login");
                 }
             }
         }
-
         protected void PedidoDomicilio_Click(object sender, EventArgs e)
         {
             long codpedido = PedidoLN.GetInstance().CodPedido() + 1;
@@ -105,7 +104,6 @@ namespace Pedidos
                 }
             }
         }
-
         protected void PedidoNormal_Click(object sender, EventArgs e)
         {
             long codpedido = PedidoLN.GetInstance().CodPedido() + 1;
