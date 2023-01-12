@@ -4,7 +4,6 @@ using Pedidos.Custom;
 using System;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
-using System.Drawing;
 using System.Net.Mail;
 using System.Web.Security;
 
@@ -108,7 +107,7 @@ namespace Pedidos
         {
             if (string.IsNullOrEmpty(txtapellidos.Text) || string.IsNullOrEmpty(txtpassword.Text) || string.IsNullOrEmpty(txtedad.Text) || string.IsNullOrEmpty(txtemail.Text) || string.IsNullOrEmpty(txtnombres.Text) || string.IsNullOrEmpty(txtusuario.Text) || string.IsNullOrEmpty(txttelefono.Text))
             {
-                
+
             }
             else if (!emailconfimr(txtemail.Text))
             {
