@@ -120,10 +120,10 @@
   <ItemGroup>
     <Content Include="Articulos.aspx" />
     <Content Include="Carrito.aspx" />
-    <Content Include="css\LoginStyle.css" />
-    <Content Include="css\StylePedidosStore.css" />
+    <Content Include="css\Estilos.css" />
     <Content Include="DetalleProducto.aspx" />
     <Content Include="GenerarPedido.aspx" />
+    <Content Include="JS\script.js" />
     <Content Include="Login.aspx" />
     <Content Include="pedidos.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

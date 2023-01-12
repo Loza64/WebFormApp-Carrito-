@@ -14,8 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
-    <link href="css/StylePedidosStore.css" rel="stylesheet" />
-    <script src="JS/JavaScript.js"></script>
+    <link href="css/Estilos.css" rel="stylesheet" />
 </head>
 <body class="body-login">
     <form runat="server">
@@ -57,81 +56,6 @@
             </asp:ContentPlaceHolder>
         </div>
     </form>
-    <script>
-
-        //Functions mnavbar menu
-        let iconmenu = document.getElementById("iconmenu");
-        let btnmenu = document.getElementById("btn-menu");
-        let menu = document.getElementById("menu");
-        let activemenu = false;
-        btnmenu.addEventListener('click', () => {
-            if (!activemenu) {
-                iconmenu.classList.remove("fa-bars");
-                iconmenu.classList.add("fa-times");
-                menu.style.left = "0px";
-                activemenu = true;
-            } else {
-                iconmenu.classList.add("fa-bars");
-                iconmenu.classList.remove("fa-times");
-                menu.style.left = "-320px";
-                activemenu = false;
-            }
-        })
-
-        //Sweet alert`s functions
-        function errorpedido() {
-            Swal.fire({
-                icon: 'error',
-                title: 'Su carrito de compras esta vacio, escoja almenos un producto',
-            })
-        }
-
-        function errorproducto() {
-            Swal.fire({
-                icon: 'error',
-                title: 'Llene todo los campos por favor',
-            })
-        }
-
-        function load() {
-            let timerInterval
-            Swal.fire({
-                title: 'Realizando pedido, por favor espere!',
-                html: 'Por favor espere <b></b>.',
-                timer: 2000,
-                timerProgressBar: true,
-                didOpen: () => {
-                    Swal.showLoading()
-                    timerInterval = setInterval(() => {
-                        const content = Swal.getHtmlContainer()
-                        if (content) {
-                            const b = content.querySelector('b')
-                            if (b) {
-                                b.textContent = Swal.getTimerLeft()
-                            }
-                        }
-                    }, 100)
-                },
-                willClose: () => {
-                    clearInterval(timerInterval)
-                }
-            }).then((result) => {
-                /* Read more about handling dismissals below */
-                if (result.dismiss === Swal.DismissReason.timer) {
-                    alertme();
-                }
-            })
-        }
-
-        function alertme() {
-            swal.fire(
-                "En hora buena!",
-                "Su pedido se realizo de manera exitosa, te hemos enviado un email con tu numero de pedido junto con los productos que solicitates, si no lo recives realiza tu pedido nuevamente.",
-                "success"
-            ).then(function () {
-                parent.location.href = "Principal.aspx"
-            });
-        }
-    </script>
+    <script src="JS/script.js"></script>
 </body>
 </html>
