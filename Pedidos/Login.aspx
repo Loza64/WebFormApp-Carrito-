@@ -6,7 +6,7 @@
             <div class="formulario">
                 <div class="login-container">
                     <h1>Iniciar sesión</h1>
-                    <asp:TextBox ID="txtusuario2" runat="server" placeholder="Usuario" CssClass="texto"></asp:TextBox>
+                    <asp:TextBox ID="txtusuario2" runat="server" placeholder="Usuario o correo" CssClass="texto"></asp:TextBox>
                     <asp:TextBox ID="txtpassword2" runat="server" placeholder="Contraseña" CssClass="texto" type="password"></asp:TextBox>
                     <asp:Label ID="lblerrorlogin" runat="server" CssClass="errormessage" Visible="false"></asp:Label>
                     <asp:Button ID="btnlogin" runat="server" Text="Iniciar sesión" CssClass="form-buttom" OnClick="btnlogin_Click" />
