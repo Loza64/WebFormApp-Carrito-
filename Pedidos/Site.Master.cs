@@ -11,11 +11,13 @@ namespace Pedidos
         {
             if (!Page.IsPostBack)
             {
+                //Si la sesion del carrito acabo lo vuelve a crear
                 if (Session["carrito"] == null)
                 {
                     Session["carrito"] = new List<ListadoCarrito>();
                 }
-                lblcuenta.Text = ((List<ListadoCarrito>)Session["carrito"]).Count.ToString();
+
+                //Si la sesion del usuario esta llena se muestra su username si no se cierra sesion
                 if (Session["UserSession"] != null)
                 {
                     lblLogin.Text = ((Usuario)Session["UserSession"]).Username + " <i class=\"fa fa-sign-out\" aria-hidden=\"true\"></i>";
@@ -24,6 +26,7 @@ namespace Pedidos
                 {
                     lblLogin.Text = "Iniciar sesión";
                 }
+                lblcuenta.Text = ((List<ListadoCarrito>)Session["carrito"]).Count.ToString();
             }
         }
 

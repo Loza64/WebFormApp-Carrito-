@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace Pedidos
@@ -13,33 +12,30 @@ namespace Pedidos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            try
             {
-                try
-                {
-                    productsList.DataSource = ProductoLN.GetInstance().ShowProducts();
-                    productsList.DataBind();
-                }
-                catch (SqlException ex)
-                {
-                    throw ex;
-                }
-                catch (SqlNullValueException ex)
-                {
-                    throw ex;
-                }
-                catch (TimeoutException ex)
-                {
-                    throw ex;
-                }
-                catch (NullReferenceException ex)
-                {
-                    throw ex;
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                productsList.DataSource = ProductoLN.GetInstance().ShowProducts();
+                productsList.DataBind();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (SqlNullValueException ex)
+            {
+                throw ex;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
         public void AddToCart(long IdProduct)
