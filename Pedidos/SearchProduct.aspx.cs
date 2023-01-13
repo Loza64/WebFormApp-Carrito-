@@ -1,5 +1,9 @@
-﻿using System;
+﻿using Entities;
+using Logic;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,7 +15,30 @@ namespace Pedidos
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (!IsPostBack) ListProducts.DataSource = (List<Producto>)Session["SearchProduct"];
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (SqlNullValueException ex)
+            {
+                throw ex;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
