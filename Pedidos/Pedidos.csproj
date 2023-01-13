@@ -134,7 +134,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Products.aspx" />
-    <Content Include="registrarproducto.aspx" />
     <Content Include="SearchProduct.aspx" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
@@ -193,13 +192,6 @@
       <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="registrarproducto.aspx.cs">
-      <DependentUpon>registrarproducto.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="registrarproducto.aspx.designer.cs">
-      <DependentUpon>registrarproducto.aspx</DependentUpon>
-    </Compile>
     <Compile Include="SearchProduct.aspx.cs">
       <DependentUpon>SearchProduct.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
