@@ -136,7 +136,7 @@ namespace Pedidos
                 }
             }
             Session["carrito"] = listadoCarrito;
-            Response.Redirect("/Productos");
+            Response.Redirect("/Products");
         }
 
         protected void ProductslistCommand(object source, System.Web.UI.WebControls.RepeaterCommandEventArgs e)

@@ -1,6 +1,9 @@
 ﻿using Entities;
+using Logic;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Web.UI;
 
 namespace Pedidos
@@ -30,10 +33,36 @@ namespace Pedidos
             }
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void BtnSearch(object sender, EventArgs e)
         {
-
-
+            try
+            {
+                if (!string.IsNullOrEmpty(txtbuscar.Text))
+                {
+                    Session["SearchProduct"] = ProductoLN.GetInstance().SearchProduct(txtbuscar.Text);
+                    Response.Redirect("/SearchProduct");
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (SqlNullValueException ex)
+            {
+                throw ex;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

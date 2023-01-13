@@ -36,7 +36,7 @@
                     </nav>
                     <div class="busqueda">
                         <asp:TextBox ID="txtbuscar" runat="server" CssClass="cajatexto " placeholder="Buscar" type="search"></asp:TextBox>
-                        <asp:LinkButton ID="btnsearch" runat="server" CssClass="boton fas fa-search"></asp:LinkButton>
+                        <asp:LinkButton ID="btnsearch" runat="server" CssClass="boton fas fa-search" OnClick="BtnSearch"></asp:LinkButton>
                     </div>
                     <div class="user">
                         <a href="/Login">
