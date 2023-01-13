@@ -41,6 +41,7 @@ namespace Pedidos
                 throw ex;
             }
         }
+
         public void AddToCart(long IdProduct)
         {
             bool checkProduct = false;

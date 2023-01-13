@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <section class="seccion-search pt-5 container">
         <h1>Resultados</h1>
-        <asp:Repeater ID="ListProducts" runat="server">
+        <asp:Repeater ID="ListProducts" runat="server" OnItemCommand="ListProductsCommand" OnItemDataBound="ListProductsDataBound">
             <ItemTemplate>
 
             </ItemTemplate>
