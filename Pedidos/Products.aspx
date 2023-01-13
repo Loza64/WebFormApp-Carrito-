@@ -1,4 +1,4 @@
-﻿<%@ Page EnableEventValidation="true" Title="Productos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Products.aspx.cs" Inherits="Pedidos.Products"%>
+﻿<%@ Page ValidateRequest="true" EnableEventValidation="true" Title="Productos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Products.aspx.cs" Inherits="Pedidos.Products"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <br />
     <div class="container   pt-5">

@@ -14,8 +14,11 @@ namespace Pedidos
         {
             try
             {
-                Productslist.DataSource = ProductoLN.GetInstance().ShowProducts();
-                Productslist.DataBind();
+                if(!Page.IsPostBack)
+                {
+                    Productslist.DataSource = ProductoLN.GetInstance().ShowProducts();
+                    Productslist.DataBind();
+                }
             }
             catch (SqlException ex)
             {
