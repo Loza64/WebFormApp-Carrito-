@@ -32,12 +32,12 @@ namespace Pedidos.Custom
                         string cookie = Request.Headers["Cookie"];
                         if (cookie != null && cookie.IndexOf("ASP.NET_UserSession") >= 0)
                         {
-                            Response.Redirect("Acces/Login.aspx");
+                            Response.Redirect("Login.aspx");
                         }
                     }
                     catch (Exception)
                     {
-                        Response.Redirect("Acces/Login.aspx");
+                        Response.Redirect("Login.aspx");
                     }
 
                 }
