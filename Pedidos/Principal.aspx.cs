@@ -134,23 +134,7 @@ namespace Pedidos
             }
             Session["carrito"] = listadoCarrito;
             Response.Redirect("/Principal");
-        }
-        protected void btnsearch_Click(object sender, EventArgs e)
-        {
-            /*
-             if (!string.IsNullOrEmpty(txtbuscar.Text))
-            {
-
-                productsList.DataSource = ProductoLN.GetInstance().SearchProduct(txtbuscar.Text);
-                productsList.DataBind();
-            }
-            else
-            {
-                productsList.DataSource = ProductoLN.GetInstance().ShowProducts();
-                productsList.DataBind();
-            }
-             */
-        }
+        } 
         protected void productsListCommand(object source, RepeaterCommandEventArgs e)
         {
             int Stock = Convert.ToInt32(((Label)e.Item.FindControl("Stock")).Text);
