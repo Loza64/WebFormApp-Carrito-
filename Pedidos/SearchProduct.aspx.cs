@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.Drawing;
+using System.Web.UI.WebControls;
 
 namespace Pedidos
 {
@@ -13,7 +15,7 @@ namespace Pedidos
         {
             try
             {
-                if (!IsPostBack) ListProducts.DataSource = (List<Producto>)Session["SearchProduct"];
+                if (!IsPostBack) ListProducts.DataSource = (List<Producto>)Session["SearchProduct"]; ListProducts.DataBind();
             }
             catch (SqlException ex)
             {
@@ -137,12 +139,25 @@ namespace Pedidos
 
         protected void ListProductsCommand(object source, System.Web.UI.WebControls.RepeaterCommandEventArgs e)
         {
-
+            if(e.CommandName == "detalles")
+            {
+                Label lblid = (Label)e.Item.FindControl("lblid");
+                Session["Producto"] = ProductoLN.GetInstance().GetProduct(Convert.ToInt64(lblid.Text));
+                Response.Redirect("DetalleProducto");
+            }
         }
 
         protected void ListProductsDataBound(object sender, System.Web.UI.WebControls.RepeaterItemEventArgs e)
         {
-
+            Label estado = (Label)e.Item.FindControl("lblestado");
+            if(estado.Text == "Disponible")
+            {
+                estado.ForeColor = Color.Green;
+            }
+            else
+            {
+                estado.ForeColor = Color.Red;
+            }
         }
     }
 }

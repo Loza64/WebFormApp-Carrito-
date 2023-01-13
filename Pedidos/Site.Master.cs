@@ -42,6 +42,10 @@ namespace Pedidos
                     Session["SearchProduct"] = ProductoLN.GetInstance().SearchProduct(txtbuscar.Text);
                     Response.Redirect("/SearchProduct");
                 }
+                else
+                {
+                    Response.Redirect("/Products");
+                }
             }
             catch (SqlException ex)
             {
