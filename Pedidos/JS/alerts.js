@@ -48,6 +48,6 @@ function alertme() {
         "Su pedido se realizo de manera exitosa, te hemos enviado un email con tu numero de pedido junto con los productos que solicitates, si no lo recives realiza tu pedido nuevamente.",
         "success"
     ).then(function () {
-        parent.location.href = "/Principal"
+        parent.location.href = "/Products"
     });
 }

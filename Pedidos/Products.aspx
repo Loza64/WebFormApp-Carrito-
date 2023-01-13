@@ -1,11 +1,10 @@
-﻿<%@ Page Title="Principal" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Principal.aspx.cs" Inherits="Pedidos.Principal" %>
-
+﻿<%@ Page EnableEventValidation="true" Title="Productos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Products.aspx.cs" Inherits="Pedidos.Products"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <br />
     <div class="container   pt-5">
         <div class="container-fluid">
             <div class="row">
-                <asp:Repeater ID="productsList" runat="server" OnItemCommand="productsListCommand" OnItemDataBound="productsListDataBound">
+                <asp:Repeater ID="Productslist" runat="server" OnItemCommand="ProductslistCommand" OnItemDataBound="ProductslistDataBound">
                     <ItemTemplate>
                         <div class="col-md-4 my-2">
                             <div class="targeta">

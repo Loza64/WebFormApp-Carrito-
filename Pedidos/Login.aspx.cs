@@ -73,7 +73,7 @@ namespace Pedidos
                     SessionManager _SessionManager = new SessionManager(Session);
                     _SessionManager.UserSession = login;
                     FormsAuthentication.RedirectFromLoginPage(txtusuario2.Text, false);
-                    Response.Redirect("~/Principal.aspx");
+                    Response.Redirect("/Products");
                 }
                 else
                 {

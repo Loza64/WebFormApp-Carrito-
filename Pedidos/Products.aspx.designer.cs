@@ -11,16 +11,16 @@ namespace Pedidos
 {
 
 
-    public partial class Principal
+    public partial class Products
     {
 
         /// <summary>
-        /// Control productsList.
+        /// Control Productslist.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater productsList;
+        protected global::System.Web.UI.WebControls.Repeater Productslist;
     }
 }

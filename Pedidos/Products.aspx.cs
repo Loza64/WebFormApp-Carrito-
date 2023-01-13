@@ -8,14 +8,14 @@ using System.Web.UI.WebControls;
 
 namespace Pedidos
 {
-    public partial class Principal : System.Web.UI.Page
+    public partial class Products : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
-                productsList.DataSource = ProductoLN.GetInstance().ShowProducts();
-                productsList.DataBind();
+                Productslist.DataSource = ProductoLN.GetInstance().ShowProducts();
+                Productslist.DataBind();
             }
             catch (SqlException ex)
             {
@@ -133,9 +133,10 @@ namespace Pedidos
                 }
             }
             Session["carrito"] = listadoCarrito;
-            Response.Redirect("/Principal");
-        } 
-        protected void productsListCommand(object source, RepeaterCommandEventArgs e)
+            Response.Redirect("/Productos");
+        }
+
+        protected void ProductslistCommand(object source, System.Web.UI.WebControls.RepeaterCommandEventArgs e)
         {
             int Stock = Convert.ToInt32(((Label)e.Item.FindControl("Stock")).Text);
             long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("txtid")).Text);
@@ -153,7 +154,8 @@ namespace Pedidos
                 }
             }
         }
-        protected void productsListDataBound(object sender, RepeaterItemEventArgs e)
+
+        protected void ProductslistDataBound(object sender, System.Web.UI.WebControls.RepeaterItemEventArgs e)
         {
             Label estado = (Label)e.Item.FindControl("lblestado");
             if (ProductoLN.GetInstance().Stock(Convert.ToInt64(((Label)e.Item.FindControl("txtid")).Text)) > 0)

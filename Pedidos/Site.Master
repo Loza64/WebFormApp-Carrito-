@@ -20,7 +20,7 @@
 <body class="body-login">
     <form runat="server">
         <div class="navbar-container">
-            <a href="/Principal" class="logo">
+            <a href="/Products" class="logo">
                 <label>Pedidos Store</label>
             </a>
             <div class="flex-menu" id="menu">

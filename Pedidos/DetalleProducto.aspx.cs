@@ -25,7 +25,7 @@ namespace Pedidos
                 }
                 else
                 {
-                    Response.Redirect("Principal.aspx");
+                    Response.Redirect("/Products");
                 }
             }
         }
@@ -133,7 +133,7 @@ namespace Pedidos
         }
         protected void btnprincipal_Click1(object sender, EventArgs e)
         {
-            Response.Redirect("/Principal");
+            Response.Redirect("/Products");
         }
     }
 }
