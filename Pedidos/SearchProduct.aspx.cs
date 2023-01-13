@@ -15,7 +15,11 @@ namespace Pedidos
         {
             try
             {
-                if (!IsPostBack) ListProducts.DataSource = (List<Producto>)Session["SearchProduct"]; ListProducts.DataBind();
+                if (!Page.IsPostBack)
+                {
+                    ListProducts.DataSource = (List<Producto>)Session["SearchProduct"]; 
+                    ListProducts.DataBind();
+                }
             }
             catch (SqlException ex)
             {
