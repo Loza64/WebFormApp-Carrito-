@@ -21,7 +21,7 @@
                 </h4>
                 <label style="font-weight: 700; font-size: 24px">Acerca del producto: </label>
                 <asp:Label ID="lbldescripcion" runat="server" class="descripcionproducto"></asp:Label>
-                <div class="flex">
+                <div class="flex" style="margin:5px 0">
                     <asp:Button ID="btncarrito" runat="server" Text="Añadir al carrito" class="botoncarrito" OnClick="btncarrito_Click" />
                     <asp:Button ID="btnprincipal" runat="server" Text="Volver al area principal" class="botondetalle" OnClick="btnprincipal_Click1" />
                 </div>

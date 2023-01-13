@@ -378,17 +378,21 @@
     color:blue;
     font-weight:900;
     text-align:center;
-    font-size:27px;
+    font-size:29px;
+    margin-top:8px;
 }
 
 /*Targeta 2*/
+.seccion-search{
+    margin:0 20px;
+}
 .targeta2 {
     display: flex;
     align-items: center;
     border: solid 2px lightgrey;
     border-radius: 10px;
     overflow: hidden;
-    margin: 22px 0;
+    margin:20px 0;
 }
 
     .targeta2 .content-targeta2 .details {
@@ -470,8 +474,8 @@
     }
 
 .details-product .flex div .descripcionproducto {
-    font-size: 15px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 900;
     width: 100%;
     height: 100%;
     color: gray;
