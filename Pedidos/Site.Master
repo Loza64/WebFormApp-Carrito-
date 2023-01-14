@@ -16,7 +16,7 @@
     <link href="css/StyleSheetPedidos.css" rel="stylesheet" />
     <script src="JS/alerts.js"></script>
 </head>
-<body class="body-login">
+<body>
     <form runat="server">
         <div class="navbar-container">
             <a href="/Products" class="logo">
