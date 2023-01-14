@@ -5,6 +5,7 @@
         <div class="form-container">
             <div class="formulario">
                 <div class="login-container">
+                    <h1>Reservar pedido</h1>
                     <label style="font-weight: 900; color: red;">Pedido a nombre de</label>
                     <asp:TextBox Style="font-weight: 700;" ID="txtnombre2" runat="server" CssClass="texto" placeholder="Nombre"></asp:TextBox>
                     <label style="font-weight: 900; color: red;">Fecha de entrega</label>

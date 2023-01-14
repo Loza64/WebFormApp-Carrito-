@@ -992,6 +992,9 @@ table {
 
 @media(max-width:570px) {
 
+    .formulario h1 {
+        font-size: 23px;
+    }
     .form-container {
         margin-inline: 25px;
         flex-direction: column-reverse;
@@ -1035,7 +1038,7 @@ table {
     }
 
     .formulario h1 {
-        font-size: 19px;
+        font-size: 17px;
     }
 
     .form-buttom {
