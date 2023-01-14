@@ -21,7 +21,7 @@ namespace Pedidos
                     lblcompany.Text = product.Company;
                     lbldescripcion.Text = product.Detalle;
                     lblprecio.Text = Convert.ToString(product.Precio);
-                    imgproduct.ImageUrl = "data:image/jpg;base64," + Convert.ToBase64String(product.Imagen);
+                    imgproduct.ImageUrl = ProductoLN.GetInstance().GetImgProduct(product.Id);
                 }
                 else
                 {
