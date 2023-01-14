@@ -2,6 +2,8 @@
 using Logic;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Web.UI.WebControls;
 
 namespace Pedidos
@@ -21,19 +23,43 @@ namespace Pedidos
              lo borrara automaticamente del carrito de compras */
             if (Session["carrito"] != null)
             {
-                long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("lblidproducto")).Text);
-                List<ListadoCarrito> listadoCarrito = (List<ListadoCarrito>)Session["carrito"];
-                if (ProductoLN.GetInstance().Stock(IdProduct) < 1)
+                try
                 {
-                    foreach (ListadoCarrito carrito in listadoCarrito)
+                    long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("lblidproducto")).Text);
+                    (e.Item.FindControl("imgproducto") as System.Web.UI.WebControls.Image).ImageUrl = ProductoLN.GetInstance().GetImgProduct(IdProduct);
+                    List<ListadoCarrito> listadoCarrito = (List<ListadoCarrito>)Session["carrito"];
+                    if (ProductoLN.GetInstance().Stock(IdProduct) < 1)
                     {
-                        if (carrito.IdProducto == IdProduct)
+                        foreach (ListadoCarrito carrito in listadoCarrito)
                         {
-                            listadoCarrito.Remove(carrito);
-                            Response.Redirect("Carrito.aspx");
-                            break;
+                            if (carrito.IdProducto == IdProduct)
+                            {
+                                listadoCarrito.Remove(carrito);
+                                Response.Redirect("Carrito.aspx");
+                                break;
+                            }
                         }
                     }
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                catch (SqlNullValueException ex)
+                {
+                    throw ex;
+                }
+                catch (TimeoutException ex)
+                {
+                    throw ex;
+                }
+                catch (NullReferenceException ex)
+                {
+                    throw ex;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
                 }
             }
         }

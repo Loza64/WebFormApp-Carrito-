@@ -72,7 +72,6 @@ namespace Pedidos
                             ListadoCarrito carrito = new ListadoCarrito
                             {
                                 IdProducto = product.Id,
-                                Imagen = "data:image/jpg;base64," + Convert.ToBase64String(product.Imagen),
                                 Nombre = product.Nombre,
                                 Precio = product.Precio,
                                 Cantidad = 1,
@@ -110,7 +109,6 @@ namespace Pedidos
                         ListadoCarrito carrito = new ListadoCarrito
                         {
                             IdProducto = product.Id,
-                            Imagen = "data:image/jpg;base64," + Convert.ToBase64String(product.Imagen),
                             Nombre = product.Nombre,
                             Precio = product.Precio,
                             Cantidad = 1,

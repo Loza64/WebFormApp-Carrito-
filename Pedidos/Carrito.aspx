@@ -27,7 +27,7 @@
                                         <asp:Label ID="lblidproducto" runat="server" Text='<%# Bind("IdProducto") %>'></asp:Label>
                                     </td>
                                     <td class="dis-none">
-                                        <img src="<%#Eval("Imagen")%>" />
+                                        <asp:Image ID="imgproducto" runat="server" />
                                     </td>
                                     <td>
                                         <%# Eval("Nombre") %>
