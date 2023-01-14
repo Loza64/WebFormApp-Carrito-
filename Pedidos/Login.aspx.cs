@@ -128,17 +128,23 @@ namespace Pedidos
                 try
                 {
                     Usuario usuario = getEntities();
-                    bool SingIn = UsuarioLN.GetInstance().SignUp(usuario);
-                    if (SingIn)
+                    if (!UsuarioLN.GetInstance().CheckUserData(usuario.Username, usuario.Email, usuario.Telefono))
                     {
-                        lblsuccessignup.Visible = true;
-                        lblsuccessignup.Text = "Registro realizado exitosamente.";
-                        ClientScript.RegisterClientScriptBlock(this.GetType(), "", "succesSignUp('Pedidos Store')", true);
+                        if (UsuarioLN.GetInstance().SignUp(usuario))
+                        {
+                            lblsuccessignup.Visible = true;
+                            lblsuccessignup.Text = "Registro realizado exitosamente.";
+                            ClientScript.RegisterClientScriptBlock(this.GetType(), "", "succesSignUp('Pedidos Store')", true);
+                        }
+                        else
+                        {
+                            lblerrorsignup.Visible = true;
+                            lblerrorsignup.Text = "Usuario, correo o teléfono ya son usados por otro usuario.";
+                            ClientScript.RegisterClientScriptBlock(this.GetType(), "", "errorSignupData()", true);
+                        }
                     }
                     else
                     {
-                        lblerrorsignup.Visible = true;
-                        lblerrorsignup.Text = "Usuario, correo o teléfono ya son usados por otro usuario.";
                         ClientScript.RegisterClientScriptBlock(this.GetType(), "", "errorSignupData()", true);
                     }
                 }

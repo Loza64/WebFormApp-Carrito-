@@ -1,6 +1,7 @@
 ﻿using DataAcces;
 using Entities;
 using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 
@@ -48,6 +49,34 @@ namespace Logic
             }
         }
 
+        public bool CheckUserData(string usuario, string email, string telefono)
+        {
+            try
+            {
+                return UsuarioDAO.GetInstance().CheckUserData(usuario,email, telefono);
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (SqlNullValueException ex)
+            {
+                throw ex;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
+        }
         public bool SignUp(Usuario user)
         {
             try

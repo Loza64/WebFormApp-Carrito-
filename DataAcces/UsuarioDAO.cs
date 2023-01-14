@@ -83,6 +83,57 @@ namespace DataAcces
             return user;
         }
 
+        public bool CheckUserData(string usuario, string email,string telefono)
+        {
+            bool check = false;
+            using (con = GetSqlConnection())
+            {
+                using (scmd = new SqlCommand())
+                {
+                    try
+                    {
+                        con.Open();
+                        scmd.Connection = con;
+                        scmd.CommandText = "select * from Usuario where Usuario = @Usuario or Email = @Email or Telefono = @Telefono";
+                        scmd.CommandType = System.Data.CommandType.Text;
+                        scmd.Parameters.Add("@Usuario", SqlDbType.VarChar).Value = usuario;
+                        scmd.Parameters.AddWithValue("@Email", SqlDbType.VarChar).Value = email;
+                        scmd.Parameters.AddWithValue("@Telefono", SqlDbType.NVarChar).Value = telefono;
+                        SqlDataReader sdr = scmd.ExecuteReader();
+                        if (sdr.Read())
+                        {
+                            check = true;
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw ex;
+                    }
+                    catch (SqlNullValueException ex)
+                    {
+                        throw ex;
+                    }
+                    catch (TimeoutException ex)
+                    {
+                        throw ex;
+                    }
+                    catch (NullReferenceException ex)
+                    {
+                        throw ex;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                    finally
+                    {
+                        con.Close();
+                    }
+                }
+            }
+            return check;
+        }
+
         public bool SignUp(Usuario user)
         {
             bool responce = false;
