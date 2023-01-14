@@ -28,6 +28,7 @@ namespace DataAcces
         public List<Producto> ShowProducts()
         {
             Producto product;
+            list = new List<Producto>();
             using (con = GetSqlConnection())
             {
                 using (scmd = new SqlCommand())
@@ -39,23 +40,21 @@ namespace DataAcces
                         scmd.CommandText = "select * from Producto";
                         scmd.CommandType = CommandType.Text;
                         sdr = scmd.ExecuteReader();
-                        if (sdr.HasRows)
+                        while (sdr.Read())
                         {
-                            list = new List<Producto>();
-                            while (sdr.Read())
+                            product = new Producto
                             {
-                                product = new Producto();
-                                product.Id = Convert.ToInt64(sdr["Id"].ToString());
-                                product.IdCategoria = Convert.ToInt64(sdr["IdCategoria"].ToString());
-                                product.Nombre = sdr["Nombre"].ToString();
-                                product.Imagen = (byte[])sdr["Imagen"];
-                                product.Company = sdr["Company"].ToString();
-                                product.Detalle = sdr["Detalle"].ToString();
-                                product.Stock = Convert.ToInt32(sdr["Stock"].ToString());
-                                product.Precio = Convert.ToDouble(sdr["Precio"].ToString());
-                                product.Estado = sdr["Estado"].ToString();
-                                list.Add(product);
-                            }
+                                Id = sdr.GetInt64(0),
+                                IdCategoria = sdr.GetInt64(1),
+                                //Imagen = (byte[])sdr["Imagen]
+                                Nombre = sdr.GetString(2),
+                                Company = sdr.GetString(4),
+                                Detalle = sdr.GetString(5),
+                                Stock = sdr.GetInt32(6),
+                                Precio = sdr.GetDecimal(7),
+                                Estado = sdr.GetString(8)
+                            };
+                            list.Add(product);
                         }
                     }
                     catch (SqlException ex)
@@ -104,15 +103,18 @@ namespace DataAcces
                         sdr = scmd.ExecuteReader();
                         while (sdr.Read())
                         {
-                            product = new Producto();
-                            product.Id = Convert.ToInt64(sdr["Id"].ToString());
-                            product.IdCategoria = Convert.ToInt64(sdr["IdCategoria"].ToString());
-                            product.Nombre = sdr["Nombre"].ToString();
-                            product.Company = sdr["Company"].ToString();
-                            product.Detalle = sdr["Detalle"].ToString();
-                            product.Stock = Convert.ToInt32(sdr["Stock"].ToString());
-                            product.Precio = Convert.ToDouble(sdr["Precio"].ToString());
-                            product.Estado = sdr["Estado"].ToString();
+                            product = new Producto
+                            {
+                                Id = sdr.GetInt64(0),
+                                IdCategoria = sdr.GetInt64(1),
+                                //Imagen = (byte[])sdr["Imagen]
+                                Nombre = sdr.GetString(2),
+                                Company = sdr.GetString(4),
+                                Detalle = sdr.GetString(5),
+                                Stock = sdr.GetInt32(6),
+                                Precio = sdr.GetDecimal(7),
+                                Estado = sdr.GetString(8)
+                            };
                         }
                     }
                     catch (SqlException ex)
@@ -196,6 +198,7 @@ namespace DataAcces
         public List<Producto> SearchProduct(string nombre)
         {
             Producto product;
+            list = new List<Producto>();
             using (con = GetSqlConnection())
             {
                 using (scmd = new SqlCommand())
@@ -208,22 +211,21 @@ namespace DataAcces
                         scmd.CommandType = CommandType.Text;
                         scmd.Parameters.Add("@cmdproducto", SqlDbType.VarChar).Value = nombre;
                         sdr = scmd.ExecuteReader();
-                        if (sdr.HasRows)
+                        while (sdr.Read())
                         {
-                            list = new List<Producto>();
-                            while (sdr.Read())
+                            product = new Producto
                             {
-                                product = new Producto();
-                                product.Id = Convert.ToInt64(sdr["Id"].ToString());
-                                product.IdCategoria = Convert.ToInt64(sdr["IdCategoria"].ToString());
-                                product.Nombre = sdr["Nombre"].ToString();
-                                product.Company = sdr["Company"].ToString();
-                                product.Detalle = sdr["Detalle"].ToString();
-                                product.Stock = Convert.ToInt32(sdr["Stock"].ToString());
-                                product.Precio = Convert.ToDouble(sdr["Precio"].ToString());
-                                product.Estado = sdr["Estado"].ToString();
-                                list.Add(product);
-                            }
+                                Id = sdr.GetInt64(0),
+                                IdCategoria = sdr.GetInt64(1),
+                                //Imagen = (byte[])sdr["Imagen],
+                                Nombre = sdr.GetString(2),
+                                Company = sdr.GetString(4),
+                                Detalle = sdr.GetString(5),
+                                Stock = sdr.GetInt32(6),
+                                Precio = sdr.GetDecimal(7),
+                                Estado = sdr.GetString(8)
+                            };
+                            list.Add(product);
                         }
                     }
                     catch (SqlException ex)

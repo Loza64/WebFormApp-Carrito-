@@ -101,7 +101,7 @@ namespace DataAcces
                         {
                             foreach (ListadoCarrito carrito in listacarrito)
                             {
-                                DetallePedido detalle = new DetallePedido()
+                                DetallePedido detalle = new DetallePedido
                                 {
                                     CodPedido = pedido.CodPedido,
                                     IdProducto = carrito.IdProducto,

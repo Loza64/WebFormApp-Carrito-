@@ -169,7 +169,7 @@ namespace Pedidos
             {
                 long idCategoria = Convert.ToInt64((e.Item.FindControl("lblidcategoria") as Label).Text);
                 long idProducto = Convert.ToInt64((e.Item.FindControl("lblid") as Label).Text);
-                ((Label)e.Item.FindControl("lblcategoria")).Text = "Categoria: " + CateogiraLN.GetInstance().GetCategory(idCategoria);
+                ((Label)e.Item.FindControl("lblcategoria")).Text = "Categoria: " + CateogiraLN.GetInstance().GetCategoryName(idCategoria);
                 (e.Item.FindControl("imgproducto") as ImageButton).ImageUrl = ProductoLN.GetInstance().GetImgProduct(idProducto);
 
             }

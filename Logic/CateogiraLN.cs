@@ -1,9 +1,7 @@
-﻿using Entities;
+﻿using DataAcces;
+using System;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
-using System.Data;
-using System;
-using DataAcces;
 
 namespace Logic
 {
@@ -20,11 +18,11 @@ namespace Logic
             return categoriaLn;
         }
 
-        public string GetCategory(long id)
+        public string GetCategoryName(long id)
         {
             try
             {
-                return CateogiraDAO.GetInstance().GetCategory(id);
+                return CateogiraDAO.GetInstance().GetCategoryName(id);
             }
             catch (SqlException ex)
             {

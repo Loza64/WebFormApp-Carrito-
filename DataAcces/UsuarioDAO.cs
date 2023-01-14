@@ -41,14 +41,17 @@ namespace DataAcces
                         SqlDataReader sdr = scmd.ExecuteReader();
                         while (sdr.Read())
                         {
-                            user = new Usuario();
-                            user.Id = Convert.ToInt64(sdr["Id"].ToString());
-                            user.Username = sdr["Usuario"].ToString();
-                            user.Nombres = sdr["Nombres"].ToString();
-                            user.Apellidos = sdr["Apellidos"].ToString();
-                            user.Genero = sdr["Genero"].ToString();
-                            user.Edad = Convert.ToInt32(sdr["Edad"].ToString());
-                            user.Email = sdr["Email"].ToString();
+                            user = new Usuario
+                            {
+                                Id = sdr.GetInt64(0),
+                                Username = sdr.GetString(1),
+                                Nombres = sdr.GetString(2),
+                                Apellidos = sdr.GetString(3),
+                                Genero = sdr.GetString(4),
+                                Edad = sdr.GetInt32(5),
+                                Email = sdr.GetString(6),
+                                Telefono = sdr.GetString(7)
+                            };
                         }
                     }
                     catch (SqlException ex)

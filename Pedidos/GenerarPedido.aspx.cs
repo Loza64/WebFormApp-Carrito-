@@ -24,8 +24,8 @@ namespace Pedidos
                     {
                         if (((List<ListadoCarrito>)Session["carrito"]).Count != 0)
                         {
-                            lbltotal.Text = "Total a pagar: $" + ((double)Session["Total"]).ToString();
-                            lbltotal2.Text = "Total a pagar: $" + ((double)Session["Total"]).ToString();
+                            lbltotal.Text = "Total a pagar: $" + ((decimal)Session["Total"]).ToString();
+                            lbltotal2.Text = "Total a pagar: $" + ((decimal)Session["Total"]).ToString();
                         }
                         else
                         {
@@ -73,8 +73,8 @@ namespace Pedidos
                     Direccion = txtdireccion.Text,
                     FechaEntrega = Convert.ToDateTime(txtfecha.Text),
                     HoraEntrega = Convert.ToDateTime(txthora.Text),
-                    SubTotal = (double)Session["SubTotal"],
-                    PagoTotal = (double)Session["Total"],
+                    SubTotal = (decimal)Session["SubTotal"],
+                    PagoTotal = (decimal)Session["Total"],
                     Estado = "Pendiente"
                 };
                 try
@@ -137,8 +137,8 @@ namespace Pedidos
                         Direccion = "Pedidos Store",
                         FechaEntrega = Convert.ToDateTime(txtfecha2.Text),
                         HoraEntrega = Convert.ToDateTime(txthora2.Text),
-                        SubTotal = (double)Session["SubTotal"],
-                        PagoTotal = (double)Session["Total"],
+                        SubTotal = (decimal)Session["SubTotal"],
+                        PagoTotal = (decimal)Session["Total"],
                         Estado = "Pendiente"
                     };
                     bool responce = PedidoLN.GetInstance().NewPedido(pedido, (List<ListadoCarrito>)Session["carrito"]);

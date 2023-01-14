@@ -85,15 +85,15 @@ namespace Pedidos
         {
             carrito.DataSource = listadoCarrito;
             carrito.DataBind();
-            double SubTotal = 0.00;
-            double iva = 0.00;
-            double Total = 0.00;
+            decimal SubTotal = 0.00m;
+            decimal iva = 0.00m;
+            decimal Total = 0.00m;
             if (Session["carrito"] != null)
             {
                 foreach (ListadoCarrito carrito in listadoCarrito)
                 {
                     SubTotal += carrito.SubTotal;
-                    iva = (double)Math.Round(SubTotal * 0.13, 2, MidpointRounding.AwayFromZero);
+                    iva = Math.Round(SubTotal * 0.13m, 2, MidpointRounding.AwayFromZero);
                     Total += carrito.Total;
                 }
                 txtsubtotal.Text = "$" + SubTotal.ToString();
@@ -121,7 +121,7 @@ namespace Pedidos
                         {
                             carrito.Cantidad = cantidad;
                             carrito.SubTotal = cantidad * carrito.Precio;
-                            carrito.Total = (double)Math.Round((carrito.SubTotal * 0.13) + carrito.SubTotal, 2, MidpointRounding.AwayFromZero);
+                            carrito.Total = Math.Round((carrito.SubTotal * 0.13m) + carrito.SubTotal, 2, MidpointRounding.AwayFromZero);
                             break;
                         }
                     }
@@ -134,7 +134,7 @@ namespace Pedidos
                         {
                             carrito.Cantidad = Logic.ProductoLN.GetInstance().Stock(IdProduct);
                             carrito.SubTotal = Logic.ProductoLN.GetInstance().Stock(IdProduct) * carrito.Precio;
-                            carrito.Total = (double)Math.Round((carrito.SubTotal * 0.13) + carrito.SubTotal, 2, MidpointRounding.AwayFromZero);
+                            carrito.Total = Math.Round((carrito.SubTotal * 0.13m) + carrito.SubTotal, 2, MidpointRounding.AwayFromZero);
                             break;
                         }
                     }
@@ -148,7 +148,7 @@ namespace Pedidos
                     {
                         carrito.Cantidad = 1;
                         carrito.SubTotal = carrito.Precio;
-                        carrito.Total = (double)Math.Round((carrito.SubTotal * 0.13) + carrito.SubTotal, 2, MidpointRounding.AwayFromZero);
+                        carrito.Total = Math.Round((carrito.SubTotal * 0.13m) + carrito.SubTotal, 2, MidpointRounding.AwayFromZero);
                         break;
                     }
                 }
