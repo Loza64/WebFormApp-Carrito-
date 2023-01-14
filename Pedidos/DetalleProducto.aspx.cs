@@ -44,6 +44,8 @@ namespace Pedidos
                     if (cart.IdProducto == IdProduct)
                     {
                         cart.Cantidad += cart.Cantidad;
+                        cart.SubTotal = Math.Round(cart.Precio * cart.Cantidad, 2, MidpointRounding.AwayFromZero);
+                        cart.Total = Math.Round((cart.SubTotal + 0.13m) + cart.SubTotal, 2, MidpointRounding.AwayFromZero);
                         checkProduct = true;
                         break;
                     }
@@ -127,6 +129,7 @@ namespace Pedidos
         {
             Producto product = (Producto)Session["Producto"];
             AddToCart(product.Id);
+            Response.Redirect("/DetalleProducto");
         }
         protected void btnprincipal_Click1(object sender, EventArgs e)
         {
