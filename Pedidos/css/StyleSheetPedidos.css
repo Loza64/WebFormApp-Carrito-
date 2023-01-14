@@ -396,52 +396,58 @@
     margin: 20px 0;
 }
 
-    .targeta2 .content-targeta2 .details {
-        font-size: 12.3px;
-        font-weight: bold;
-        color: rgb(177, 177, 177);
-    }
-    .targeta2 .content-targeta2 .details2{
-        display:none;
-    }
-    .targeta2 .content-targeta2 {
-        margin: 0 20px;
-    }
-
     .targeta2 .flex-targeta2 {
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
 
-        .targeta2 .flex-targeta2 h2 {
-            color: blue;
-            font-weight: 900;
-        }
-
-        .targeta2 .flex-targeta2 span {
-            font-weight: 900;
-        }
-
-
     .targeta2 .producto-img .imgproducto {
         height: 200px;
         width: 200px;
     }
+
+    .targeta2 .content-targeta2 {
+        margin: 0 20px;
+    }
+
+    .targeta2 .flex-targeta2 h2 {
+        color: blue;
+        font-weight: 900;
+        font-size: 26px
+    }
+
+    .targeta2 .content-targeta2 .details {
+        font-size: 12px;
+        font-weight: 900;
+        color: rgb(177, 177, 177);
+    }
+
+    .targeta2 .content-targeta2 .details2 {
+        display: none;
+    }
+
+    .targeta2 .flex-targeta2 span {
+        font-weight: 900;
+    }
+
 
 @media only screen and (max-width:390px) {
     .targeta2 .producto-img .imgproducto {
         height: 130px;
         width: 130px;
     }
+
     .targeta2 .flex-targeta2 h2 {
         font-size: 15px;
     }
 }
+
 @media only screen and (max-width:570px) {
-    .seccion-search{
+    .seccion-search {
         margin: 0 5px;
     }
+
     .targeta2 .producto-img .imgproducto {
         height: 140px;
         width: 140px;
@@ -450,9 +456,11 @@
     .targeta2 .content-targeta2 {
         justify-content: flex-start;
     }
+
     .targeta2 .flex-targeta2 h2 {
         font-size: 17px;
     }
+
     .targeta2 .flex-targeta2 span {
         display: none;
     }
@@ -464,9 +472,9 @@
     .targeta2 .content-targeta2 .details2 {
         display: flex;
         flex-direction: column;
-        align-items:start;
-        font-weight:900;
-        font-size:13px;
+        align-items: start;
+        font-weight: 900;
+        font-size: 13px;
     }
 }
 
