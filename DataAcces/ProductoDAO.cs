@@ -37,7 +37,7 @@ namespace DataAcces
                     {
                         con.Open();
                         scmd.Connection = con;
-                        scmd.CommandText = "select * from Producto";
+                        scmd.CommandText = "select top(21) * from Producto";
                         scmd.CommandType = CommandType.Text;
                         sdr = scmd.ExecuteReader();
                         while (sdr.Read())
@@ -207,7 +207,7 @@ namespace DataAcces
                     {
                         con.Open();
                         scmd.Connection = con;
-                        scmd.CommandText = "select * from Producto where Nombre like '%'+@cmdproducto+'%'";
+                        scmd.CommandText = "select top(21) * from Producto where Nombre like '%'+@cmdproducto+'%'";
                         scmd.CommandType = CommandType.Text;
                         scmd.Parameters.Add("@cmdproducto", SqlDbType.VarChar).Value = nombre;
                         sdr = scmd.ExecuteReader();
