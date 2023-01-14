@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="css/StyleSheetPedidos.css" rel="stylesheet" />
-    <script src="JS/alerts.js"></script>
+    <script src="JS/AlertsFunctions.js"></script>
 </head>
 <body>
     <form runat="server">

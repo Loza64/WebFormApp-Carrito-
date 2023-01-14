@@ -12,6 +12,30 @@ function errorproducto() {
     })
 }
 
+function errorSignup() {
+    Swal.fire({
+        icon: 'error',
+        title: 'Registrese correctamente por favor.',
+    })
+}
+
+function errorSignupData() {
+    Swal.fire({
+        icon: 'error',
+        title: 'Usuario, correo o teléfono ya son usados por otro usuario.',
+    })
+}
+
+function succesSignUp(businessName, userName) {
+    swal.fire(
+        "En hora buena!",
+        "Su información se registro exitosamente, bienbenido a " + businessName + " " + userName + ".",
+        "success"
+    ).then(function () {
+        parent.location.href = "/Products"
+    });
+}
+
 function load() {
     let timerInterval
     Swal.fire({

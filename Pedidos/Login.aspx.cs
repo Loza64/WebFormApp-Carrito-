@@ -4,6 +4,7 @@ using Pedidos.Custom;
 using System;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.Drawing;
 using System.Net.Mail;
 using System.Web.Security;
 
@@ -51,16 +52,17 @@ namespace Pedidos
 
         private Usuario getEntities()
         {
-            Usuario usuario = new Usuario();
-            usuario.Username = txtusuario.Text;
-            usuario.Nombres = txtnombres.Text;
-            usuario.Apellidos = txtapellidos.Text;
-            usuario.Edad = Convert.ToInt32(txtedad.Text);
-            usuario.Telefono = txttelefono.Text;
-            usuario.Email = txtemail.Text;
-            usuario.Password = txtpassword.Text;
-            usuario.Genero = ddlgenero.Text;
-            return usuario;
+            return new Usuario
+            {
+                Username = txtusuario.Text,
+                Nombres = txtnombres.Text,
+                Apellidos = txtapellidos.Text,
+                Edad = Convert.ToInt32(txtedad.Text),
+                Telefono = txttelefono.Text,
+                Email = txtemail.Text,
+                Password = txtpassword.Text,
+                Genero = ddlgenero.Text
+            };
         }
 
         protected void btnlogin_Click(object sender, EventArgs e)
@@ -105,17 +107,21 @@ namespace Pedidos
 
         protected void btnsignup_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtapellidos.Text) || string.IsNullOrEmpty(txtpassword.Text) || string.IsNullOrEmpty(txtedad.Text) || string.IsNullOrEmpty(txtemail.Text) || string.IsNullOrEmpty(txtnombres.Text) || string.IsNullOrEmpty(txtusuario.Text) || string.IsNullOrEmpty(txttelefono.Text))
+            if (string.IsNullOrEmpty(txtapellidos.Text) || string.IsNullOrEmpty(txtpassword.Text) || string.IsNullOrEmpty(txtedad.Text) || string.IsNullOrEmpty(txtemail.Text) || string.IsNullOrEmpty(txtnombres.Text) || string.IsNullOrEmpty(txtusuario.Text) || string.IsNullOrEmpty(txttelefono.Text) || ddlgenero.Text == "Genero")
             {
-
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "", "errorSignup()", true);
             }
             else if (!emailconfimr(txtemail.Text))
             {
                 txtemail.Text = "Email no valido";
+                txtemail.BorderColor = Color.Red;
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "", "errorSignup()", true);
             }
             else if (!edadconfirm(txtedad.Text))
             {
                 txtedad.Text = "Edad no valida";
+                txtedad.BorderColor = Color.Red;
+                ClientScript.RegisterClientScriptBlock(this.GetType(), "", "errorSignup()", true);
             }
             else
             {
@@ -127,11 +133,13 @@ namespace Pedidos
                     {
                         lblsuccessignup.Visible = true;
                         lblsuccessignup.Text = "Registro realizado exitosamente.";
+                        ClientScript.RegisterClientScriptBlock(this.GetType(), "", "succesSignup('Pedidos Store','" + usuario.Username + "')", true);
                     }
                     else
                     {
                         lblerrorsignup.Visible = true;
                         lblerrorsignup.Text = "Usuario, correo o teléfono ya son usados por otro usuario.";
+                        ClientScript.RegisterClientScriptBlock(this.GetType(), "", "errorSignupData()", true);
                     }
                 }
                 catch (SqlException ex)
