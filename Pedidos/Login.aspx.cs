@@ -133,7 +133,7 @@ namespace Pedidos
                     {
                         lblsuccessignup.Visible = true;
                         lblsuccessignup.Text = "Registro realizado exitosamente.";
-                        ClientScript.RegisterClientScriptBlock(this.GetType(), "", "succesSignup('Pedidos Store','" + usuario.Username + "')", true);
+                        ClientScript.RegisterClientScriptBlock(this.GetType(), "", "succesSignUp('Pedidos Store')", true);
                     }
                     else
                     {

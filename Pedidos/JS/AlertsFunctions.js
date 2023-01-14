@@ -26,14 +26,12 @@ function errorSignupData() {
     })
 }
 
-function succesSignUp(businessName, userName) {
+function succesSignUp(businessName) {
     swal.fire(
-        "En hora buena!",
-        "Su información se registro exitosamente, bienbenido a " + businessName + " " + userName + ".",
-        "success"
-    ).then(function () {
-        parent.location.href = "/Products"
-    });
+        'En hora buena!',
+        'Su información se registro exitosamente, bienbenido a ' + businessName + '.',
+        'success'
+    )
 }
 
 function load() {
