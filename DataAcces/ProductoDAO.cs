@@ -108,7 +108,6 @@ namespace DataAcces
                             product.Id = Convert.ToInt64(sdr["Id"].ToString());
                             product.IdCategoria = Convert.ToInt64(sdr["IdCategoria"].ToString());
                             product.Nombre = sdr["Nombre"].ToString();
-                            product.Imagen = (byte[])sdr["Imagen"];
                             product.Company = sdr["Company"].ToString();
                             product.Detalle = sdr["Detalle"].ToString();
                             product.Stock = Convert.ToInt32(sdr["Stock"].ToString());
@@ -145,6 +144,55 @@ namespace DataAcces
             return product;
         }
 
+        public string GetImgProduct(long id)
+        {
+            string image = null;
+            using (con = GetSqlConnection())
+            {
+                using (scmd = new SqlCommand())
+                {
+                    try
+                    {
+                        con.Open();
+                        scmd.Connection = con;
+                        scmd.CommandText = "select Imagen from Producto where id = @Id";
+                        scmd.CommandType = CommandType.Text;
+                        scmd.Parameters.Add("@Id", SqlDbType.BigInt).Value = id;
+                        sdr = scmd.ExecuteReader();
+                        if (sdr.Read())
+                        {
+                            image = "data:image/jpg;base64," + Convert.ToBase64String((byte[])sdr["Imagen"]);
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw ex;
+                    }
+                    catch (SqlNullValueException ex)
+                    {
+                        throw ex;
+                    }
+                    catch (TimeoutException ex)
+                    {
+                        throw ex;
+                    }
+                    catch (NullReferenceException ex)
+                    {
+                        throw ex;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                    finally
+                    {
+                        con.Close();
+                    }
+                }
+            }
+            return image;
+        }
+
         public List<Producto> SearchProduct(string nombre)
         {
             Producto product;
@@ -169,7 +217,6 @@ namespace DataAcces
                                 product.Id = Convert.ToInt64(sdr["Id"].ToString());
                                 product.IdCategoria = Convert.ToInt64(sdr["IdCategoria"].ToString());
                                 product.Nombre = sdr["Nombre"].ToString();
-                                product.Imagen = (byte[])sdr["Imagen"];
                                 product.Company = sdr["Company"].ToString();
                                 product.Detalle = sdr["Detalle"].ToString();
                                 product.Stock = Convert.ToInt32(sdr["Stock"].ToString());

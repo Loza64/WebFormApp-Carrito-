@@ -22,7 +22,7 @@
                                     <asp:Label ID="lblestado" runat="server" Text='<%# Eval("Estado")%>' Style="font-weight: 700"></asp:Label>
                                 </div>
                                 <div class="cuerpo-targeta">
-                                    <img class="imagenproducto" src="<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("Imagen")) %>" />
+                                    <asp:Image ID="imgproducto" runat="server" CssClass="imagenproducto"/>
                                 </div>
                                 <div class="pie-targeta">
                                     <div class="botones">

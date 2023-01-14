@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.Drawing;
 using System.Web.UI.WebControls;
 
 namespace Pedidos
@@ -14,7 +15,7 @@ namespace Pedidos
         {
             try
             {
-                if(!Page.IsPostBack)
+                if (!Page.IsPostBack)
                 {
                     Productslist.DataSource = ProductoLN.GetInstance().ShowProducts();
                     Productslist.DataBind();
@@ -162,20 +163,50 @@ namespace Pedidos
         protected void ProductslistDataBound(object sender, System.Web.UI.WebControls.RepeaterItemEventArgs e)
         {
             Label estado = (Label)e.Item.FindControl("lblestado");
-            if (ProductoLN.GetInstance().Stock(Convert.ToInt64(((Label)e.Item.FindControl("txtid")).Text)) > 0)
-            {
-                estado.Text = "Disponible";
-                estado.ForeColor = System.Drawing.Color.GreenYellow;
-            }
-            else
-            {
-                estado.Text = "No disponible";
-                estado.ForeColor = System.Drawing.Color.Red;
-            }
             long Stock = Convert.ToInt64(((Label)e.Item.FindControl("Stock")).Text);
             if (Stock > 9999)
             {
                 ((Label)e.Item.FindControl("Stock")).Text = "+9999";
+            }
+
+            //Chekear disponibilidad y obtener imagen del producto
+            long idproducto = Convert.ToInt64(((Label)e.Item.FindControl("txtid")).Text);
+            try
+            {
+                //Estado del producto
+                if (ProductoLN.GetInstance().Stock(Convert.ToInt64(idproducto)) > 0)
+                {
+                    estado.Text = "Disponible";
+                    estado.ForeColor = Color.GreenYellow;
+                }
+                else
+                {
+                    estado.Text = "No disponible";
+                    estado.ForeColor = Color.Red;
+                }
+
+                //Obtener imagen del producto
+                (e.Item.FindControl("imgproducto") as System.Web.UI.WebControls.Image).ImageUrl = ProductoLN.GetInstance().GetImgProduct(idproducto);
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (SqlNullValueException ex)
+            {
+                throw ex;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }

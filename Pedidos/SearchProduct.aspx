@@ -8,7 +8,7 @@
             <ItemTemplate>
                 <div class="targeta2" id="target">
                     <div class="producto-img">
-                        <asp:ImageButton ID="imgproducto" CssClass="imgproducto" runat="server" CommandName="detalles" ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("Imagen")) %>' />
+                        <asp:ImageButton ID="imgproducto" CssClass="imgproducto" runat="server" CommandName="detalles" />
                     </div>
                     <div class="content-targeta2">
                         <asp:Label ID="lblid" runat="server" Text='<%# Eval("Id") %>' CssClass="d-none"></asp:Label>

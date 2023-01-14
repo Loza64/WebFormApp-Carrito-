@@ -2,8 +2,10 @@
 using Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Logic
 {
@@ -53,6 +55,34 @@ namespace Logic
             try
             {
                 return ProductoDAO.GetInstance().GetProduct(id);
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (SqlNullValueException ex)
+            {
+                throw ex;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public string GetImgProduct(long id)
+        {
+            try
+            {
+                return ProductoDAO.GetInstance().GetImgProduct(id);
             }
             catch (SqlException ex)
             {
