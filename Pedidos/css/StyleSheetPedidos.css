@@ -423,13 +423,23 @@
         color: rgb(177, 177, 177);
     }
 
-    .targeta2 .content-targeta2 .details2 {
-        display: none;
+@media only screen and (max-width:825px) {
+    .targeta2 .producto-img .imgproducto {
+        height: 150px;
+        width: 150px;
     }
+    .targeta2 .content-targeta2 .details {
+        font-size: 9px;
+    }
+}
 
-    .targeta2 .flex-targeta2 span {
-        font-weight: 900;
-    }
+.targeta2 .content-targeta2 .details2 {
+    display: none;
+}
+
+.targeta2 .flex-targeta2 span {
+    font-weight: 900;
+}
 
 
 @media only screen and (max-width:390px) {
