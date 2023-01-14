@@ -98,7 +98,7 @@ namespace DataAcces
                         scmd.CommandType = System.Data.CommandType.Text;
                         scmd.Parameters.Add("@Usuario", SqlDbType.VarChar).Value = usuario;
                         scmd.Parameters.AddWithValue("@Email", SqlDbType.VarChar).Value = email;
-                        scmd.Parameters.AddWithValue("@Telefono", SqlDbType.NVarChar).Value = telefono;
+                        scmd.Parameters.AddWithValue("@Telefono", SqlDbType.VarChar).Value = telefono;
                         SqlDataReader sdr = scmd.ExecuteReader();
                         if (sdr.Read())
                         {
