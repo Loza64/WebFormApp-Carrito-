@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CateogiraDAO.cs" />
     <Compile Include="ConnectionDB.cs" />
     <Compile Include="DetallePedidoDAO.cs" />
     <Compile Include="PedidoDAO.cs" />

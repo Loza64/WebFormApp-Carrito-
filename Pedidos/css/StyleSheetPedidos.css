@@ -374,25 +374,26 @@
     text-align: center;
 }
 
-.seccion-search h1{
-    color:blue;
-    font-weight:900;
-    text-align:center;
-    font-size:29px;
-    margin-top:8px;
+.seccion-search h1 {
+    color: blue;
+    font-weight: 900;
+    text-align: center;
+    font-size: 29px;
+    margin-top: 8px;
 }
 
 /*Targeta 2*/
-.seccion-search{
-    margin:0 20px;
+.seccion-search {
+    margin: 0 20px;
 }
+
 .targeta2 {
     display: flex;
     align-items: center;
     border: solid 2px lightgrey;
     border-radius: 10px;
     overflow: hidden;
-    margin:20px 0;
+    margin: 20px 0;
 }
 
     .targeta2 .content-targeta2 .details {
@@ -400,7 +401,9 @@
         font-weight: bold;
         color: rgb(177, 177, 177);
     }
-
+    .targeta2 .content-targeta2 .details2{
+        display:none;
+    }
     .targeta2 .content-targeta2 {
         margin: 0 20px;
     }
@@ -413,18 +416,59 @@
 
         .targeta2 .flex-targeta2 h2 {
             color: blue;
-            font-weight: bold;
+            font-weight: 900;
         }
 
         .targeta2 .flex-targeta2 span {
             font-weight: 900;
         }
 
+
     .targeta2 .producto-img .imgproducto {
         height: 200px;
         width: 200px;
     }
 
+@media only screen and (max-width:390px) {
+    .targeta2 .producto-img .imgproducto {
+        height: 130px;
+        width: 130px;
+    }
+    .targeta2 .flex-targeta2 h2 {
+        font-size: 15px;
+    }
+}
+@media only screen and (max-width:570px) {
+    .seccion-search{
+        margin: 0 5px;
+    }
+    .targeta2 .producto-img .imgproducto {
+        height: 140px;
+        width: 140px;
+    }
+
+    .targeta2 .content-targeta2 {
+        justify-content: flex-start;
+    }
+    .targeta2 .flex-targeta2 h2 {
+        font-size: 17px;
+    }
+    .targeta2 .flex-targeta2 span {
+        display: none;
+    }
+
+    .targeta2 .content-targeta2 .details {
+        display: none;
+    }
+
+    .targeta2 .content-targeta2 .details2 {
+        display: flex;
+        flex-direction: column;
+        align-items:start;
+        font-weight:900;
+        font-size:13px;
+    }
+}
 
 /*Detalles del producto*/
 .details-product .flex {

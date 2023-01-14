@@ -17,7 +17,7 @@ namespace Pedidos
             {
                 if (!Page.IsPostBack)
                 {
-                    ListProducts.DataSource = (List<Producto>)Session["SearchProduct"]; 
+                    ListProducts.DataSource = (List<Producto>)Session["SearchProduct"];
                     ListProducts.DataBind();
                 }
             }
@@ -143,7 +143,7 @@ namespace Pedidos
 
         protected void ListProductsCommand(object source, System.Web.UI.WebControls.RepeaterCommandEventArgs e)
         {
-            if(e.CommandName == "detalles")
+            if (e.CommandName == "detalles")
             {
                 Label lblid = (Label)e.Item.FindControl("lblid");
                 Session["Producto"] = ProductoLN.GetInstance().GetProduct(Convert.ToInt64(lblid.Text));
@@ -153,14 +153,43 @@ namespace Pedidos
 
         protected void ListProductsDataBound(object sender, System.Web.UI.WebControls.RepeaterItemEventArgs e)
         {
+            //Obetener estado del producto
             Label estado = (Label)e.Item.FindControl("lblestado");
-            if(estado.Text == "Disponible")
+            if (estado.Text == "Disponible")
             {
                 estado.ForeColor = Color.Green;
             }
             else
             {
                 estado.ForeColor = Color.Red;
+            }
+
+            //Obtener la categoria del producto
+            try
+            {
+                Label lblidcategoria = (Label)e.Item.FindControl("lblidcategoria");
+                ((Label)e.Item.FindControl("lblcategoria")).Text = "Categoria: " + CateogiraLN.GetInstance().GetCategory(Convert.ToInt64(lblidcategoria.Text));
+
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (SqlNullValueException ex)
+            {
+                throw ex;
+            }
+            catch (TimeoutException ex)
+            {
+                throw ex;
+            }
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }
