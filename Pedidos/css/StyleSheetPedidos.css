@@ -379,13 +379,10 @@
     font-weight: 900;
     text-align: center;
     font-size: 29px;
-    margin-top: 8px;
+    margin-top: 5.3px;
 }
 
 /*Targeta 2*/
-.seccion-search {
-    margin: 0 20px;
-}
 
 .targeta2 {
     display: flex;
