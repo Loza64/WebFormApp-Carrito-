@@ -29,7 +29,7 @@ function errorSignupData() {
 function succesSignUp(businessName) {
     swal.fire(
         'En hora buena!',
-        'Su información se registro exitosamente, bienbenido a ' + businessName + '.',
+        'Su información se registro exitosamente, bienvenido a ' + businessName + '.',
         'success'
     )
 }
