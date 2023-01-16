@@ -354,13 +354,16 @@ namespace DataAcces
                     {
                         con.Open();
                         scmd.Connection = con;
-                        scmd.CommandText = "insert into Producto(Nombre,Descripcion,Imagen,Stock,Precio) values(@Nombre,@Descripcion,@Imagen,@Stock,@Precio)";
+                        scmd.CommandText = "insert into Producto(IdCategoria, Nombre, Imagen, Company, Detalle, Stock, Precio, Estado) values (@IdCategoria, @Nombre, @Imagen, @Company, @Detalle, @Stock, @Precio, @Estado)";
                         scmd.CommandType = CommandType.Text;
+                        scmd.Parameters.Add("@IdCategoria", SqlDbType.BigInt).Value = producto.IdCategoria;
                         scmd.Parameters.Add("@Nombre", SqlDbType.VarChar).Value = producto.Nombre;
-                        scmd.Parameters.Add("@Descripcion", SqlDbType.VarChar).Value = producto.Detalle;
                         scmd.Parameters.Add("@Imagen", SqlDbType.VarBinary).Value = producto.Imagen;
+                        scmd.Parameters.Add("@Company", SqlDbType.VarChar).Value = producto.Company;
+                        scmd.Parameters.Add("@Detalle", SqlDbType.VarChar).Value = producto.Detalle;
                         scmd.Parameters.Add("@Stock", SqlDbType.Int).Value = producto.Stock;
                         scmd.Parameters.Add("@Precio", SqlDbType.Decimal).Value = producto.Precio;
+                        scmd.Parameters.Add("@Estado", SqlDbType.VarChar).Value = producto.Estado;
                         int upload = scmd.ExecuteNonQuery();
                         if (upload != 0)
                         {
