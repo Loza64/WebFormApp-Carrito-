@@ -47,11 +47,11 @@ namespace DataAcces
                                 Id = sdr.GetInt64(0),
                                 IdCategoria = sdr.GetInt64(1),
                                 Nombre = sdr.GetString(2),
-                                Company = sdr.GetString(4),
-                                Detalle = sdr.GetString(5),
-                                Stock = sdr.GetInt32(6),
-                                Precio = sdr.GetDecimal(7),
-                                Estado = sdr.GetString(8)
+                                Company = sdr.GetString(3),
+                                Detalle = sdr.GetString(4),
+                                Stock = sdr.GetInt32(5),
+                                Precio = sdr.GetDecimal(6),
+                                Estado = sdr.GetString(7)
                             };
                             list.Add(product);
                         }
@@ -96,7 +96,7 @@ namespace DataAcces
                     {
                         con.Open();
                         scmd.Connection = con;
-                        scmd.CommandText = "select * from Producto where id = @Id";
+                        scmd.CommandText = "SELECT TOP (21) Id, IdCategoria, Nombre, Company, Detalle, Stock, Precio, Estado FROM Producto where id = @Id";
                         scmd.CommandType = CommandType.Text;
                         scmd.Parameters.Add("@Id", SqlDbType.BigInt).Value = id;
                         sdr = scmd.ExecuteReader();
@@ -106,13 +106,12 @@ namespace DataAcces
                             {
                                 Id = sdr.GetInt64(0),
                                 IdCategoria = sdr.GetInt64(1),
-                                //Imagen = (byte[])sdr["Imagen]
                                 Nombre = sdr.GetString(2),
-                                Company = sdr.GetString(4),
-                                Detalle = sdr.GetString(5),
-                                Stock = sdr.GetInt32(6),
-                                Precio = sdr.GetDecimal(7),
-                                Estado = sdr.GetString(8)
+                                Company = sdr.GetString(3),
+                                Detalle = sdr.GetString(4),
+                                Stock = sdr.GetInt32(5),
+                                Precio = sdr.GetDecimal(6),
+                                Estado = sdr.GetString(7)
                             };
                         }
                     }
@@ -206,7 +205,7 @@ namespace DataAcces
                     {
                         con.Open();
                         scmd.Connection = con;
-                        scmd.CommandText = "select top(21) * from Producto where Nombre like '%'+@cmdproducto+'%'";
+                        scmd.CommandText = "SELECT TOP (21) Id, IdCategoria, Nombre, Company, Detalle, Stock, Precio, Estado FROM Producto where Nombre like '%'+@cmdproducto+'%'";
                         scmd.CommandType = CommandType.Text;
                         scmd.Parameters.Add("@cmdproducto", SqlDbType.VarChar).Value = nombre;
                         sdr = scmd.ExecuteReader();
@@ -216,13 +215,12 @@ namespace DataAcces
                             {
                                 Id = sdr.GetInt64(0),
                                 IdCategoria = sdr.GetInt64(1),
-                                //Imagen = (byte[])sdr["Imagen],
                                 Nombre = sdr.GetString(2),
-                                Company = sdr.GetString(4),
-                                Detalle = sdr.GetString(5),
-                                Stock = sdr.GetInt32(6),
-                                Precio = sdr.GetDecimal(7),
-                                Estado = sdr.GetString(8)
+                                Company = sdr.GetString(3),
+                                Detalle = sdr.GetString(4),
+                                Stock = sdr.GetInt32(5),
+                                Precio = sdr.GetDecimal(6),
+                                Estado = sdr.GetString(7)
                             };
                             list.Add(product);
                         }
