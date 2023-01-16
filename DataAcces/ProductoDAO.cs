@@ -37,7 +37,7 @@ namespace DataAcces
                     {
                         con.Open();
                         scmd.Connection = con;
-                        scmd.CommandText = "select top(21) * from Producto";
+                        scmd.CommandText = "SELECT TOP (21) Id, IdCategoria, Nombre, Company, Detalle, Stock, Precio, Estado FROM Producto";
                         scmd.CommandType = CommandType.Text;
                         sdr = scmd.ExecuteReader();
                         while (sdr.Read())
