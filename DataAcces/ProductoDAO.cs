@@ -46,7 +46,6 @@ namespace DataAcces
                             {
                                 Id = sdr.GetInt64(0),
                                 IdCategoria = sdr.GetInt64(1),
-                                //Imagen = (byte[])sdr["Imagen]
                                 Nombre = sdr.GetString(2),
                                 Company = sdr.GetString(4),
                                 Detalle = sdr.GetString(5),
