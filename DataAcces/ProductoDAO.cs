@@ -205,7 +205,7 @@ namespace DataAcces
                     {
                         con.Open();
                         scmd.Connection = con;
-                        scmd.CommandText = "SELECT TOP (21) Id, IdCategoria, Nombre, Company, Detalle, Stock, Precio, Estado FROM Producto where Nombre like '%'+@cmdproducto+'%'";
+                        scmd.CommandText = "SELECT TOP (21) p.Id, p.IdCategoria, p.Nombre, p.Company, p.Detalle, p.Stock, p.Precio, p.Estado FROM Producto p inner join Categoria c on c.Id = p.IdCategoria where Nombre like '%'+@cmdproducto+'%' or c.NombreCategoria like '%'+@cmdproducto+'%'";
                         scmd.CommandType = CommandType.Text;
                         scmd.Parameters.Add("@cmdproducto", SqlDbType.VarChar).Value = nombre;
                         sdr = scmd.ExecuteReader();
