@@ -73,7 +73,6 @@ namespace Pedidos
                 long idProducto = Convert.ToInt64((e.Item.FindControl("lblid") as Label).Text);
                 ((Label)e.Item.FindControl("lblcategoria")).Text = "Categoria: " + CateogiraLN.GetInstance().GetCategoryName(idCategoria);
                 (e.Item.FindControl("imgproducto") as ImageButton).ImageUrl = ProductoLN.GetInstance().GetImgProduct(idProducto);
-
             }
             catch (SqlException ex)
             {
