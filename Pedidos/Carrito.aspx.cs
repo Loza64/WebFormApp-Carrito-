@@ -91,9 +91,9 @@ namespace Pedidos
             decimal Total = 0.00m;
             if (Session["carrito"] != null)
             {
-                SubTotal += listadoCarrito.Sum(item => item.SubTotal);
+                SubTotal = listadoCarrito.Sum(item => item.SubTotal);
                 iva = Math.Round(SubTotal * 0.13m, 2, MidpointRounding.AwayFromZero);
-                Total += listadoCarrito.Sum(item => item.Total);
+                Total = listadoCarrito.Sum(item => item.Total);
                 txtsubtotal.Text = "US$" + SubTotal.ToString();
                 txtiva.Text = "US$" + iva.ToString();
                 txttotal.Text = "US$" + Total.ToString();
