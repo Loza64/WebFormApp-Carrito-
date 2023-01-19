@@ -29,7 +29,11 @@ namespace Pedidos
                 {
                     lblLogin.Text = "Iniciar sesión";
                 }
-                lblcuenta.Text = ((List<ListadoCarrito>)Session["carrito"]).Count.ToString();
+                long cant = 0;
+                foreach(ListadoCarrito cart in (List<ListadoCarrito>)Session["carrito"]){
+                    cant += cart.Cantidad;
+                }
+                lblcuenta.Text = cant.ToString();
             }
         }
 
