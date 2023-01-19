@@ -1,4 +1,4 @@
-﻿//Functions navbar menu
+﻿//Function navbar menu
 let iconmenu = document.getElementById("iconmenu");
 let btnmenu = document.getElementById("btn-menu");
 let menu = document.getElementById("menu");
@@ -17,8 +17,7 @@ btnmenu.addEventListener('click', () => {
     }
 })
 
-//Function modals signup and login
-
+//Function modal signup and login
 let openmodal = document.getElementById("open-modal");
 let closemodal = document.getElementById("close-modal");
 let modal = document.getElementById("modal");
@@ -36,12 +35,4 @@ closemodal.addEventListener('click', () => {
     modal.style.zIndex = "-10";
     modal.style.background = "none";
     formsignup.style.transform = "scale(0%)";
-})
-
-
-//Formulario pago functios
-
-let btnpago = document.getElementById("btnpedido");
-btnpago.addEventListener('click', (e) => {
-    e.preventDefault;
 })
