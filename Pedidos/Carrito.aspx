@@ -30,15 +30,15 @@
                                         <asp:Image ID="imgproducto" runat="server" />
                                     </td>
                                     <td>
-                                        <%# Eval("Nombre") %>
+                                        <%#Eval("Nombre") %>
                                     </td>
                                     <td class="item-price">
-                                        <%# "$"+ Eval("Precio") %>
+                                        <%#"$"+ Eval("Precio") %>
                                     </td>
                                     <td>
                                         <div class="flex-buttoms">
                                             <asp:LinkButton ID="btnresta" runat="server" CommandName="Restar" class="fas fa-minus btn-quantity" />
-                                            <asp:Label type="number" CssClass="cantidad text-center"  ID="txtcantidad" runat="server" Text='<%# Bind("Cantidad") %>'></asp:Label>
+                                            <asp:Label type="number" CssClass="cantidad text-center" ID="txtcantidad" runat="server" Text='<%# Bind("Cantidad") %>'></asp:Label>
                                             <asp:LinkButton ID="btnsuma" runat="server" CommandName="Sumar" class="fas fa-plus btn-quantity" />
                                         </div>
                                     </td>

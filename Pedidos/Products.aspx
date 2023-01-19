@@ -18,7 +18,7 @@
                                     </div>
                                 </div>
                                 <div style="display: flex; justify-content: space-between; align-items: center; width: 100%">
-                                    <asp:Label Style="font-weight: 800; font-size: 15px;" ID="lblprecio" runat="server" Text='<%#"$"+Eval("Precio") %>'></asp:Label>
+                                    <asp:Label Style="font-weight: 800; font-size: 15px;" ID="lblprecio" runat="server" Text='<%#"US$"+Eval("Precio") %>'></asp:Label>
                                     <asp:Label ID="lblestado" runat="server" Text='<%# Eval("Estado")%>' Style="font-weight: 700"></asp:Label>
                                 </div>
                                 <div class="cuerpo-targeta">

@@ -96,9 +96,9 @@ namespace Pedidos
                     iva = Math.Round(SubTotal * 0.13m, 2, MidpointRounding.AwayFromZero);
                     Total += carrito.Total;
                 }
-                txtsubtotal.Text = "$" + SubTotal.ToString();
-                txtiva.Text = "$" + iva.ToString();
-                txttotal.Text = "$" + Total.ToString();
+                txtsubtotal.Text = "US$" + SubTotal.ToString();
+                txtiva.Text = "US$" + iva.ToString();
+                txttotal.Text = "US$" + Total.ToString();
                 Session["SubTotal"] = SubTotal;
                 Session["Total"] = Total;
             }
