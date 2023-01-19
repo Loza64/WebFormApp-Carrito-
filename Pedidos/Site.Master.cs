@@ -17,7 +17,13 @@ namespace Pedidos
                 //Si la sesion del carrito acabo lo vuelve a crear
                 if (Session["carrito"] == null)
                 {
+                    long cant = 0;
                     Session["carrito"] = new List<ListadoCarrito>();
+                    foreach (ListadoCarrito cart in (List<ListadoCarrito>)Session["carrito"])
+                    {
+                        cant += cart.Cantidad;
+                    }
+                    lblcuenta.Text = cant.ToString();
                 }
 
                 //Si la sesion del usuario esta llena se muestra su username si no se cierra sesion
@@ -29,11 +35,6 @@ namespace Pedidos
                 {
                     lblLogin.Text = "Iniciar sesión";
                 }
-                long cant = 0;
-                foreach(ListadoCarrito cart in (List<ListadoCarrito>)Session["carrito"]){
-                    cant += cart.Cantidad;
-                }
-                lblcuenta.Text = cant.ToString();
             }
         }
 
