@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.Linq;
 using System.Web.UI.WebControls;
 
 namespace Pedidos
@@ -90,12 +91,9 @@ namespace Pedidos
             decimal Total = 0.00m;
             if (Session["carrito"] != null)
             {
-                foreach (ListadoCarrito carrito in listadoCarrito)
-                {
-                    SubTotal += carrito.SubTotal;
-                    iva = Math.Round(SubTotal * 0.13m, 2, MidpointRounding.AwayFromZero);
-                    Total += carrito.Total;
-                }
+                SubTotal += listadoCarrito.Sum(item => item.SubTotal);
+                iva = Math.Round(SubTotal * 0.13m, 2, MidpointRounding.AwayFromZero);
+                Total += listadoCarrito.Sum(item => item.Total);
                 txtsubtotal.Text = "US$" + SubTotal.ToString();
                 txtiva.Text = "US$" + iva.ToString();
                 txttotal.Text = "US$" + Total.ToString();
