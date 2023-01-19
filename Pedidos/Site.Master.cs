@@ -30,7 +30,7 @@ namespace Pedidos
                 {
                     lblLogin.Text = "Iniciar sesión";
                 }
-                lblcuenta.Text = ((List<ListadoCarrito>)Session["carrito"]).Sum(item => item.Cantidad).ToString();
+                lblcuenta.Text = ((List<ListadoCarrito>)Session["carrito"]).Sum(itemProduct => itemProduct.Cantidad).ToString();
             }
         }
 
