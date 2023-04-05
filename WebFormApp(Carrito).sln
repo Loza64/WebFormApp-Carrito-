@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entiti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{5C253EB5-FF47-4C1D-B786-F42C06C2F4D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingCart", "ShoppingCart\ShoppingCart.csproj", "{55105CF7-3A08-438B-B3D7-AC471AF32E45}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{5C253EB5-FF47-4C1D-B786-F42C06C2F4D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C253EB5-FF47-4C1D-B786-F42C06C2F4D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C253EB5-FF47-4C1D-B786-F42C06C2F4D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55105CF7-3A08-438B-B3D7-AC471AF32E45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55105CF7-3A08-438B-B3D7-AC471AF32E45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55105CF7-3A08-438B-B3D7-AC471AF32E45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55105CF7-3A08-438B-B3D7-AC471AF32E45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
