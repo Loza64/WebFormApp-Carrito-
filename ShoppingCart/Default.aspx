@@ -1,44 +1,40 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ShoppingCart._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
-    <main>
-        <section class="row" aria-labelledby="aspnetTitle">
-            <h1 id="aspnetTitle">ASP.NET</h1>
-            <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-            <p><a href="http://www.asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-        </section>
-
-        <div class="row">
-            <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-                <h2 id="gettingStartedTitle">Getting started</h2>
-                <p>
-                    ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-                A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-                </p>
-            </section>
-            <section class="col-md-4" aria-labelledby="librariesTitle">
-                <h2 id="librariesTitle">Get more libraries</h2>
-                <p>
-                    NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-                </p>
-            </section>
-            <section class="col-md-4" aria-labelledby="hostingTitle">
-                <h2 id="hostingTitle">Web Hosting</h2>
-                <p>
-                    You can easily find a web hosting company that offers the right mix of features and price for your applications.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-                </p>
-            </section>
+    <br />
+    <div class="container   pt-5">
+        <div class="container-fluid">
+            <div class="row">
+                <asp:Repeater ID="Productslist" runat="server" OnItemCommand="ProductslistCommand" OnItemDataBound="ProductslistDataBound">
+                    <ItemTemplate>
+                        <div class="col-md-4 my-2">
+                            <div class="targeta">
+                                <div class="cabeza-targeta">
+                                    <asp:Label ID="txtid" runat="server" Text='<%# Eval("Id") %>' Style="display: none"></asp:Label>
+                                    <asp:Label ID="txtnombre" runat="server" Text='<%# Eval("Nombre")%>' CssClass="nombreproducto"></asp:Label>
+                                    <div class="labelstock">
+                                        <i class="fas fa-box-open"></i>
+                                        <asp:Label ID="Stock" runat="server" Text='<%# Eval("Stock") %>' Style="font-weight: 900"></asp:Label>
+                                    </div>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; width: 100%">
+                                    <asp:Label Style="font-weight: 800; font-size: 15px;" ID="lblprecio" runat="server" Text='<%#"US$"+Eval("Precio") %>'></asp:Label>
+                                    <asp:Label ID="lblestado" runat="server" Text='<%# Eval("Estado")%>' Style="font-weight: 700"></asp:Label>
+                                </div>
+                                <div class="cuerpo-targeta">
+                                    <asp:Image ID="imgproducto" runat="server" CssClass="imagenproducto" />
+                                </div>
+                                <div class="pie-targeta">
+                                    <div class="botones">
+                                        <asp:Button ID="btncarrito" CommandName="carrito" runat="server" Text="Añadir al carrito" CssClass="botoncarrito"></asp:Button>
+                                        <asp:Button ID="btndetalleproducto" CommandName="detalle" runat="server" Text="Mostrar detalles" CssClass="botondetalle" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </div>
         </div>
-    </main>
-
+    </div>
 </asp:Content>

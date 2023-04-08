@@ -3,8 +3,6 @@ using Logic;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
-using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,37 +10,26 @@ using System.Web.UI.WebControls;
 
 namespace ShoppingCart
 {
-    public partial class _Default : Page
+    public partial class DetalleProducto : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
+            if (!Page.IsPostBack)
             {
-                if (!Page.IsPostBack)
+                if (Session["Producto"] != null)
                 {
-                    Productslist.DataSource = ProductoLN.GetInstance().ShowProducts();
-                    Productslist.DataBind();
+                    Producto product = (Producto)Session["Producto"];
+                    lblstock.Text = Convert.ToString(product.Stock);
+                    lblnombreproducto.Text = product.Nombre;
+                    lblcompany.Text = product.Company;
+                    lbldescripcion.Text = product.Detalle;
+                    lblprecio.Text = Convert.ToString(product.Precio);
+                    imgproduct.ImageUrl = ProductoLN.GetInstance().GetImgProduct(product.Id);
                 }
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-            catch (SqlNullValueException ex)
-            {
-                throw ex;
-            }
-            catch (TimeoutException ex)
-            {
-                throw ex;
-            }
-            catch (NullReferenceException ex)
-            {
-                throw ex;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                else
+                {
+                    Response.Redirect("/");
+                }
             }
         }
         public void AddToCart(long IdProduct)
@@ -141,74 +128,15 @@ namespace ShoppingCart
             }
             Session["carrito"] = listadoCarrito;
         }
-        protected void ProductslistCommand(object source, System.Web.UI.WebControls.RepeaterCommandEventArgs e)
+        protected void btncarrito_Click(object sender, EventArgs e)
         {
-            int Stock = Convert.ToInt32(((Label)e.Item.FindControl("Stock")).Text);
-            long IdProduct = Convert.ToInt64(((Label)e.Item.FindControl("txtid")).Text);
-            if (Stock > 0)
-            {
-                if (e.CommandName == "carrito")
-                {
-                    AddToCart(IdProduct);
-                    Response.Redirect("/");
-                }
-                else if (e.CommandName == "detalle")
-                {
-                    Producto product = ProductoLN.GetInstance().GetProduct(IdProduct);
-                    Session["Producto"] = product;
-                    Response.Redirect("/DetalleProducto");
-                }
-            }
+            Producto product = (Producto)Session["Producto"];
+            AddToCart(product.Id);
+            Response.Redirect("/DetalleProducto");
         }
-
-        protected void ProductslistDataBound(object sender, System.Web.UI.WebControls.RepeaterItemEventArgs e)
+        protected void btnprincipal_Click1(object sender, EventArgs e)
         {
-            Label estado = (Label)e.Item.FindControl("lblestado");
-            long Stock = Convert.ToInt64(((Label)e.Item.FindControl("Stock")).Text);
-            if (Stock > 9999)
-            {
-                ((Label)e.Item.FindControl("Stock")).Text = "+9999";
-            }
-
-            //Chekear disponibilidad y obtener imagen del producto
-            long idproducto = Convert.ToInt64(((Label)e.Item.FindControl("txtid")).Text);
-            try
-            {
-                //Estado del producto
-                if (ProductoLN.GetInstance().Stock(Convert.ToInt64(idproducto)) > 0)
-                {
-                    estado.Text = "Disponible";
-                    estado.ForeColor = Color.GreenYellow;
-                }
-                else
-                {
-                    estado.Text = "No disponible";
-                    estado.ForeColor = Color.Red;
-                }
-
-                //Obtener imagen del producto
-                (e.Item.FindControl("imgproducto") as System.Web.UI.WebControls.Image).ImageUrl = ProductoLN.GetInstance().GetImgProduct(idproducto);
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-            catch (SqlNullValueException ex)
-            {
-                throw ex;
-            }
-            catch (TimeoutException ex)
-            {
-                throw ex;
-            }
-            catch (NullReferenceException ex)
-            {
-                throw ex;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            Response.Redirect("/");
         }
     }
 }

@@ -11,52 +11,79 @@ namespace ShoppingCart
 {
 
 
-    public partial class SiteMaster
+    public partial class DetalleProducto
     {
 
         /// <summary>
-        /// Control lblcuenta.
+        /// Control lblnombreproducto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblcuenta;
+        protected global::System.Web.UI.WebControls.Label lblnombreproducto;
 
         /// <summary>
-        /// Control txtbuscar.
+        /// Control imgproduct.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtbuscar;
+        protected global::System.Web.UI.WebControls.Image imgproduct;
 
         /// <summary>
-        /// Control btnsearch.
+        /// Control lblcompany.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnsearch;
+        protected global::System.Web.UI.WebControls.Label lblcompany;
 
         /// <summary>
-        /// Control lblLogin.
+        /// Control lblprecio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLogin;
+        protected global::System.Web.UI.WebControls.Label lblprecio;
 
         /// <summary>
-        /// Control MainContent.
+        /// Control lblstock.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.Label lblstock;
+
+        /// <summary>
+        /// Control lbldescripcion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbldescripcion;
+
+        /// <summary>
+        /// Control btncarrito.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btncarrito;
+
+        /// <summary>
+        /// Control btnprincipal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnprincipal;
     }
 }
