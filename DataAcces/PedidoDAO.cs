@@ -34,16 +34,9 @@ namespace DataAcces
                     {
                         con.Open();
                         scmd.Connection = con;
-                        scmd.CommandText = "select max(p.CodPedido) from Pedido p";
+                        scmd.CommandText = "select isnull(max(p.CodPedido),34512346) from Pedido p";
                         scmd.CommandType = System.Data.CommandType.Text;
-                        if (DBNull.Value.Equals(scmd.ExecuteScalar()))
-                        {
-                            codpedido = 34512345;
-                        }
-                        else
-                        {
-                            codpedido = Convert.ToInt64(scmd.ExecuteScalar());
-                        }
+                        codpedido = Convert.ToInt64(scmd.ExecuteScalar());
                     }
                     catch (SqlException ex)
                     {
